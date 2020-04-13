@@ -42,7 +42,10 @@ func get_input() -> void:
 		reset_animation()
 	if is_on_floor():
 #		sprite.frames.set_animation_speed("Roll", int(abs(motion.x/ROTATION_FACTOR)))
-		sprite.speed_scale = abs(motion.x/50)
+		if sprite.animation == "Roll" or sprite.animation =="RollR":
+			sprite.speed_scale = abs(motion.x/50)
+		else:
+			sprite.speed_scale = 1.0
 
 
 func gravity() -> void:
@@ -53,9 +56,11 @@ func gravity() -> void:
 
 
 func reset_animation() -> void:
-	if sprite.get_animation() == "Roll" or sprite.get_animation() == "RollR" and sprite.frame != 1 and ResetTimer.is_stopped():
-		if motion.x < 1 and motion.x > -1:
-			ResetTimer.start()
+	if sprite.animation == "Roll" or sprite.animation == "RollR":
+		if motion.x < 1.5 and motion.x > -1.5:
+			if ResetTimer.is_stopped():
+				ResetTimer.start()
+				print(ResetTimer.is_stopped())
 
 
 func slope_roll() -> void:
@@ -80,7 +85,7 @@ func slope_roll() -> void:
 
 
 func _on_ResetTimer_timeout() -> void:
-	if motion.x < 1 and motion.x > -1:
+	if motion.x < 1.5 and motion.x > -1.5:
 		sprite.speed_scale = 1.0
 		sprite.play("Reset", false)
 		IdleTimer.start(1)
