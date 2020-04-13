@@ -129,7 +129,7 @@ points = PoolVector2Array( 0, 0, 16, 0, 32, 32, 0, 32 )
 [node name="Game" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 169.791, 49.9404 )
+position = Vector2( 142.098, -299.482 )
 
 [node name="TestTiles" type="TileMap" parent="."]
 tile_set = SubResource( 12 )

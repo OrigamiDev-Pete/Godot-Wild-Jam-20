@@ -582,9 +582,11 @@ zoom = Vector2( 0.5, 0.5 )
 smoothing_enabled = true
 
 [node name="IdleTimer" type="Timer" parent="."]
+process_mode = 0
 one_shot = true
 
 [node name="ResetTimer" type="Timer" parent="."]
+process_mode = 0
 wait_time = 0.5
 one_shot = true
 

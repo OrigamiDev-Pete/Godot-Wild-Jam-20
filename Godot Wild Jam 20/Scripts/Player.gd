@@ -18,7 +18,6 @@ func _physics_process(delta) -> void:
 	gravity()
 	get_input()
 	motion.y = move_and_slide_with_snap(motion, Vector2(0,50), Vector2.UP, false, 4, deg2rad(46.0)).y
-	reset_animation()
 
 
 func get_input() -> void:
@@ -40,8 +39,10 @@ func get_input() -> void:
 	else:
 		motion.x = lerp(motion.x, 0, FRICTION)
 		slope_roll()
+		reset_animation()
 	if is_on_floor():
-		sprite.frames.set_animation_speed("Roll", int(abs(motion.x/ROTATION_FACTOR)))
+#		sprite.frames.set_animation_speed("Roll", int(abs(motion.x/ROTATION_FACTOR)))
+		sprite.speed_scale = abs(motion.x/50)
 
 
 func gravity() -> void:
@@ -64,21 +65,23 @@ func slope_roll() -> void:
 		if slope_angle > 0:
 			if normal.x < 0:
 				motion.x = lerp(motion.x, -10000, 0.001)
-				if !sprite.flip_h:
+				if !sprite.flip_h and sprite.animation != "RollR":
+					var last_frame := sprite.frame
 					sprite.play("RollR")
+					sprite.frame = last_frame - 11
 			elif normal.x > 0:
 				motion.x = lerp(motion.x, 10000, 0.001)
-				if sprite.flip_h:
+				if sprite.flip_h and sprite.animation != "RollR":
 					sprite.play("RollR")
 					sprite.frames.set_animation_speed("RollR", int(abs(motion.x/ROTATION_FACTOR)))
 		if slope_angle == 0:
 			pass
-		sprite.frames.set_animation_speed("RollR", int(abs(motion.x/ROTATION_FACTOR)))
-	print(motion.x)
+#			sprite.play("Roll")
 
 
 func _on_ResetTimer_timeout() -> void:
 	if motion.x < 1 and motion.x > -1:
+		sprite.speed_scale = 1.0
 		sprite.play("Reset", false)
 		IdleTimer.start(1)
 
