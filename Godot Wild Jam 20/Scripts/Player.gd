@@ -9,6 +9,7 @@ const GRAVITY := 9.7
 var motion := Vector2(0,0)
 
 onready var sprite: AnimatedSprite = $AnimatedSprite as AnimatedSprite
+onready var ray: RayCast2D = $RayCast2D as RayCast2D
 onready var ResetTimer: Timer = $ResetTimer as Timer
 onready var IdleTimer: Timer = $IdleTimer as Timer
 
@@ -17,9 +18,6 @@ func _physics_process(delta) -> void:
 	gravity()
 	get_input()
 	motion.y = move_and_slide_with_snap(motion, Vector2(0,50), Vector2.UP, false, 4, deg2rad(46.0)).y
-	for i in get_slide_count():
-		var collision = get_slide_collision(i)
-		print(collision.collider_velocity)
 	reset_animation()
 
 
@@ -41,6 +39,7 @@ func get_input() -> void:
 		motion.x = lerp(motion.x, velocity.x, ACCEL)
 	else:
 		motion.x = lerp(motion.x, 0, FRICTION)
+		slope_roll()
 	if is_on_floor():
 		sprite.frames.set_animation_speed("Roll", int(abs(motion.x/ROTATION_FACTOR)))
 
@@ -53,9 +52,29 @@ func gravity() -> void:
 
 
 func reset_animation() -> void:
-	if sprite.get_animation() == "Roll" and sprite.frame != 1 and ResetTimer.is_stopped():
+	if sprite.get_animation() == "Roll" or sprite.get_animation() == "RollR" and sprite.frame != 1 and ResetTimer.is_stopped():
 		if motion.x < 1 and motion.x > -1:
 			ResetTimer.start()
+
+
+func slope_roll() -> void:
+	if ray.is_colliding():
+		var normal : Vector2 = ray.get_collision_normal()
+		var slope_angle : float = rad2deg(acos(normal.dot(Vector2(0, -1))))
+		if slope_angle > 0:
+			if normal.x < 0:
+				motion.x = lerp(motion.x, -10000, 0.001)
+				if !sprite.flip_h:
+					sprite.play("RollR")
+			elif normal.x > 0:
+				motion.x = lerp(motion.x, 10000, 0.001)
+				if sprite.flip_h:
+					sprite.play("RollR")
+					sprite.frames.set_animation_speed("RollR", int(abs(motion.x/ROTATION_FACTOR)))
+		if slope_angle == 0:
+			pass
+		sprite.frames.set_animation_speed("RollR", int(abs(motion.x/ROTATION_FACTOR)))
+	print(motion.x)
 
 
 func _on_ResetTimer_timeout() -> void:

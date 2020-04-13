@@ -1,4 +1,4 @@
-[gd_scene load_steps=115 format=2]
+[gd_scene load_steps=140 format=2]
 
 [ext_resource path="res://Sprites/Slime/Slime Roll.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Sprites/Slime/Slime Idle0.png" type="Texture" id=4]
 [ext_resource path="res://Sprites/Slime/Slime Idle1.png" type="Texture" id=5]
 [ext_resource path="res://Sprites/Slime/Slime Idle2.png" type="Texture" id=6]
+[ext_resource path="res://Sprites/Slime/Slime Roll Reverse.png" type="Texture" id=7]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 1 )
@@ -411,6 +412,102 @@ region = Rect2( 350, 0, 14, 14 )
 atlas = ExtResource( 5 )
 region = Rect2( 364, 0, 14, 14 )
 
+[sub_resource type="AtlasTexture" id=109]
+atlas = ExtResource( 7 )
+region = Rect2( 0, 0, 14, 14 )
+
+[sub_resource type="AtlasTexture" id=110]
+atlas = ExtResource( 7 )
+region = Rect2( 14, 0, 14, 14 )
+
+[sub_resource type="AtlasTexture" id=111]
+atlas = ExtResource( 7 )
+region = Rect2( 28, 0, 14, 14 )
+
+[sub_resource type="AtlasTexture" id=112]
+atlas = ExtResource( 7 )
+region = Rect2( 42, 0, 14, 14 )
+
+[sub_resource type="AtlasTexture" id=113]
+atlas = ExtResource( 7 )
+region = Rect2( 56, 0, 14, 14 )
+
+[sub_resource type="AtlasTexture" id=114]
+atlas = ExtResource( 7 )
+region = Rect2( 70, 0, 14, 14 )
+
+[sub_resource type="AtlasTexture" id=115]
+atlas = ExtResource( 7 )
+region = Rect2( 84, 0, 14, 14 )
+
+[sub_resource type="AtlasTexture" id=116]
+atlas = ExtResource( 7 )
+region = Rect2( 98, 0, 14, 14 )
+
+[sub_resource type="AtlasTexture" id=117]
+atlas = ExtResource( 7 )
+region = Rect2( 112, 0, 14, 14 )
+
+[sub_resource type="AtlasTexture" id=118]
+atlas = ExtResource( 7 )
+region = Rect2( 126, 0, 14, 14 )
+
+[sub_resource type="AtlasTexture" id=119]
+atlas = ExtResource( 7 )
+region = Rect2( 140, 0, 14, 14 )
+
+[sub_resource type="AtlasTexture" id=120]
+atlas = ExtResource( 7 )
+region = Rect2( 154, 0, 14, 14 )
+
+[sub_resource type="AtlasTexture" id=121]
+atlas = ExtResource( 7 )
+region = Rect2( 168, 0, 14, 14 )
+
+[sub_resource type="AtlasTexture" id=122]
+atlas = ExtResource( 7 )
+region = Rect2( 182, 0, 14, 14 )
+
+[sub_resource type="AtlasTexture" id=123]
+atlas = ExtResource( 7 )
+region = Rect2( 196, 0, 14, 14 )
+
+[sub_resource type="AtlasTexture" id=124]
+atlas = ExtResource( 7 )
+region = Rect2( 210, 0, 14, 14 )
+
+[sub_resource type="AtlasTexture" id=125]
+atlas = ExtResource( 7 )
+region = Rect2( 224, 0, 14, 14 )
+
+[sub_resource type="AtlasTexture" id=126]
+atlas = ExtResource( 7 )
+region = Rect2( 238, 0, 14, 14 )
+
+[sub_resource type="AtlasTexture" id=127]
+atlas = ExtResource( 7 )
+region = Rect2( 252, 0, 14, 14 )
+
+[sub_resource type="AtlasTexture" id=128]
+atlas = ExtResource( 7 )
+region = Rect2( 266, 0, 14, 14 )
+
+[sub_resource type="AtlasTexture" id=129]
+atlas = ExtResource( 7 )
+region = Rect2( 280, 0, 14, 14 )
+
+[sub_resource type="AtlasTexture" id=130]
+atlas = ExtResource( 7 )
+region = Rect2( 294, 0, 14, 14 )
+
+[sub_resource type="AtlasTexture" id=131]
+atlas = ExtResource( 7 )
+region = Rect2( 308, 0, 14, 14 )
+
+[sub_resource type="AtlasTexture" id=132]
+atlas = ExtResource( 7 )
+region = Rect2( 322, 0, 14, 14 )
+
 [sub_resource type="AtlasTexture" id=25]
 atlas = ExtResource( 3 )
 region = Rect2( 0, 0, 14, 14 )
@@ -453,6 +550,11 @@ animations = [ {
 "name": "Idle1",
 "speed": 15.0
 }, {
+"frames": [ SubResource( 109 ), SubResource( 110 ), SubResource( 111 ), SubResource( 112 ), SubResource( 113 ), SubResource( 114 ), SubResource( 115 ), SubResource( 116 ), SubResource( 117 ), SubResource( 118 ), SubResource( 119 ), SubResource( 120 ), SubResource( 121 ), SubResource( 122 ), SubResource( 123 ), SubResource( 124 ), SubResource( 125 ), SubResource( 126 ), SubResource( 127 ), SubResource( 128 ), SubResource( 129 ), SubResource( 130 ), SubResource( 131 ), SubResource( 132 ) ],
+"loop": true,
+"name": "RollR",
+"speed": 30.0
+}, {
 "frames": [ SubResource( 25 ), SubResource( 26 ), SubResource( 27 ), SubResource( 28 ), SubResource( 29 ) ],
 "loop": false,
 "name": "Reset",
@@ -467,7 +569,8 @@ script = ExtResource( 2 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 30 )
-animation = "Idle0"
+animation = "RollR"
+frame = 12
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
@@ -484,5 +587,9 @@ one_shot = true
 [node name="ResetTimer" type="Timer" parent="."]
 wait_time = 0.5
 one_shot = true
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+enabled = true
+cast_to = Vector2( 0, 20 )
 [connection signal="timeout" from="IdleTimer" to="." method="_on_IdleTimer_timeout"]
 [connection signal="timeout" from="ResetTimer" to="." method="_on_ResetTimer_timeout"]
