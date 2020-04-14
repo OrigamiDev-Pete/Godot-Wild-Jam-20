@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Slime Idle0.png-c38ec35155f2b5fc7d9f1982b4cd8c5b.stex"
+path="res://.import/Slime Roll.png-d0fd9a550abdf7dce526b391db5b4e2b.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Slime/Slime Idle0.png"
-dest_files=[ "res://.import/Slime Idle0.png-c38ec35155f2b5fc7d9f1982b4cd8c5b.stex" ]
+source_file="res://Sprites/Ball/Slime Roll.png"
+dest_files=[ "res://.import/Slime Roll.png-d0fd9a550abdf7dce526b391db5b4e2b.stex" ]
 
 [params]
 

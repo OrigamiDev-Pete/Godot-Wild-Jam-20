@@ -6,11 +6,12 @@ const FRICTION := 0.05
 const ROTATION_FACTOR := 2
 const GRAVITY := 9.7
 
-export var jump_height := 200
+export(int, -100, 0) var jump_height := -1
 
 var motion := Vector2(0,0)
 var can_jump := false
-#var jump_buffer :=
+var jump_ready := false
+var is_jumping := false
 
 
 onready var sprite: AnimatedSprite = $AnimatedSprite as AnimatedSprite
@@ -44,10 +45,10 @@ func get_input() -> void:
 			sprite.play("Roll")
 	if Input.is_action_pressed("ui_select") or Input.is_action_pressed("ui_up"):
 		jump()
+	if Input.is_action_just_released("ui_select") or Input.is_action_just_released("ui_up"):
+		jump_ready = true
 	
 	velocity = velocity.normalized() * MAX_SPEED
-#	if velocity.length() > 0:
-#		motion.x = lerp(motion.x, velocity.x/2, ACCEL)
 	if velocity.length() > 0 and is_on_floor():
 		motion.x = lerp(motion.x, velocity.x, ACCEL)
 	elif velocity.length() > 0 and is_on_ceiling():
@@ -62,7 +63,6 @@ func get_input() -> void:
 			slope_roll()
 			reset_animation()
 	if is_on_floor():
-#		sprite.frames.set_animation_speed("Roll", int(abs(motion.x/ROTATION_FACTOR)))
 		if sprite.animation == "Roll" or sprite.animation =="RollR":
 			sprite.speed_scale = abs(motion.x/50)
 		else:
@@ -70,13 +70,14 @@ func get_input() -> void:
 
 
 func jump():
-	var is_jumping
-	if can_jump:
+	if can_jump and jump_ready:
 		can_jump = false
 		is_jumping = true
-#		motion.y = -200
+		jump_ready = false
+		$JumpTimer.start()
+		motion.y = -50
 	if is_jumping:
-		motion.y += -200
+		motion.y += jump_height
 
 
 func _coyote_check():
@@ -115,19 +116,13 @@ func slope_roll() -> void:
 					var last_frame := sprite.frame
 					sprite.play("RollR")
 					sprite.frame = last_frame - 5
-#					sprite.frames.set_animation_speed("RollR", int(abs(motion.x/ROTATION_FACTOR)))
-		if slope_angle == 0:
-			pass
-#			sprite.play("Roll")
 
 
 func stick_to_surface() -> void:
 	if get_slide_count() > 0:
 		var normal = get_slide_collision(0).normal
-#		var normal = Downcast.get_collision_normal()
 		var angle = rad2deg(normal.angle_to(Vector2(0, -1)))
 		Downcast.rotation_degrees = -angle
-#		motion += -normal * 100
 	else:
 		Downcast.rotation_degrees = 0
 
@@ -155,3 +150,7 @@ func _on_IdleTimer_timeout() -> void:
 
 func _on_CoyoteTimer_timeout() -> void:
 	can_jump = false
+
+
+func _on_JumpTimer_timeout() -> void:
+	is_jumping = false
