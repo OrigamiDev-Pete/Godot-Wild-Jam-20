@@ -1,23 +1,33 @@
 extends KinematicBody2D
 
-const MAX_SPEED := 200
-const ACCEL := 0.1
+const MAX_SPEED := 400
+const ACCEL := 0.05
 const FRICTION := 0.05
 const ROTATION_FACTOR := 2
 const GRAVITY := 9.7
 
+export var jump_height := 200
+
 var motion := Vector2(0,0)
+var can_jump := false
+#var jump_buffer :=
+
 
 onready var sprite: AnimatedSprite = $AnimatedSprite as AnimatedSprite
-onready var ray: RayCast2D = $RayCast2D as RayCast2D
+onready var Downcast: RayCast2D = $Downcast as RayCast2D
 onready var ResetTimer: Timer = $ResetTimer as Timer
 onready var IdleTimer: Timer = $IdleTimer as Timer
+onready var CoyoteTimer: Timer = $CoyoteTimer as Timer
 
 
 func _physics_process(delta) -> void:
 	gravity()
 	get_input()
-	motion.y = move_and_slide_with_snap(motion, Vector2(0,50), Vector2.UP, false, 4, deg2rad(46.0)).y
+	stick_to_surface()
+#	motion = move_and_slide_with_snap(motion, Vector2(0,20), Vector2.UP, false, 4, deg2rad(46.0))
+	motion = move_and_slide(motion, Vector2.UP)
+	_coyote_check()
+
 
 
 func get_input() -> void:
@@ -32,14 +42,25 @@ func get_input() -> void:
 		sprite.flip_h = true
 		if sprite.animation != "Roll":
 			sprite.play("Roll")
+	if Input.is_action_pressed("ui_select") or Input.is_action_pressed("ui_up"):
+		jump()
 	
 	velocity = velocity.normalized() * MAX_SPEED
-	if velocity.length() > 0:
+#	if velocity.length() > 0:
+#		motion.x = lerp(motion.x, velocity.x/2, ACCEL)
+	if velocity.length() > 0 and is_on_floor():
 		motion.x = lerp(motion.x, velocity.x, ACCEL)
+	elif velocity.length() > 0 and is_on_ceiling():
+		motion.x = lerp(motion.x, -velocity.x, ACCEL)
+	elif velocity.length() > 0 and Downcast.rotation == 0:
+		motion.x = lerp(motion.x, velocity.x/2, ACCEL)
 	else:
-		motion.x = lerp(motion.x, 0, FRICTION)
-		slope_roll()
-		reset_animation()
+		if !is_on_floor():
+			motion.x = lerp(motion.x, 0, 0.01)
+		else:
+			motion.x = lerp(motion.x, 0, FRICTION)
+			slope_roll()
+			reset_animation()
 	if is_on_floor():
 #		sprite.frames.set_animation_speed("Roll", int(abs(motion.x/ROTATION_FACTOR)))
 		if sprite.animation == "Roll" or sprite.animation =="RollR":
@@ -48,11 +69,26 @@ func get_input() -> void:
 			sprite.speed_scale = 1.0
 
 
-func gravity() -> void:
-	if not is_on_floor():
-		motion.y += GRAVITY
+func jump():
+	var is_jumping
+	if can_jump:
+		can_jump = false
+		is_jumping = true
+#		motion.y = -200
+	if is_jumping:
+		motion.y += -200
+
+
+func _coyote_check():
+	if !is_on_floor():
+		if CoyoteTimer.is_stopped():
+			CoyoteTimer.start()
 	else:
-		motion.y = 0
+		can_jump = true
+
+
+func gravity() -> void:
+	motion.y += GRAVITY
 
 
 func reset_animation() -> void:
@@ -60,28 +96,40 @@ func reset_animation() -> void:
 		if motion.x < 1.5 and motion.x > -1.5:
 			if ResetTimer.is_stopped():
 				ResetTimer.start()
-				print(ResetTimer.is_stopped())
 
 
 func slope_roll() -> void:
-	if ray.is_colliding():
-		var normal : Vector2 = ray.get_collision_normal()
+	if Downcast.is_colliding():
+		var normal : Vector2 = Downcast.get_collision_normal()
 		var slope_angle : float = rad2deg(acos(normal.dot(Vector2(0, -1))))
 		if slope_angle > 0:
 			if normal.x < 0:
-				motion.x = lerp(motion.x, -10000, 0.001)
+				motion.x = lerp(motion.x, -100000, 0.0001)
 				if !sprite.flip_h and sprite.animation != "RollR":
 					var last_frame := sprite.frame
 					sprite.play("RollR")
-					sprite.frame = last_frame - 11
+					sprite.frame = last_frame - 5
 			elif normal.x > 0:
-				motion.x = lerp(motion.x, 10000, 0.001)
+				motion.x = lerp(motion.x, 100000, 0.0001)
 				if sprite.flip_h and sprite.animation != "RollR":
+					var last_frame := sprite.frame
 					sprite.play("RollR")
-					sprite.frames.set_animation_speed("RollR", int(abs(motion.x/ROTATION_FACTOR)))
+					sprite.frame = last_frame - 5
+#					sprite.frames.set_animation_speed("RollR", int(abs(motion.x/ROTATION_FACTOR)))
 		if slope_angle == 0:
 			pass
 #			sprite.play("Roll")
+
+
+func stick_to_surface() -> void:
+	if get_slide_count() > 0:
+		var normal = get_slide_collision(0).normal
+#		var normal = Downcast.get_collision_normal()
+		var angle = rad2deg(normal.angle_to(Vector2(0, -1)))
+		Downcast.rotation_degrees = -angle
+#		motion += -normal * 100
+	else:
+		Downcast.rotation_degrees = 0
 
 
 func _on_ResetTimer_timeout() -> void:
@@ -103,3 +151,7 @@ func _on_IdleTimer_timeout() -> void:
 			_:
 				continue
 		IdleTimer.start(3)
+
+
+func _on_CoyoteTimer_timeout() -> void:
+	can_jump = false
