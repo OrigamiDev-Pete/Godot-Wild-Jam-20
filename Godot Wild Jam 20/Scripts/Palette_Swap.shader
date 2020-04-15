@@ -12,5 +12,5 @@ void fragment() {
 	output = texture(palette, vec2(color_r, 0.0));
 	
 	COLOR.rbg = output.rbg;
-	COLOR.a = texture(TEXTURE, UV).a;
+	COLOR.a = mask_colour.a;
 }
