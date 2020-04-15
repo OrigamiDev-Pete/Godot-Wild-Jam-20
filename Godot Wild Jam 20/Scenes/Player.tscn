@@ -1,85 +1,74 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://Sprites/Ball/GreenBall.tres" type="SpriteFrames" id=1]
+[ext_resource path="res://Scenes/Colour_Palette.material" type="Material" id=1]
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=2]
-[ext_resource path="res://Sprites/Pallets/PalletGreen.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/Ball/GreyBall.tres" type="SpriteFrames" id=3]
+[ext_resource path="res://Scripts/Camera2D.gd" type="Script" id=9]
 
-[sub_resource type="Shader" id=11]
-code = "shader_type canvas_item;
-
-uniform sampler2D palette; //Colour pallet to modulate colour
-uniform vec4 outline_col;
-
-void fragment() {
-	float pal_sample = texture(TEXTURE, UV).g;
-	vec4 col = texture(palette, vec2(pal_sample,0));
-	
-	vec2 p = TEXTURE_PIXEL_SIZE;
-	
-	float a = texture(TEXTURE, UV + vec2(p.x, 0)).a;
-	a += texture(TEXTURE, UV+vec2(-p.x, 0)).a;
-	a += texture(TEXTURE, UV+vec2(0, p.y)).a;
-	a += texture(TEXTURE, UV+vec2(0, -p.y)).a;
-	
-	a = step(a, 0.5);
-	col.rgb = mix(outline_col.xyz, col.rgb, col.a);
-	col.a = step(a, col.a);
-	
-	COLOR = col;
-}"
-
-[sub_resource type="ShaderMaterial" id=10]
-shader = SubResource( 11 )
-shader_param/outline_col = null
-shader_param/palette = ExtResource( 3 )
-
-[sub_resource type="CircleShape2D" id=1]
+[sub_resource type="CircleShape2D" id=130]
 radius = 6.0
 
-[node name="Player" type="KinematicBody2D"]
+[sub_resource type="CircleShape2D" id=132]
+
+[node name="Player" type="KinematicBody2D" groups=[
+"Player",
+]]
+collision_layer = 7
+collision_mask = 7
 script = ExtResource( 2 )
 jump_height = -30
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-material = SubResource( 10 )
-frames = ExtResource( 1 )
-animation = "Idle0"
-frame = 24
+material = ExtResource( 1 )
+frames = ExtResource( 3 )
+animation = "Roll"
+frame = 12
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
-shape = SubResource( 1 )
+shape = SubResource( 130 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
-current = true
 zoom = Vector2( 0.5, 0.5 )
 smoothing_enabled = true
+script = ExtResource( 9 )
 
-[node name="IdleTimer" type="Timer" parent="."]
-process_mode = 0
-one_shot = true
-
-[node name="ResetTimer" type="Timer" parent="."]
-process_mode = 0
-wait_time = 0.2
-one_shot = true
-
-[node name="CoyoteTimer" type="Timer" parent="."]
-process_mode = 0
-wait_time = 0.2
-one_shot = true
-
-[node name="JumpTimer" type="Timer" parent="."]
-process_mode = 0
-wait_time = 0.1
-one_shot = true
+[node name="Tween" type="Tween" parent="Camera2D"]
 
 [node name="Downcast" type="RayCast2D" parent="."]
 visible = false
 enabled = true
 cast_to = Vector2( 0, 10 )
-[connection signal="timeout" from="IdleTimer" to="." method="_on_IdleTimer_timeout"]
-[connection signal="timeout" from="ResetTimer" to="." method="_on_ResetTimer_timeout"]
-[connection signal="timeout" from="CoyoteTimer" to="." method="_on_CoyoteTimer_timeout"]
-[connection signal="timeout" from="JumpTimer" to="." method="_on_JumpTimer_timeout"]
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource( 132 )
+
+[node name="Timers" type="Node" parent="."]
+
+[node name="IdleTimer" type="Timer" parent="Timers"]
+process_mode = 0
+one_shot = true
+
+[node name="ResetTimer" type="Timer" parent="Timers"]
+process_mode = 0
+wait_time = 0.2
+one_shot = true
+
+[node name="CoyoteTimer" type="Timer" parent="Timers"]
+process_mode = 0
+wait_time = 0.2
+one_shot = true
+
+[node name="JumpTimer" type="Timer" parent="Timers"]
+process_mode = 0
+wait_time = 0.1
+one_shot = true
+[connection signal="tween_step" from="Camera2D/Tween" to="Camera2D" method="_on_Tween_tween_step"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
+[connection signal="timeout" from="Timers/IdleTimer" to="." method="_on_IdleTimer_timeout"]
+[connection signal="timeout" from="Timers/ResetTimer" to="." method="_on_ResetTimer_timeout"]
+[connection signal="timeout" from="Timers/CoyoteTimer" to="." method="_on_CoyoteTimer_timeout"]
+[connection signal="timeout" from="Timers/JumpTimer" to="." method="_on_JumpTimer_timeout"]

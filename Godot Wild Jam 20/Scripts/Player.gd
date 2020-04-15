@@ -1,5 +1,7 @@
 extends KinematicBody2D
 
+signal player_changed
+
 const MAX_SPEED := 400
 const ACCEL := 0.05
 const FRICTION := 0.05
@@ -7,25 +9,32 @@ const ROTATION_FACTOR := 2
 const GRAVITY := 9.7
 
 export(int, -100, 0) var jump_height := -1
+export var active := false
 
 var motion := Vector2(0,0)
-var can_jump := false
-var jump_ready := false
+var can_jump := true
+var jump_ready := true
 var is_jumping := false
 
 
 onready var sprite: AnimatedSprite = $AnimatedSprite as AnimatedSprite
+onready var Cam: Camera2D = $Camera2D as Camera2D
 onready var Downcast: RayCast2D = $Downcast as RayCast2D
-onready var ResetTimer: Timer = $ResetTimer as Timer
-onready var IdleTimer: Timer = $IdleTimer as Timer
-onready var CoyoteTimer: Timer = $CoyoteTimer as Timer
+onready var ResetTimer: Timer = $Timers/ResetTimer as Timer
+onready var IdleTimer: Timer = $Timers/IdleTimer as Timer
+onready var CoyoteTimer: Timer = $Timers/CoyoteTimer as Timer
+onready var JumpTimer: Timer = $Timers/JumpTimer as Timer
 
+func _ready() -> void:
+	if active:
+		Cam.current = true
 
 func _physics_process(delta) -> void:
 	gravity()
 	get_input()
 	stick_to_surface()
 #	motion = move_and_slide_with_snap(motion, Vector2(0,20), Vector2.UP, false, 4, deg2rad(46.0))
+#	Cam.smoothing_speed = abs(motion.x/30)
 	motion = move_and_slide(motion, Vector2.UP)
 	_coyote_check()
 
@@ -33,20 +42,21 @@ func _physics_process(delta) -> void:
 
 func get_input() -> void:
 	var velocity := Vector2.ZERO
-	if Input.is_action_pressed("ui_right"):
-		velocity.x += 1
-		sprite.flip_h = false
-		if sprite.animation != "Roll":
-			sprite.play("Roll")
-	if Input.is_action_pressed("ui_left"):
-		velocity.x -= 1
-		sprite.flip_h = true
-		if sprite.animation != "Roll":
-			sprite.play("Roll")
-	if Input.is_action_pressed("ui_select") or Input.is_action_pressed("ui_up"):
-		jump()
-	if Input.is_action_just_released("ui_select") or Input.is_action_just_released("ui_up"):
-		jump_ready = true
+	if active:
+		if Input.is_action_pressed("ui_right"):
+			velocity.x += 1
+			sprite.flip_h = false
+			if sprite.animation != "Roll":
+				sprite.play("Roll")
+		if Input.is_action_pressed("ui_left"):
+			velocity.x -= 1
+			sprite.flip_h = true
+			if sprite.animation != "Roll":
+				sprite.play("Roll")
+		if Input.is_action_pressed("ui_select") or Input.is_action_pressed("ui_up"):
+			jump()
+		if Input.is_action_just_released("ui_select") or Input.is_action_just_released("ui_up"):
+			jump_ready = true
 	
 	velocity = velocity.normalized() * MAX_SPEED
 	if velocity.length() > 0 and is_on_floor():
@@ -127,6 +137,16 @@ func stick_to_surface() -> void:
 		Downcast.rotation_degrees = 0
 
 
+func change_player() -> void:
+	active = true
+	Cam.current = true
+	emit_signal("player_changed")
+
+
+func camera_lock() -> void:
+	Cam.camera_lock()
+
+
 func _on_ResetTimer_timeout() -> void:
 	if motion.x < 1.5 and motion.x > -1.5:
 		sprite.speed_scale = 1.0
@@ -145,7 +165,7 @@ func _on_IdleTimer_timeout() -> void:
 				sprite.play("Idle2")
 			_:
 				continue
-		IdleTimer.start(3)
+		IdleTimer.start(4)
 
 
 func _on_CoyoteTimer_timeout() -> void:
@@ -154,3 +174,18 @@ func _on_CoyoteTimer_timeout() -> void:
 
 func _on_JumpTimer_timeout() -> void:
 	is_jumping = false
+
+
+func _on_Area2D_area_entered(area: Area2D) -> void:
+	if !active:
+		var last_player: KinematicBody2D = area.get_parent()
+		Cam.position = last_player.position - position
+		change_player()
+		Cam.move_to_new_player()
+		motion.x = last_player.motion.x
+		sprite.play("Roll")
+	else:
+		active = false
+		Cam.current = false
+		sprite.play("Hit")
+		motion.x = motion.x/2
