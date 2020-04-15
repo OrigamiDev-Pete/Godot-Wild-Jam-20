@@ -5,10 +5,10 @@
 [ext_resource path="res://Sprites/Ball/GreyBall.tres" type="SpriteFrames" id=3]
 [ext_resource path="res://Scripts/Camera2D.gd" type="Script" id=9]
 
-[sub_resource type="CircleShape2D" id=130]
+[sub_resource type="CircleShape2D" id=1]
 radius = 6.0
 
-[sub_resource type="CircleShape2D" id=132]
+[sub_resource type="CircleShape2D" id=2]
 
 [node name="Player" type="KinematicBody2D" groups=[
 "Player",
@@ -22,12 +22,12 @@ jump_height = -30
 material = ExtResource( 1 )
 frames = ExtResource( 3 )
 animation = "Roll"
-frame = 12
+frame = 6
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
-shape = SubResource( 130 )
+shape = SubResource( 1 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2( 0.5, 0.5 )
@@ -42,9 +42,10 @@ enabled = true
 cast_to = Vector2( 0, 10 )
 
 [node name="Area2D" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource( 132 )
+shape = SubResource( 2 )
 
 [node name="Timers" type="Node" parent="."]
 
