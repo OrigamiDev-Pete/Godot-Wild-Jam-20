@@ -25,16 +25,16 @@ onready var IdleTimer: Timer = $Timers/IdleTimer as Timer
 onready var CoyoteTimer: Timer = $Timers/CoyoteTimer as Timer
 onready var JumpTimer: Timer = $Timers/JumpTimer as Timer
 
+
 func _ready() -> void:
 	if active:
 		Cam.current = true
 
-func _physics_process(delta) -> void:
+func _physics_process(_delta) -> void:
 	gravity()
 	get_input()
 	stick_to_surface()
 #	motion = move_and_slide_with_snap(motion, Vector2(0,20), Vector2.UP, false, 4, deg2rad(46.0))
-#	Cam.smoothing_speed = abs(motion.x/30)
 	motion = move_and_slide(motion, Vector2.UP)
 	_coyote_check()
 
@@ -84,7 +84,7 @@ func jump():
 		can_jump = false
 		is_jumping = true
 		jump_ready = false
-		$Timers/JumpTimer.start()
+		JumpTimer.start()
 		motion.y = -50
 	if is_jumping:
 		motion.y += jump_height
