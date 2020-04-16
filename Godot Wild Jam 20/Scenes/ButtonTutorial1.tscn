@@ -1,0 +1,107 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Sprites/KeysAnimations.tres" type="SpriteFrames" id=1]
+[ext_resource path="res://Fonts/VCR_OSD_MONO_1.001.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Scripts/ButtonTutorial1.gd" type="Script" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+size = 32
+use_mipmaps = true
+font_data = ExtResource( 2 )
+
+[sub_resource type="Theme" id=2]
+default_font = SubResource( 1 )
+
+[node name="ButtonTutorial1" type="Control"]
+margin_right = 448.0
+margin_bottom = 280.0
+theme = SubResource( 2 )
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="A" type="AnimatedSprite" parent="."]
+position = Vector2( 104, 80 )
+scale = Vector2( 2, 2 )
+frames = ExtResource( 1 )
+animation = "A"
+frame = 8
+playing = true
+
+[node name="D" type="AnimatedSprite" parent="."]
+position = Vector2( 336, 80 )
+scale = Vector2( 2, 2 )
+frames = ExtResource( 1 )
+animation = "D"
+frame = 3
+playing = true
+
+[node name="Left" type="AnimatedSprite" parent="."]
+position = Vector2( 104, 160 )
+scale = Vector2( 2, 2 )
+frames = ExtResource( 1 )
+animation = "Left"
+frame = 16
+playing = true
+
+[node name="Right" type="AnimatedSprite" parent="."]
+position = Vector2( 336, 160 )
+scale = Vector2( 2, 2 )
+frames = ExtResource( 1 )
+animation = "Right"
+frame = 6
+playing = true
+
+[node name="Press" type="Label" parent="."]
+margin_left = 176.0
+margin_top = 16.0
+margin_right = 271.0
+margin_bottom = 45.0
+text = "Press"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="or" type="Label" parent="."]
+margin_left = 88.0
+margin_top = 104.0
+margin_right = 126.0
+margin_bottom = 133.0
+text = "or"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="and" type="Label" parent="."]
+margin_left = 192.0
+margin_top = 104.0
+margin_right = 249.0
+margin_bottom = 133.0
+text = "and"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="or2" type="Label" parent="."]
+margin_left = 320.0
+margin_top = 104.0
+margin_right = 358.0
+margin_bottom = 133.0
+text = "or"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ToMove" type="Label" parent="."]
+margin_left = 160.0
+margin_top = 200.0
+margin_right = 293.0
+margin_bottom = 229.0
+text = "To Move"
+__meta__ = {
+"_edit_use_anchors_": false
+}

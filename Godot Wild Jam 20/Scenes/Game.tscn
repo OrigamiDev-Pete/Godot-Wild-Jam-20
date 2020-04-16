@@ -37,17 +37,17 @@ shader_param/palette = ExtResource( 2 )
 script = ExtResource( 3 )
 
 [node name="Medal" parent="." instance=ExtResource( 1 )]
-frame = 19
+frame = 8
 
 [node name="Medal2" parent="." instance=ExtResource( 1 )]
 material = SubResource( 2 )
 position = Vector2( 19.3887, 0.280993 )
-frame = 19
+frame = 8
 
 [node name="Medal3" parent="." instance=ExtResource( 1 )]
 material = SubResource( 3 )
 position = Vector2( 38.5893, 0.28479 )
-frame = 18
+frame = 7
 
 [node name="Level1" parent="." instance=ExtResource( 5 )]
 
