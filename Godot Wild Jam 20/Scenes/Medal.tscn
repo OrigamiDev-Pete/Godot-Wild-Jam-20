@@ -187,14 +187,14 @@ material = SubResource( 2 )
 z_index = 1
 frames = SubResource( 28 )
 animation = "Blink"
-frame = 30
+frame = 45
 playing = true
 
 [node name="Sparkles" type="CPUParticles2D" parent="."]
 position = Vector2( 0.473339, -0.315563 )
 rotation = -1.34224
 z_as_relative = false
-amount = 6
+amount = 4
 texture = ExtResource( 2 )
 emission_shape = 1
 emission_sphere_radius = 4.0
@@ -212,7 +212,7 @@ position = Vector2( -0.473339, -4.73339 )
 rotation = -1.34224
 z_index = 2
 z_as_relative = false
-amount = 6
+amount = 4
 texture = ExtResource( 2 )
 emission_shape = 1
 emission_sphere_radius = 4.0
@@ -229,5 +229,5 @@ color_ramp = SubResource( 30 )
 
 [node name="Sheen" type="AnimatedSprite" parent="."]
 frames = SubResource( 31 )
-frame = 40
+frame = 4
 playing = true
