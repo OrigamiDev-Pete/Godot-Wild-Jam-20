@@ -84,7 +84,7 @@ func jump():
 		can_jump = false
 		is_jumping = true
 		jump_ready = false
-		$JumpTimer.start()
+		$Timers/JumpTimer.start()
 		motion.y = -50
 	if is_jumping:
 		motion.y += jump_height
