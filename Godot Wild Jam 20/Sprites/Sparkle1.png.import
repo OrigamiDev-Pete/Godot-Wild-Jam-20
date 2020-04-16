@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Slime Roll Reverse.png-1442351650c551f25206027e9741eb5b.stex"
+path="res://.import/Sparkle1.png-ab0fc0633e40d4016e94ea3da61c1bf5.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Ball/Slime Roll Reverse.png"
-dest_files=[ "res://.import/Slime Roll Reverse.png-1442351650c551f25206027e9741eb5b.stex" ]
+source_file="res://Sprites/Sparkle1.png"
+dest_files=[ "res://.import/Sparkle1.png-ab0fc0633e40d4016e94ea3da61c1bf5.stex" ]
 
 [params]
 

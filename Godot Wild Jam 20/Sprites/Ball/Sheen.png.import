@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Mage.png-f1d1f1321ef8238c6b8a695a2948ffa3.stex"
+path="res://.import/Sheen.png-044d06ac4e3b7de2c6ee47204e63a075.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Mage.png"
-dest_files=[ "res://.import/Mage.png-f1d1f1321ef8238c6b8a695a2948ffa3.stex" ]
+source_file="res://Sprites/Ball/Sheen.png"
+dest_files=[ "res://.import/Sheen.png-044d06ac4e3b7de2c6ee47204e63a075.stex" ]
 
 [params]
 

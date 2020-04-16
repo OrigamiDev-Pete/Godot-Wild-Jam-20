@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Slime Idle2.png-3214dfb8c6ac8399f4a583b788919498.stex"
+path="res://.import/PalletBronze.png-c45e4b80f9948282c8cbf86ac9d79ff2.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Ball/Slime Idle2.png"
-dest_files=[ "res://.import/Slime Idle2.png-3214dfb8c6ac8399f4a583b788919498.stex" ]
+source_file="res://Sprites/Pallets/PalletBronze.png"
+dest_files=[ "res://.import/PalletBronze.png-c45e4b80f9948282c8cbf86ac9d79ff2.stex" ]
 
 [params]
 

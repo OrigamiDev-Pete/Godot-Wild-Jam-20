@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Slime Idle0.png-f0c1b2ccfe3bcab8473bc2f572e2d3ae.stex"
+path="res://.import/PalletSilver.png-e3fd594656796fcfa165f2c8f4f18ddd.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Ball/Slime Idle0.png"
-dest_files=[ "res://.import/Slime Idle0.png-f0c1b2ccfe3bcab8473bc2f572e2d3ae.stex" ]
+source_file="res://Sprites/Pallets/PalletSilver.png"
+dest_files=[ "res://.import/PalletSilver.png-e3fd594656796fcfa165f2c8f4f18ddd.stex" ]
 
 [params]
 
@@ -24,7 +24,7 @@ flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
-process/fix_alpha_border=false
+process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
 process/invert_color=false
