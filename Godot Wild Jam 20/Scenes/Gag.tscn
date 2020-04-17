@@ -1,0 +1,805 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Sprites/Ball/GreyBall.tres" type="SpriteFrames" id=1]
+[ext_resource path="res://Scenes/Colour_Palette.material" type="Material" id=2]
+[ext_resource path="res://Sprites/Pallets/PalletBlue.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/Pallets/PalletPurple.png" type="Texture" id=4]
+[ext_resource path="res://Sprites/Pallets/PalletPink.png" type="Texture" id=5]
+
+[sub_resource type="Shader" id=4]
+code = "shader_type canvas_item;
+
+uniform sampler2D palette;
+
+
+void fragment() {
+	// get colour values from the sprite
+	vec4 mask_colour = texture(TEXTURE, UV);
+	vec4 output;
+	
+	highp float color_r = mask_colour.r;
+	output = texture(palette, vec2(color_r, 0.0));
+	
+	COLOR.rbg = output.rbg;
+	COLOR.a = texture(TEXTURE, UV).a;
+}"
+
+[sub_resource type="ShaderMaterial" id=7]
+shader = SubResource( 4 )
+shader_param/palette = ExtResource( 3 )
+
+[sub_resource type="ShaderMaterial" id=5]
+shader = SubResource( 4 )
+shader_param/palette = ExtResource( 5 )
+
+[sub_resource type="ShaderMaterial" id=6]
+shader = SubResource( 4 )
+shader_param/palette = ExtResource( 4 )
+
+[node name="Gag" type="Node"]
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+material = ExtResource( 2 )
+position = Vector2( -25.0397, 120.002 )
+frames = ExtResource( 1 )
+animation = "Blink Cycle"
+frame = 21
+playing = true
+
+[node name="AnimatedSprite14" type="AnimatedSprite" parent="."]
+material = ExtResource( 2 )
+position = Vector2( -71.2407, 90.7413 )
+rotation = -0.964207
+frames = ExtResource( 1 )
+animation = "Blink Cycle"
+frame = 20
+playing = true
+
+[node name="AnimatedSprite36" type="AnimatedSprite" parent="."]
+material = ExtResource( 2 )
+position = Vector2( -118.411, 93.3765 )
+rotation = -1.95837
+frames = ExtResource( 1 )
+animation = "Blink Cycle"
+frame = 20
+playing = true
+
+[node name="AnimatedSprite4" type="AnimatedSprite" parent="."]
+material = ExtResource( 2 )
+position = Vector2( -22.9863, 99.4682 )
+frames = ExtResource( 1 )
+animation = "Blink Cycle"
+frame = 21
+playing = true
+
+[node name="AnimatedSprite22" type="AnimatedSprite" parent="."]
+material = ExtResource( 2 )
+position = Vector2( -56.7021, 62.6873 )
+frames = ExtResource( 1 )
+animation = "Blink Cycle"
+frame = 20
+playing = true
+
+[node name="AnimatedSprite41" type="AnimatedSprite" parent="."]
+material = ExtResource( 2 )
+position = Vector2( -79.754, 49.7783 )
+rotation = 2.14189
+frames = ExtResource( 1 )
+animation = "Blink Cycle"
+frame = 19
+playing = true
+
+[node name="AnimatedSprite35" type="AnimatedSprite" parent="."]
+material = ExtResource( 2 )
+position = Vector2( -111.251, 67.4307 )
+rotation = -0.994159
+frames = ExtResource( 1 )
+animation = "Blink Cycle"
+frame = 27
+playing = true
+
+[node name="AnimatedSprite15" type="AnimatedSprite" parent="."]
+material = ExtResource( 2 )
+position = Vector2( -38.2157, 83.5048 )
+rotation = 0.554853
+frames = ExtResource( 1 )
+animation = "Blink Cycle"
+frame = 20
+playing = true
+
+[node name="AnimatedSprite16" type="AnimatedSprite" parent="."]
+material = ExtResource( 2 )
+position = Vector2( -83.336, 103.963 )
+rotation = 0.342738
+frames = ExtResource( 1 )
+animation = "Blink Cycle"
+frame = 26
+playing = true
+
+[node name="AnimatedSprite17" type="AnimatedSprite" parent="."]
+material = ExtResource( 2 )
+position = Vector2( -28.8876, 58.5109 )
+frames = ExtResource( 1 )
+animation = "Blink Cycle"
+frame = 25
+playing = true
+
+[node name="AnimatedSprite13" type="AnimatedSprite" parent="."]
+material = SubResource( 7 )
+position = Vector2( -91.9805, 119.824 )
+rotation = 2.65995
+frames = ExtResource( 1 )
+animation = "Blink Cycle"
+frame = 8
+playing = true
+
+[node name="AnimatedSprite24" type="AnimatedSprite" parent="."]
+material = SubResource( 7 )
+position = Vector2( -106.674, 120.542 )
+rotation = 0.417085
+frames = ExtResource( 1 )
+animation = "Blink Cycle"
+frame = 20
+playing = true
+
+[node name="AnimatedSprite21" type="AnimatedSprite" parent="."]
+material = SubResource( 7 )
+position = Vector2( -23.5273, 45.4656 )
+rotation = -0.7316
+frames = ExtResource( 1 )
+animation = "Blink Cycle"
+frame = 3
+playing = true
+
+[node name="AnimatedSprite37" type="AnimatedSprite" parent="."]
+material = SubResource( 7 )
+position = Vector2( -88.0725, 62.6776 )
+rotation = -0.7316
+frames = ExtResource( 1 )
+animation = "Blink Cycle"
+frame = 2
+playing = true
+
+[node name="AnimatedSprite38" type="AnimatedSprite" parent="."]
+material = SubResource( 7 )
+position = Vector2( -88.0725, 62.6776 )
+rotation = -0.7316
+frames = ExtResource( 1 )
+animation = "Blink Cycle"
+frame = 2
+playing = true
+
+[node name="AnimatedSprite39" type="AnimatedSprite" parent="."]
+material = SubResource( 7 )
+position = Vector2( -119.116, 53.1495 )
+rotation = -0.7316
+frames = ExtResource( 1 )
+animation = "Blink Cycle"
+frame = 1
+playing = true
+
+[node name="AnimatedSprite18" type="AnimatedSprite" parent="."]
+material = SubResource( 7 )
+position = Vector2( -52.4419, 77.5943 )
+rotation = -0.7316
+frames = ExtResource( 1 )
+animation = "Blink Cycle"
+frame = 16
+playing = true
+
+[node name="AnimatedSprite34" type="AnimatedSprite" parent="."]
+material = SubResource( 7 )
+position = Vector2( -94.3418, 76.0132 )
+rotation = -1.72576
+frames = ExtResource( 1 )
+animation = "Blink Cycle"
+frame = 16
+playing = true
+
+[node name="AnimatedSprite19" type="AnimatedSprite" parent="."]
+material = SubResource( 7 )
+position = Vector2( -39.9492, 69.6371 )
+rotation = -0.7316
+frames = ExtResource( 1 )
+animation = "Blink Cycle"
+frame = 20
+playing = true
+
+[node name="AnimatedSprite85" type="AnimatedSprite" parent="."]
+material = SubResource( 7 )
+position = Vector2( -49.5221, 42.9152 )
+rotation = -0.7316
+frames = ExtResource( 1 )
+animation = "Blink Cycle"
+frame = 20
+playing = true
+
+[node name="AnimatedSprite5" type="AnimatedSprite" parent="."]
+material = ExtResource( 2 )
+position = Vector2( -59.9471, 120.515 )
+rotation = -0.628215
+frames = ExtResource( 1 )
+animation = "Blink Cycle"
+frame = 20
+playing = true
+
+[node name="AnimatedSprite30" type="AnimatedSprite" parent="."]
+material = ExtResource( 2 )
+position = Vector2( -99.4183, 93.6619 )
+rotation = 0.520627
+frames = ExtResource( 1 )
+animation = "Blink Cycle"
+frame = 24
+playing = true
+
+[node name="AnimatedSprite2" type="AnimatedSprite" parent="."]
+material = SubResource( 5 )
+position = Vector2( -44.5218, 120.079 )
+rotation = 0.65405
+frames = ExtResource( 1 )
+animation = "Blink Cycle"
+frame = 24
+playing = true
+
+[node name="AnimatedSprite23" type="AnimatedSprite" parent="."]
+material = SubResource( 5 )
+position = Vector2( -85.5085, 89.3606 )
+rotation = 0.65405
+frames = ExtResource( 1 )
+animation = "Blink Cycle"
+frame = 23
+playing = true
+
+[node name="AnimatedSprite27" type="AnimatedSprite" parent="."]
+material = SubResource( 5 )
+position = Vector2( -120.721, 121.175 )
+rotation = 0.65405
+frames = ExtResource( 1 )
+animation = "Blink Cycle"
+frame = 22
+playing = true
+
+[node name="AnimatedSprite28" type="AnimatedSprite" parent="."]
+material = SubResource( 5 )
+position = Vector2( -115.597, 107.802 )
+rotation = -0.913727
+frames = ExtResource( 1 )
+animation = "Blink Cycle"
+frame = 22
+playing = true
+
+[node name="AnimatedSprite29" type="AnimatedSprite" parent="."]
+material = SubResource( 5 )
+position = Vector2( -42.6563, 56.2307 )
+rotation = -0.752775
+frames = ExtResource( 1 )
+animation = "Blink Cycle"
+frame = 22
+playing = true
+
+[node name="AnimatedSprite6" type="AnimatedSprite" parent="."]
+material = SubResource( 5 )
+position = Vector2( -41.0232, 97.0057 )
+rotation = -3.50124
+frames = ExtResource( 1 )
+animation = "Blink Cycle"
+frame = 23
+playing = true
+
+[node name="AnimatedSprite7" type="AnimatedSprite" parent="."]
+material = SubResource( 5 )
+position = Vector2( -76.3491, 119.907 )
+rotation = 0.451616
+frames = ExtResource( 1 )
+animation = "Blink Cycle"
+frame = 28
+playing = true
+
+[node name="AnimatedSprite8" type="AnimatedSprite" parent="."]
+material = SubResource( 5 )
+position = Vector2( -52.2219, 106.046 )
+rotation = -0.378296
+frames = ExtResource( 1 )
+animation = "Blink Cycle"
+frame = 3
+playing = true
+
+[node name="AnimatedSprite83" type="AnimatedSprite" parent="."]
+material = SubResource( 5 )
+position = Vector2( -63.2868, 48.5704 )
+rotation = -0.378296
+frames = ExtResource( 1 )
+animation = "Blink Cycle"
+frame = 3
+playing = true
+
+[node name="AnimatedSprite84" type="AnimatedSprite" parent="."]
+material = SubResource( 5 )
+position = Vector2( -106.932, 45.1895 )
+rotation = -0.378296
+frames = ExtResource( 1 )
+animation = "Blink Cycle"
+frame = 2
+playing = true
+
+[node name="AnimatedSprite20" type="AnimatedSprite" parent="."]
+material = SubResource( 5 )
+position = Vector2( -66.5255, 76.7579 )
+rotation = -0.378296
+frames = ExtResource( 1 )
+animation = "Blink Cycle"
+frame = 21
+playing = true
+
+[node name="AnimatedSprite33" type="AnimatedSprite" parent="."]
+material = SubResource( 5 )
+position = Vector2( -70.8291, 61.2545 )
+rotation = -1.37246
+frames = ExtResource( 1 )
+animation = "Blink Cycle"
+frame = 21
+playing = true
+
+[node name="AnimatedSprite40" type="AnimatedSprite" parent="."]
+material = SubResource( 5 )
+position = Vector2( -99.4134, 57.2589 )
+rotation = -1.37246
+frames = ExtResource( 1 )
+animation = "Blink Cycle"
+frame = 20
+playing = true
+
+[node name="AnimatedSprite3" type="AnimatedSprite" parent="."]
+material = SubResource( 6 )
+position = Vector2( -32.5446, 109.184 )
+rotation = 0.277664
+frames = ExtResource( 1 )
+animation = "Blink Cycle"
+frame = 3
+playing = true
+
+[node name="AnimatedSprite9" type="AnimatedSprite" parent="."]
+material = SubResource( 6 )
+position = Vector2( -24.3897, 85.5749 )
+rotation = 0.277664
+frames = ExtResource( 1 )
+animation = "Blink Cycle"
+frame = 3
+playing = true
+
+[node name="AnimatedSprite10" type="AnimatedSprite" parent="."]
+material = SubResource( 6 )
+position = Vector2( -56.5376, 92.2284 )
+rotation = 0.277664
+frames = ExtResource( 1 )
+animation = "Blink Cycle"
+frame = 2
+playing = true
+
+[node name="AnimatedSprite32" type="AnimatedSprite" parent="."]
+material = SubResource( 6 )
+position = Vector2( -108.188, 81.6875 )
+rotation = -0.716496
+frames = ExtResource( 1 )
+animation = "Blink Cycle"
+frame = 2
+playing = true
+
+[node name="AnimatedSprite25" type="AnimatedSprite" parent="."]
+material = SubResource( 6 )
+position = Vector2( -99.5677, 107.111 )
+rotation = 0.277664
+frames = ExtResource( 1 )
+animation = "Blink Cycle"
+frame = 2
+playing = true
+
+[node name="AnimatedSprite26" type="AnimatedSprite" parent="."]
+material = SubResource( 6 )
+position = Vector2( -80.1556, 73.1398 )
+rotation = 0.277664
+frames = ExtResource( 1 )
+animation = "Blink Cycle"
+frame = 2
+playing = true
+
+[node name="AnimatedSprite31" type="AnimatedSprite" parent="."]
+material = SubResource( 6 )
+position = Vector2( -121.001, 78.4103 )
+rotation = 0.319251
+frames = ExtResource( 1 )
+animation = "Blink Cycle"
+frame = 12
+playing = true
+
+[node name="AnimatedSprite11" type="AnimatedSprite" parent="."]
+material = SubResource( 6 )
+position = Vector2( -69.0506, 106.622 )
+rotation = -0.301042
+frames = ExtResource( 1 )
+animation = "Blink Cycle"
+frame = 2
+playing = true
+
+[node name="AnimatedSprite12" type="AnimatedSprite" parent="."]
+material = SubResource( 6 )
+position = Vector2( -25.2586, 71.796 )
+rotation = 2.28822
+frames = ExtResource( 1 )
+animation = "Blink Cycle"
+frame = 1
+playing = true
+
+[node name="AnimatedSprite82" type="AnimatedSprite" parent="."]
+material = ExtResource( 2 )
+position = Vector2( -24.6992, 32.4772 )
+frames = ExtResource( 1 )
+animation = "Blink Cycle"
+frame = 21
+playing = true
+
+[node name="AnimatedSprite81" type="AnimatedSprite" parent="."]
+material = ExtResource( 2 )
+position = Vector2( -79.7117, 14.0615 )
+rotation = -0.964207
+frames = ExtResource( 1 )
+animation = "Blink Cycle"
+frame = 20
+playing = true
+
+[node name="AnimatedSprite80" type="AnimatedSprite" parent="."]
+material = ExtResource( 2 )
+position = Vector2( -118.07, 5.85177 )
+rotation = -1.95837
+frames = ExtResource( 1 )
+animation = "Blink Cycle"
+frame = 20
+playing = true
+
+[node name="AnimatedSprite79" type="AnimatedSprite" parent="."]
+material = ExtResource( 2 )
+position = Vector2( -22.6458, 11.9434 )
+frames = ExtResource( 1 )
+animation = "Blink Cycle"
+frame = 21
+playing = true
+
+[node name="AnimatedSprite78" type="AnimatedSprite" parent="."]
+material = ExtResource( 2 )
+position = Vector2( -56.3615, -24.8374 )
+frames = ExtResource( 1 )
+animation = "Blink Cycle"
+frame = 20
+playing = true
+
+[node name="AnimatedSprite77" type="AnimatedSprite" parent="."]
+material = ExtResource( 2 )
+position = Vector2( -79.4134, -37.7464 )
+rotation = 2.14189
+frames = ExtResource( 1 )
+animation = "Blink Cycle"
+frame = 19
+playing = true
+
+[node name="AnimatedSprite76" type="AnimatedSprite" parent="."]
+material = ExtResource( 2 )
+position = Vector2( -110.91, -20.094 )
+rotation = -0.994159
+frames = ExtResource( 1 )
+animation = "Blink Cycle"
+frame = 27
+playing = true
+
+[node name="AnimatedSprite75" type="AnimatedSprite" parent="."]
+material = ExtResource( 2 )
+position = Vector2( -37.8751, -4.01989 )
+rotation = 0.554853
+frames = ExtResource( 1 )
+animation = "Blink Cycle"
+frame = 20
+playing = true
+
+[node name="AnimatedSprite74" type="AnimatedSprite" parent="."]
+material = ExtResource( 2 )
+position = Vector2( -86.6104, 29.091 )
+rotation = 0.342738
+frames = ExtResource( 1 )
+animation = "Blink Cycle"
+frame = 26
+playing = true
+
+[node name="AnimatedSprite73" type="AnimatedSprite" parent="."]
+material = ExtResource( 2 )
+position = Vector2( -28.5471, -29.0138 )
+frames = ExtResource( 1 )
+animation = "Blink Cycle"
+frame = 25
+playing = true
+
+[node name="AnimatedSprite72" type="AnimatedSprite" parent="."]
+material = SubResource( 7 )
+position = Vector2( -91.9289, 42.8839 )
+rotation = 2.65995
+frames = ExtResource( 1 )
+animation = "Blink Cycle"
+frame = 8
+playing = true
+
+[node name="AnimatedSprite71" type="AnimatedSprite" parent="."]
+material = SubResource( 7 )
+position = Vector2( -105.412, 30.2511 )
+rotation = 0.417085
+frames = ExtResource( 1 )
+animation = "Blink Cycle"
+frame = 20
+playing = true
+
+[node name="AnimatedSprite70" type="AnimatedSprite" parent="."]
+material = SubResource( 7 )
+position = Vector2( -23.1867, -42.0591 )
+rotation = -0.7316
+frames = ExtResource( 1 )
+animation = "Blink Cycle"
+frame = 3
+playing = true
+
+[node name="AnimatedSprite69" type="AnimatedSprite" parent="."]
+material = SubResource( 7 )
+position = Vector2( -87.7319, -24.8471 )
+rotation = -0.7316
+frames = ExtResource( 1 )
+animation = "Blink Cycle"
+frame = 2
+playing = true
+
+[node name="AnimatedSprite68" type="AnimatedSprite" parent="."]
+material = SubResource( 7 )
+position = Vector2( -87.7319, -24.8471 )
+rotation = -0.7316
+frames = ExtResource( 1 )
+animation = "Blink Cycle"
+frame = 2
+playing = true
+
+[node name="AnimatedSprite67" type="AnimatedSprite" parent="."]
+material = SubResource( 7 )
+position = Vector2( -118.775, -34.3752 )
+rotation = -0.7316
+frames = ExtResource( 1 )
+animation = "Blink Cycle"
+frame = 1
+playing = true
+
+[node name="AnimatedSprite66" type="AnimatedSprite" parent="."]
+material = SubResource( 7 )
+position = Vector2( -52.1014, -9.9304 )
+rotation = -0.7316
+frames = ExtResource( 1 )
+animation = "Blink Cycle"
+frame = 16
+playing = true
+
+[node name="AnimatedSprite86" type="AnimatedSprite" parent="."]
+material = SubResource( 7 )
+position = Vector2( -70.6282, 3.39985 )
+rotation = 0.661961
+frames = ExtResource( 1 )
+animation = "Blink Cycle"
+frame = 16
+playing = true
+
+[node name="AnimatedSprite65" type="AnimatedSprite" parent="."]
+material = SubResource( 7 )
+position = Vector2( -94.0012, -11.5115 )
+rotation = -1.72576
+frames = ExtResource( 1 )
+animation = "Blink Cycle"
+frame = 16
+playing = true
+
+[node name="AnimatedSprite64" type="AnimatedSprite" parent="."]
+material = SubResource( 7 )
+position = Vector2( -39.6087, -17.8877 )
+rotation = -0.7316
+frames = ExtResource( 1 )
+animation = "Blink Cycle"
+frame = 20
+playing = true
+
+[node name="AnimatedSprite63" type="AnimatedSprite" parent="."]
+material = ExtResource( 2 )
+position = Vector2( -59.6065, 32.9906 )
+rotation = -0.628215
+frames = ExtResource( 1 )
+animation = "Blink Cycle"
+frame = 20
+playing = true
+
+[node name="AnimatedSprite62" type="AnimatedSprite" parent="."]
+material = ExtResource( 2 )
+position = Vector2( -99.9815, 6.13716 )
+rotation = 0.520627
+frames = ExtResource( 1 )
+animation = "Blink Cycle"
+frame = 24
+playing = true
+
+[node name="AnimatedSprite61" type="AnimatedSprite" parent="."]
+material = SubResource( 5 )
+position = Vector2( -41.7433, 29.7815 )
+rotation = 0.65405
+frames = ExtResource( 1 )
+animation = "Blink Cycle"
+frame = 24
+playing = true
+
+[node name="AnimatedSprite60" type="AnimatedSprite" parent="."]
+material = SubResource( 5 )
+position = Vector2( -86.5236, 1.83591 )
+rotation = 0.65405
+frames = ExtResource( 1 )
+animation = "Blink Cycle"
+frame = 23
+playing = true
+
+[node name="AnimatedSprite59" type="AnimatedSprite" parent="."]
+material = SubResource( 5 )
+position = Vector2( -120.38, 33.65 )
+rotation = 0.65405
+frames = ExtResource( 1 )
+animation = "Blink Cycle"
+frame = 22
+playing = true
+
+[node name="AnimatedSprite58" type="AnimatedSprite" parent="."]
+material = SubResource( 5 )
+position = Vector2( -115.257, 20.2774 )
+rotation = -0.913727
+frames = ExtResource( 1 )
+animation = "Blink Cycle"
+frame = 22
+playing = true
+
+[node name="AnimatedSprite57" type="AnimatedSprite" parent="."]
+material = SubResource( 5 )
+position = Vector2( -42.3158, -31.2941 )
+rotation = -0.752775
+frames = ExtResource( 1 )
+animation = "Blink Cycle"
+frame = 22
+playing = true
+
+[node name="AnimatedSprite56" type="AnimatedSprite" parent="."]
+material = SubResource( 5 )
+position = Vector2( -40.6827, 9.48096 )
+rotation = -3.50124
+frames = ExtResource( 1 )
+animation = "Blink Cycle"
+frame = 23
+playing = true
+
+[node name="AnimatedSprite55" type="AnimatedSprite" parent="."]
+material = SubResource( 5 )
+position = Vector2( -75.5567, 36.9007 )
+rotation = 0.451616
+frames = ExtResource( 1 )
+animation = "Blink Cycle"
+frame = 28
+playing = true
+
+[node name="AnimatedSprite54" type="AnimatedSprite" parent="."]
+material = SubResource( 5 )
+position = Vector2( -51.8813, 18.5217 )
+rotation = -0.378296
+frames = ExtResource( 1 )
+animation = "Blink Cycle"
+frame = 3
+playing = true
+
+[node name="AnimatedSprite53" type="AnimatedSprite" parent="."]
+material = SubResource( 5 )
+position = Vector2( -67.1556, -9.79616 )
+rotation = -0.378296
+frames = ExtResource( 1 )
+animation = "Blink Cycle"
+frame = 21
+playing = true
+
+[node name="AnimatedSprite52" type="AnimatedSprite" parent="."]
+material = SubResource( 5 )
+position = Vector2( -70.4885, -26.2702 )
+rotation = -1.37246
+frames = ExtResource( 1 )
+animation = "Blink Cycle"
+frame = 21
+playing = true
+
+[node name="AnimatedSprite51" type="AnimatedSprite" parent="."]
+material = SubResource( 5 )
+position = Vector2( -100.917, -31.4953 )
+rotation = -1.37246
+frames = ExtResource( 1 )
+animation = "Blink Cycle"
+frame = 20
+playing = true
+
+[node name="AnimatedSprite50" type="AnimatedSprite" parent="."]
+material = SubResource( 6 )
+position = Vector2( -32.204, 21.659 )
+rotation = 0.277664
+frames = ExtResource( 1 )
+animation = "Blink Cycle"
+frame = 3
+playing = true
+
+[node name="AnimatedSprite49" type="AnimatedSprite" parent="."]
+material = SubResource( 6 )
+position = Vector2( -24.0491, -1.94982 )
+rotation = 0.277664
+frames = ExtResource( 1 )
+animation = "Blink Cycle"
+frame = 3
+playing = true
+
+[node name="AnimatedSprite48" type="AnimatedSprite" parent="."]
+material = SubResource( 6 )
+position = Vector2( -56.197, 4.70367 )
+rotation = 0.277664
+frames = ExtResource( 1 )
+animation = "Blink Cycle"
+frame = 2
+playing = true
+
+[node name="AnimatedSprite47" type="AnimatedSprite" parent="."]
+material = SubResource( 6 )
+position = Vector2( -107.847, -5.83719 )
+rotation = -0.716496
+frames = ExtResource( 1 )
+animation = "Blink Cycle"
+frame = 2
+playing = true
+
+[node name="AnimatedSprite46" type="AnimatedSprite" parent="."]
+material = SubResource( 6 )
+position = Vector2( -99.2272, 19.5863 )
+rotation = 0.277664
+frames = ExtResource( 1 )
+animation = "Blink Cycle"
+frame = 2
+playing = true
+
+[node name="AnimatedSprite45" type="AnimatedSprite" parent="."]
+material = SubResource( 6 )
+position = Vector2( -79.815, -14.3849 )
+rotation = 0.277664
+frames = ExtResource( 1 )
+animation = "Blink Cycle"
+frame = 2
+playing = true
+
+[node name="AnimatedSprite44" type="AnimatedSprite" parent="."]
+material = SubResource( 6 )
+position = Vector2( -120.661, -9.11446 )
+rotation = 0.319251
+frames = ExtResource( 1 )
+animation = "Blink Cycle"
+frame = 12
+playing = true
+
+[node name="AnimatedSprite43" type="AnimatedSprite" parent="."]
+material = SubResource( 6 )
+position = Vector2( -68.0322, 22.9382 )
+rotation = -0.301042
+frames = ExtResource( 1 )
+animation = "Blink Cycle"
+frame = 2
+playing = true
+
+[node name="AnimatedSprite42" type="AnimatedSprite" parent="."]
+material = SubResource( 6 )
+position = Vector2( -24.918, -15.7288 )
+rotation = 2.28822
+frames = ExtResource( 1 )
+animation = "Blink Cycle"
+frame = 1
+playing = true

@@ -10,11 +10,9 @@ radius = 6.0
 
 [sub_resource type="CircleShape2D" id=2]
 
-[node name="Player" type="KinematicBody2D" groups=[
-"Player",
-]]
-collision_layer = 7
-collision_mask = 7
+[node name="Player" type="KinematicBody2D"]
+collision_layer = 31
+collision_mask = 31
 script = ExtResource( 2 )
 jump_height = -30
 
@@ -22,7 +20,7 @@ jump_height = -30
 material = ExtResource( 1 )
 frames = ExtResource( 3 )
 animation = "Roll"
-frame = 16
+frame = 11
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -67,7 +65,6 @@ one_shot = true
 process_mode = 0
 wait_time = 0.1
 one_shot = true
-[connection signal="tween_step" from="Camera2D/Tween" to="Camera2D" method="_on_Tween_tween_step"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
 [connection signal="timeout" from="Timers/IdleTimer" to="." method="_on_IdleTimer_timeout"]
 [connection signal="timeout" from="Timers/ResetTimer" to="." method="_on_ResetTimer_timeout"]

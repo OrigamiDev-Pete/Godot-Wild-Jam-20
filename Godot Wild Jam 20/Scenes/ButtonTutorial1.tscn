@@ -26,7 +26,7 @@ position = Vector2( 104, 80 )
 scale = Vector2( 2, 2 )
 frames = ExtResource( 1 )
 animation = "A"
-frame = 8
+frame = 11
 playing = true
 
 [node name="D" type="AnimatedSprite" parent="."]
@@ -34,7 +34,7 @@ position = Vector2( 336, 80 )
 scale = Vector2( 2, 2 )
 frames = ExtResource( 1 )
 animation = "D"
-frame = 3
+frame = 14
 playing = true
 
 [node name="Left" type="AnimatedSprite" parent="."]
@@ -42,7 +42,7 @@ position = Vector2( 104, 160 )
 scale = Vector2( 2, 2 )
 frames = ExtResource( 1 )
 animation = "Left"
-frame = 16
+frame = 14
 playing = true
 
 [node name="Right" type="AnimatedSprite" parent="."]
@@ -50,7 +50,7 @@ position = Vector2( 336, 160 )
 scale = Vector2( 2, 2 )
 frames = ExtResource( 1 )
 animation = "Right"
-frame = 6
+frame = 7
 playing = true
 
 [node name="Press" type="Label" parent="."]

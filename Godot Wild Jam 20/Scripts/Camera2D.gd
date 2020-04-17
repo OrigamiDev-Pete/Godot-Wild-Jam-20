@@ -16,9 +16,5 @@ func camera_lock():
 	tween.start()
 
 
-func _on_Tween_tween_step(object: Object, key: NodePath, elapsed: float, value: Object) -> void:
-	pass
-
-
-func _on_Camlock_body_entered(body: Node) -> void:
+func _on_Camlock_body_entered(_body: Node) -> void:
 	camera_lock()

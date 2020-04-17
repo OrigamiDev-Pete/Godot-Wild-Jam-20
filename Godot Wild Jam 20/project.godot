@@ -19,6 +19,10 @@ config/name="Godot Wild Jam 20"
 run/main_scene="res://Scenes/Game.tscn"
 config/icon="res://icon.png"
 
+[debug]
+
+gdscript/warnings/return_value_discarded=false
+
 [display]
 
 window/size/height=576

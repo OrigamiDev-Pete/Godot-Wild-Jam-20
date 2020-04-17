@@ -1,8 +1,7 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Scenes/Medal.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Fonts/VCR_OSD_MONO_1.001.ttf" type="DynamicFontData" id=2]
-[ext_resource path="res://Scenes/ButtonTutorial1.tscn" type="PackedScene" id=3]
 
 [sub_resource type="DynamicFont" id=1]
 size = 32
@@ -32,10 +31,4 @@ __meta__ = {
 [node name="Medal" parent="CanvasLayer" instance=ExtResource( 1 )]
 position = Vector2( 813.913, 54.2274 )
 scale = Vector2( 2, 2 )
-frame = 48
-
-[node name="ButtonTutorial1" parent="CanvasLayer" instance=ExtResource( 3 )]
-margin_left = 291.568
-margin_top = 16.1497
-margin_right = 715.568
-margin_bottom = 296.15
+frame = 38

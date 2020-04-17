@@ -9,12 +9,13 @@ const ROTATION_FACTOR := 2
 const GRAVITY := 9.7
 
 export(int, -100, 0) var jump_height := -1
-export var active := false
+export var active := false setget set_active, get_active
 
 var motion := Vector2(0,0)
 var can_jump := true
 var jump_ready := true
 var is_jumping := false
+var can_transfer := true
 
 
 onready var sprite: AnimatedSprite = $AnimatedSprite as AnimatedSprite
@@ -137,6 +138,16 @@ func stick_to_surface() -> void:
 		Downcast.rotation_degrees = 0
 
 
+func set_active(value):
+	active = value
+	if has_node("Camera2D") and value == true:
+		Cam.current = true
+
+
+func get_active():
+	return active
+
+
 func change_player() -> void:
 	active = true
 	Cam.current = true
@@ -177,9 +188,10 @@ func _on_JumpTimer_timeout() -> void:
 
 
 func _on_Area2D_area_entered(area: Area2D) -> void:
-	if !active:
+	if !active and can_transfer:
+		can_transfer = false
 		var last_player: KinematicBody2D = area.get_parent()
-		Cam.position = last_player.position - position
+		Cam.position = last_player.global_position - global_position
 		change_player()
 		Cam.move_to_new_player()
 		motion.x = last_player.motion.x
@@ -189,3 +201,4 @@ func _on_Area2D_area_entered(area: Area2D) -> void:
 		Cam.current = false
 		sprite.play("Hit")
 		motion.x = motion.x/2
+		$Area2D.queue_free()
