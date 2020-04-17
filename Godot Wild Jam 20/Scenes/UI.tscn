@@ -23,6 +23,7 @@ margin_top = 40.1844
 margin_right = 997.679
 margin_bottom = 81.1844
 custom_fonts/font = SubResource( 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 text = "00:00:00"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -31,4 +32,4 @@ __meta__ = {
 [node name="Medal" parent="CanvasLayer" instance=ExtResource( 1 )]
 position = Vector2( 813.913, 54.2274 )
 scale = Vector2( 2, 2 )
-frame = 38
+frame = 21

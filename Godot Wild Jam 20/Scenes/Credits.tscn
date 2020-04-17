@@ -1,0 +1,138 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://Fonts/Acme-Regular.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Scenes/Colour_Palette.material" type="Material" id=2]
+[ext_resource path="res://Sprites/Pallets/PalletPink.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/Ball-export.png" type="Texture" id=4]
+
+[sub_resource type="DynamicFont" id=5]
+size = 18
+font_data = ExtResource( 1 )
+
+[sub_resource type="Theme" id=2]
+default_font = SubResource( 5 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 54
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 32
+font_data = ExtResource( 1 )
+
+[sub_resource type="Shader" id=7]
+code = "shader_type canvas_item;
+
+uniform sampler2D palette;
+
+
+void fragment() {
+	// get colour values from the sprite
+	vec4 mask_colour = texture(TEXTURE, UV);
+	vec4 output;
+	
+	highp float color_r = mask_colour.r;
+	output = texture(palette, vec2(color_r, 0.0));
+	
+	COLOR.rbg = output.rbg;
+	COLOR.a = texture(TEXTURE, UV).a;
+}"
+
+[sub_resource type="ShaderMaterial" id=6]
+shader = SubResource( 7 )
+shader_param/palette = ExtResource( 3 )
+
+[node name="Credits" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = SubResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+margin_left = 231.0
+margin_top = 209.0
+margin_right = 793.0
+margin_bottom = 367.0
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer"]
+margin_right = 562.0
+margin_bottom = 69.0
+custom_fonts/font = SubResource( 3 )
+text = "Created by Peter de Vroom"
+
+[node name="Label2" type="Label" parent="CenterContainer/VBoxContainer"]
+margin_top = 73.0
+margin_right = 562.0
+margin_bottom = 158.0
+custom_fonts/font = SubResource( 4 )
+text = "Special thanks to the 
+Godot Wild Jam community"
+align = 1
+
+[node name="Label2" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -210.0
+margin_top = -126.0
+margin_right = 210.0
+margin_bottom = -9.0
+text = "Godot Engine:
+Copyright (c) 2007-2020 Juan Linietsky, Ariel Manzur.
+Copyright (c) 2014-2020 Godot Engine contributors.
+godotengine.org/license"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+material = ExtResource( 2 )
+position = Vector2( 509.007, -62.0579 )
+amount = 10
+lifetime = 4.0
+preprocess = 2.0
+texture = ExtResource( 4 )
+emission_shape = 2
+emission_rect_extents = Vector2( 500, 1 )
+angular_velocity = -260.45
+angular_velocity_random = 0.78
+angle = 360.0
+angle_random = 1.0
+scale_amount = 2.0
+scale_amount_random = 0.8
+
+[node name="CPUParticles2D2" type="CPUParticles2D" parent="."]
+material = SubResource( 6 )
+position = Vector2( 509.007, -62.0579 )
+amount = 10
+lifetime = 4.0
+preprocess = 2.0
+texture = ExtResource( 4 )
+emission_shape = 2
+emission_rect_extents = Vector2( 500, 1 )
+angular_velocity = 452.65
+angular_velocity_random = 0.79
+angle = 360.0
+angle_random = 1.0
+scale_amount = 2.0
+scale_amount_random = 0.8
+
+[node name="Back" type="Button" parent="."]
+margin_left = 36.9707
+margin_top = 25.7474
+margin_right = 98.9707
+margin_bottom = 58.7474
+text = "< Back"
+flat = true

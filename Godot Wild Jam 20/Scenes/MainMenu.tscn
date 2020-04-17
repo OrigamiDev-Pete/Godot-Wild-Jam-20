@@ -1,8 +1,127 @@
-[gd_scene format=2]
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Scripts/Background.shader" type="Shader" id=1]
+[ext_resource path="res://Fonts/Acme-Regular.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Scripts/MainMenu.gd" type="Script" id=3]
+[ext_resource path="res://Scenes/Credits.tscn" type="PackedScene" id=4]
+
+[sub_resource type="DynamicFont" id=2]
+size = 32
+font_data = ExtResource( 2 )
+
+[sub_resource type="Theme" id=3]
+default_font = SubResource( 2 )
+
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 1 )
+shader_param/colour = Color( 0.152941, 0.301961, 0.486275, 1 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 100
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 18
+font_data = ExtResource( 2 )
 
 [node name="MainMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = SubResource( 3 )
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource( 1 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.509804, 0.701961, 1, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Menu" type="Control" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="CenterContainer" type="CenterContainer" parent="Menu"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu/CenterContainer"]
+margin_left = 272.0
+margin_top = 104.0
+margin_right = 752.0
+margin_bottom = 472.0
+custom_constants/separation = 10
+
+[node name="Title" type="Label" parent="Menu/CenterContainer/VBoxContainer"]
+margin_right = 480.0
+margin_bottom = 127.0
+custom_fonts/font = SubResource( 4 )
+text = "PlaceHolder"
+
+[node name="HSeparator" type="HSeparator" parent="Menu/CenterContainer/VBoxContainer"]
+margin_top = 137.0
+margin_right = 480.0
+margin_bottom = 197.0
+custom_constants/separation = 60
+
+[node name="Start" type="Button" parent="Menu/CenterContainer/VBoxContainer"]
+margin_left = 202.0
+margin_top = 207.0
+margin_right = 278.0
+margin_bottom = 254.0
+size_flags_horizontal = 4
+text = "Start"
+flat = true
+
+[node name="LevelSelect" type="Button" parent="Menu/CenterContainer/VBoxContainer"]
+margin_left = 161.0
+margin_top = 264.0
+margin_right = 318.0
+margin_bottom = 311.0
+size_flags_horizontal = 4
+text = "Level Select"
+flat = true
+
+[node name="Credits" type="Button" parent="Menu/CenterContainer/VBoxContainer"]
+margin_left = 188.0
+margin_top = 321.0
+margin_right = 291.0
+margin_bottom = 368.0
+size_flags_horizontal = 4
+text = "Credits"
+flat = true
+
+[node name="Label" type="Label" parent="Menu"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -123.0
+margin_top = -36.0
+margin_right = 123.0
+margin_bottom = -12.0
+size_flags_horizontal = 4
+custom_fonts/font = SubResource( 5 )
+text = "Copyright (c)  2020 Peter de Vroom"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Credits" parent="." instance=ExtResource( 4 )]
+visible = false
+[connection signal="pressed" from="Menu/CenterContainer/VBoxContainer/Credits" to="." method="_on_Credts_pressed"]
+[connection signal="pressed" from="Credits/Back" to="." method="_on_Back_pressed"]
+
+[editable path="Credits"]
