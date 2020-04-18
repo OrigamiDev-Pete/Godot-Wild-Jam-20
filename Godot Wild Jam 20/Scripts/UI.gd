@@ -8,7 +8,8 @@ const Bronze: StreamTexture = preload("res://Sprites/Pallets/PalletBronze.png")
 
 const LEVEL1_TIMES := [25, 27]
 const LEVEL2_TIMES := [38, 43]
-const LEVELS := [LEVEL1_TIMES, LEVEL2_TIMES]
+const LEVEL3_TIMES := [20, 30]
+const LEVELS := [LEVEL1_TIMES, LEVEL2_TIMES, LEVEL3_TIMES]
 
 
 var time_start := OS.get_ticks_msec()
@@ -52,7 +53,6 @@ func timer() -> String:
 
 
 func check_time(current_time: int) -> void:
-
 	if current_time < LEVELS[current_level-1][0]:
 		change_medal(Gold)
 	elif current_time < LEVELS[current_level-1][1]:
@@ -71,8 +71,25 @@ func change_medal(palette: StreamTexture) -> void:
 
 func _on_stage_ended(_area: Area2D):
 	emit_signal("stage_ended", time, current_level)
+	send_time_to_pause()
 	$CanvasLayer/Control/ScoreDisplay/Timer2.text = time
 	$CanvasLayer/Control/ScoreDisplay/Medal2.material.set_shader_param("palette", Medal.material.get_shader_param("palette"))
 	Anim.play("ScoreDisplay")
 	current_level += 1
 	time_start = OS.get_ticks_msec()
+
+
+func send_time_to_pause():
+	match current_level:
+		1:
+			PauseMenu.level1_time = time
+			PauseMenu.Level1Medal.material.set_shader_param("palette", Medal.material.get_shader_param("palette"))
+			PauseMenu.Level1Medal.show()
+		2:
+			PauseMenu.level2_time = time
+			PauseMenu.Level2Medal.material.set_shader_param("palette", Medal.material.get_shader_param("palette"))
+			PauseMenu.Level2Medal.show()
+		3:
+			PauseMenu.level3_time = time
+			PauseMenu.Level3Medal.material.set_shader_param("palette", Medal.material.get_shader_param("palette"))
+			PauseMenu.Level3Medal.show()
