@@ -8,6 +8,8 @@
 
 [sub_resource type="DynamicFont" id=1]
 size = 32
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
 use_filter = true
 font_data = ExtResource( 2 )
 
@@ -98,7 +100,7 @@ __meta__ = {
 [node name="Medal" parent="CanvasLayer/Control" instance=ExtResource( 1 )]
 position = Vector2( 813.913, 54.2274 )
 scale = Vector2( 2, 2 )
-frame = 31
+frame = 12
 
 [node name="ScoreDisplay" type="Control" parent="CanvasLayer/Control"]
 visible = false
@@ -124,7 +126,7 @@ __meta__ = {
 material = SubResource( 5 )
 position = Vector2( 426.493, 160.599 )
 scale = Vector2( 2.5, 2.5 )
-frame = 30
+frame = 11
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Control/ScoreDisplay"]
 anims/ScoreDisplay = SubResource( 3 )
