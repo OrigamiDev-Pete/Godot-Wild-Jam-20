@@ -55,9 +55,19 @@ __meta__ = {
 [node name="Level2" parent="." instance=ExtResource( 1 )]
 position = Vector2( 10304, 1280 )
 
+[node name="Sign" parent="Level2/Stage/Signs" index="0"]
+frame = 22
+
+[node name="AnimatedSprite" parent="Level2/Stage/Player" index="0"]
+frame = 21
+
 [node name="Level3" parent="." instance=ExtResource( 5 )]
 position = Vector2( 15616, 1792 )
 [connection signal="pressed" from="MainMenu/Menu/CenterContainer/VBoxContainer/HBoxContainer/Start" to="." method="_on_Start_pressed"]
 [connection signal="toggled" from="MainMenu/Menu/CenterContainer/VBoxContainer/HBoxContainer/Tutorial" to="." method="_on_Tutorial_toggled"]
 
 [editable path="MainMenu"]
+
+[editable path="Level2"]
+
+[editable path="Level2/Stage/Player"]

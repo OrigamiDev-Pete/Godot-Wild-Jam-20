@@ -31,42 +31,11 @@ __meta__ = {
 }
 
 [node name="ColorRect" type="ColorRect" parent="."]
+pause_mode = 2
 modulate = Color( 1, 1, 1, 0.67451 )
 material = SubResource( 3 )
 anchor_right = 1.0
 anchor_bottom = 1.0
-
-[node name="Restart" type="Button" parent="."]
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-margin_left = -176.0
-margin_top = -86.6482
-margin_right = -70.0
-margin_bottom = -39.6482
-custom_fonts/font = SubResource( 4 )
-text = "Restart"
-flat = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Continue" type="Button" parent="."]
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-margin_left = 65.0
-margin_top = -86.6482
-margin_right = 193.0
-margin_bottom = -39.6482
-custom_fonts/font = SubResource( 4 )
-text = "Continue"
-flat = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 anchor_right = 1.0
@@ -93,7 +62,7 @@ margin_left = 97.0
 margin_right = 97.0
 
 [node name="Medal" parent="CenterContainer/VBoxContainer/Level1/Control" index="0"]
-frame = 39
+frame = 70
 
 [node name="Time" parent="CenterContainer/VBoxContainer/Level1" index="2"]
 margin_left = 121.0
@@ -115,7 +84,7 @@ margin_left = 100.0
 margin_right = 100.0
 
 [node name="Medal" parent="CenterContainer/VBoxContainer/Level2/Control" index="0"]
-frame = 39
+frame = 70
 
 [node name="Time" parent="CenterContainer/VBoxContainer/Level2" index="2"]
 margin_left = 124.0
@@ -137,13 +106,49 @@ margin_left = 100.0
 margin_right = 100.0
 
 [node name="Medal" parent="CenterContainer/VBoxContainer/Level3/Control" index="0"]
-frame = 39
+frame = 70
 
 [node name="Time" parent="CenterContainer/VBoxContainer/Level3" index="2"]
 margin_left = 124.0
 margin_top = 0.0
 margin_right = 184.0
 margin_bottom = 39.0
+
+[node name="Restart" type="Button" parent="."]
+pause_mode = 2
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -176.0
+margin_top = -86.6482
+margin_right = -70.0
+margin_bottom = -39.6482
+custom_fonts/font = SubResource( 4 )
+text = "Restart"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Continue" type="Button" parent="."]
+pause_mode = 2
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = 65.0
+margin_top = -86.6482
+margin_right = 193.0
+margin_bottom = -39.6482
+custom_fonts/font = SubResource( 4 )
+text = "Continue"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="Restart" to="." method="_on_Restart_pressed"]
+[connection signal="pressed" from="Continue" to="." method="_on_Continue_pressed"]
 
 [editable path="CenterContainer/VBoxContainer/Level1"]
 

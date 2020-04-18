@@ -1863,13 +1863,13 @@ _data = {
 [node name="Sign" parent="Stage/Signs" instance=ExtResource( 8 )]
 position = Vector2( 4197.28, -234.278 )
 rotation = 0.338316
-frame = 6
+frame = 19
 
 [node name="Player" parent="Stage" instance=ExtResource( 2 )]
 
 [node name="AnimatedSprite" parent="Stage/Player" index="0"]
 material = SubResource( 2 )
-frame = 21
+frame = 16
 
 [node name="TileMap" type="TileMap" parent="Stage"]
 tile_set = ExtResource( 1 )

@@ -40,6 +40,6 @@ tile_data = PoolIntArray( 65536, 0, 1, 65537, 0, 1, 65538, 0, 1, 65539, 0, 1, 65
 
 [node name="AnimatedSprite" parent="Stage/Player" index="0"]
 material = SubResource( 5 )
-frame = 17
+frame = 11
 
 [editable path="Stage/Player"]

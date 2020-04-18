@@ -166,7 +166,7 @@ material = SubResource( 3 )
 position = Vector2( -0.78949, 15.9474 )
 scale = Vector2( 2, 2 )
 frames = SubResource( 29 )
-frame = 68
+frame = 62
 
 [node name="Time" type="Label" parent="."]
 margin_left = 122.0

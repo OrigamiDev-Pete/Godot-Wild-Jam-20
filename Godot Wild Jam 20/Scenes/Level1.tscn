@@ -186,24 +186,24 @@ volume_db = -7.0
 
 [node name="Sign" parent="Stage/Signs" instance=ExtResource( 11 )]
 position = Vector2( 856.959, 113.994 )
-frame = 26
+frame = 18
 
 [node name="Sign2" parent="Stage/Signs" instance=ExtResource( 11 )]
 position = Vector2( 1601.98, 98.735 )
-frame = 26
+frame = 18
 
 [node name="Sign3" parent="Stage/Signs" instance=ExtResource( 11 )]
 position = Vector2( 3759.92, 51.6332 )
-frame = 26
+frame = 18
 
 [node name="Sign4" parent="Stage/Signs" instance=ExtResource( 11 )]
 position = Vector2( 6473.16, 563.759 )
-frame = 9
+frame = 1
 
 [node name="Sign5" parent="Stage/Signs" instance=ExtResource( 11 )]
 position = Vector2( 9260.8, 256.751 )
 rotation = 1.5708
-frame = 9
+frame = 1
 
 [node name="Player" parent="Stage" instance=ExtResource( 3 )]
 position = Vector2( 755, -100 )
