@@ -1,10 +1,15 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=122 format=2]
 
 [ext_resource path="res://Tilesets/BlankTiles.tres" type="TileSet" id=1]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Sprites/Pallets/PalletPink.png" type="Texture" id=3]
+[ext_resource path="res://Scenes/MovingPlatforms.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Curves/LeftRight.tres" type="Curve2D" id=5]
+[ext_resource path="res://Scenes/Curves/UpDown.tres" type="Curve2D" id=6]
+[ext_resource path="res://Scenes/Camlock.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/Sign.tscn" type="PackedScene" id=8]
 
-[sub_resource type="Shader" id=4]
+[sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
 
 uniform sampler2D palette;
@@ -22,24 +27,2666 @@ void fragment() {
 	COLOR.a = texture(TEXTURE, UV).a;
 }"
 
-[sub_resource type="ShaderMaterial" id=5]
-shader = SubResource( 4 )
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
 shader_param/palette = ExtResource( 3 )
 
-[node name="Level2" type="Node"]
+[sub_resource type="Animation" id=3]
+resource_name = "PingPong"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Path2D/PathFollow2D:unit_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0, 1.0, 1.0 ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "RightLeft"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 30, 0 ), Vector2( 30, 0 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Curve2D" id=21]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, -0.150024, -0.0941391, 0, 0, 0, 0, 0, -32 )
+}
+
+[sub_resource type="Animation" id=11]
+resource_name = "PingPong"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Path2D/PathFollow2D:unit_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0, 1.0, 1.0 ]
+}
+
+[sub_resource type="Animation" id=12]
+resource_name = "RightLeft"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 30, 0 ), Vector2( 30, 0 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Curve2D" id=19]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, -0.150024, -0.0941391, 0, 0, 0, 0, 0, -32 )
+}
+
+[sub_resource type="Animation" id=22]
+resource_name = "PingPong"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Path2D/PathFollow2D:unit_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0, 1.0, 1.0 ]
+}
+
+[sub_resource type="Animation" id=23]
+resource_name = "RightLeft"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 30, 0 ), Vector2( 30, 0 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=24]
+resource_name = "PingPong"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Path2D/PathFollow2D:unit_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0, 1.0, 1.0 ]
+}
+
+[sub_resource type="Animation" id=25]
+resource_name = "RightLeft"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 30, 0 ), Vector2( 30, 0 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=26]
+resource_name = "PingPong"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Path2D/PathFollow2D:unit_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0, 1.0, 1.0 ]
+}
+
+[sub_resource type="Animation" id=27]
+resource_name = "RightLeft"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 30, 0 ), Vector2( 30, 0 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=28]
+resource_name = "PingPong"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Path2D/PathFollow2D:unit_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0, 1.0, 1.0 ]
+}
+
+[sub_resource type="Animation" id=29]
+resource_name = "RightLeft"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 30, 0 ), Vector2( 30, 0 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=30]
+resource_name = "PingPong"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Path2D/PathFollow2D:unit_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0, 1.0, 1.0 ]
+}
+
+[sub_resource type="Animation" id=31]
+resource_name = "RightLeft"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 30, 0 ), Vector2( 30, 0 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=32]
+resource_name = "PingPong"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Path2D/PathFollow2D:unit_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0, 1.0, 1.0 ]
+}
+
+[sub_resource type="Animation" id=33]
+resource_name = "RightLeft"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 30, 0 ), Vector2( 30, 0 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=34]
+resource_name = "PingPong"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Path2D/PathFollow2D:unit_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0, 1.0, 1.0 ]
+}
+
+[sub_resource type="Animation" id=35]
+resource_name = "RightLeft"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 30, 0 ), Vector2( 30, 0 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=36]
+resource_name = "PingPong"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Path2D/PathFollow2D:unit_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0, 1.0, 1.0 ]
+}
+
+[sub_resource type="Animation" id=37]
+resource_name = "RightLeft"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 30, 0 ), Vector2( 30, 0 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=38]
+resource_name = "PingPong"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Path2D/PathFollow2D:unit_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0, 1.0, 1.0 ]
+}
+
+[sub_resource type="Animation" id=39]
+resource_name = "RightLeft"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 30, 0 ), Vector2( 30, 0 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=40]
+resource_name = "PingPong"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Path2D/PathFollow2D:unit_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0, 1.0, 1.0 ]
+}
+
+[sub_resource type="Animation" id=41]
+resource_name = "RightLeft"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 30, 0 ), Vector2( 30, 0 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=42]
+resource_name = "PingPong"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Path2D/PathFollow2D:unit_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0, 1.0, 1.0 ]
+}
+
+[sub_resource type="Animation" id=43]
+resource_name = "RightLeft"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 30, 0 ), Vector2( 30, 0 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=44]
+resource_name = "PingPong"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Path2D/PathFollow2D:unit_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0, 1.0, 1.0 ]
+}
+
+[sub_resource type="Animation" id=45]
+resource_name = "RightLeft"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 30, 0 ), Vector2( 30, 0 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=46]
+resource_name = "PingPong"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Path2D/PathFollow2D:unit_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0, 1.0, 1.0 ]
+}
+
+[sub_resource type="Animation" id=47]
+resource_name = "RightLeft"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 30, 0 ), Vector2( 30, 0 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=48]
+resource_name = "PingPong"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Path2D/PathFollow2D:unit_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0, 1.0, 1.0 ]
+}
+
+[sub_resource type="Animation" id=49]
+resource_name = "RightLeft"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 30, 0 ), Vector2( 30, 0 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=50]
+resource_name = "PingPong"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Path2D/PathFollow2D:unit_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0, 1.0, 1.0 ]
+}
+
+[sub_resource type="Animation" id=51]
+resource_name = "RightLeft"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 30, 0 ), Vector2( 30, 0 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=52]
+resource_name = "PingPong"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Path2D/PathFollow2D:unit_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0, 1.0, 1.0 ]
+}
+
+[sub_resource type="Animation" id=53]
+resource_name = "RightLeft"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 30, 0 ), Vector2( 30, 0 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=54]
+resource_name = "PingPong"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Path2D/PathFollow2D:unit_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0, 1.0, 1.0 ]
+}
+
+[sub_resource type="Animation" id=55]
+resource_name = "RightLeft"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 30, 0 ), Vector2( 30, 0 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=56]
+resource_name = "PingPong"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Path2D/PathFollow2D:unit_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0, 1.0, 1.0 ]
+}
+
+[sub_resource type="Animation" id=57]
+resource_name = "RightLeft"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 30, 0 ), Vector2( 30, 0 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=58]
+resource_name = "PingPong"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Path2D/PathFollow2D:unit_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0, 1.0, 1.0 ]
+}
+
+[sub_resource type="Animation" id=59]
+resource_name = "RightLeft"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 30, 0 ), Vector2( 30, 0 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=60]
+resource_name = "PingPong"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Path2D/PathFollow2D:unit_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0, 1.0, 1.0 ]
+}
+
+[sub_resource type="Animation" id=61]
+resource_name = "RightLeft"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 30, 0 ), Vector2( 30, 0 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=62]
+resource_name = "PingPong"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Path2D/PathFollow2D:unit_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0, 1.0, 1.0 ]
+}
+
+[sub_resource type="Animation" id=63]
+resource_name = "RightLeft"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 30, 0 ), Vector2( 30, 0 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=64]
+resource_name = "PingPong"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Path2D/PathFollow2D:unit_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0, 1.0, 1.0 ]
+}
+
+[sub_resource type="Animation" id=65]
+resource_name = "RightLeft"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 30, 0 ), Vector2( 30, 0 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=66]
+resource_name = "PingPong"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Path2D/PathFollow2D:unit_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0, 1.0, 1.0 ]
+}
+
+[sub_resource type="Animation" id=67]
+resource_name = "RightLeft"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 30, 0 ), Vector2( 30, 0 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=68]
+resource_name = "PingPong"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Path2D/PathFollow2D:unit_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0, 1.0, 1.0 ]
+}
+
+[sub_resource type="Animation" id=69]
+resource_name = "RightLeft"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 30, 0 ), Vector2( 30, 0 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=70]
+resource_name = "PingPong"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Path2D/PathFollow2D:unit_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0, 1.0, 1.0 ]
+}
+
+[sub_resource type="Animation" id=71]
+resource_name = "RightLeft"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 30, 0 ), Vector2( 30, 0 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=13]
+resource_name = "PingPong"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Path2D/PathFollow2D:unit_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0, 1.0, 1.0 ]
+}
+
+[sub_resource type="Animation" id=14]
+resource_name = "RightLeft"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 30, 0 ), Vector2( 30, 0 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Curve2D" id=20]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, -0.150024, -0.0941391, 0, 0, 0, 0, 0, 32 )
+}
+
+[sub_resource type="Animation" id=72]
+resource_name = "PingPong"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Path2D/PathFollow2D:unit_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0, 1.0, 1.0 ]
+}
+
+[sub_resource type="Animation" id=73]
+resource_name = "RightLeft"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 30, 0 ), Vector2( 30, 0 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=74]
+resource_name = "PingPong"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Path2D/PathFollow2D:unit_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0, 1.0, 1.0 ]
+}
+
+[sub_resource type="Animation" id=75]
+resource_name = "RightLeft"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 30, 0 ), Vector2( 30, 0 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=76]
+resource_name = "PingPong"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Path2D/PathFollow2D:unit_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0, 1.0, 1.0 ]
+}
+
+[sub_resource type="Animation" id=77]
+resource_name = "RightLeft"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 30, 0 ), Vector2( 30, 0 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=78]
+resource_name = "PingPong"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Path2D/PathFollow2D:unit_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0, 1.0, 1.0 ]
+}
+
+[sub_resource type="Animation" id=79]
+resource_name = "RightLeft"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 30, 0 ), Vector2( 30, 0 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=80]
+resource_name = "PingPong"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Path2D/PathFollow2D:unit_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0, 1.0, 1.0 ]
+}
+
+[sub_resource type="Animation" id=81]
+resource_name = "RightLeft"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 30, 0 ), Vector2( 30, 0 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=82]
+resource_name = "PingPong"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Path2D/PathFollow2D:unit_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0, 1.0, 1.0 ]
+}
+
+[sub_resource type="Animation" id=83]
+resource_name = "RightLeft"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 30, 0 ), Vector2( 30, 0 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=84]
+resource_name = "PingPong"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Path2D/PathFollow2D:unit_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0, 1.0, 1.0 ]
+}
+
+[sub_resource type="Animation" id=85]
+resource_name = "RightLeft"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 30, 0 ), Vector2( 30, 0 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=86]
+resource_name = "PingPong"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Path2D/PathFollow2D:unit_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0, 1.0, 1.0 ]
+}
+
+[sub_resource type="Animation" id=87]
+resource_name = "RightLeft"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 30, 0 ), Vector2( 30, 0 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=88]
+resource_name = "PingPong"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Path2D/PathFollow2D:unit_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0, 1.0, 1.0 ]
+}
+
+[sub_resource type="Animation" id=89]
+resource_name = "RightLeft"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 30, 0 ), Vector2( 30, 0 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=90]
+resource_name = "PingPong"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Path2D/PathFollow2D:unit_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0, 1.0, 1.0 ]
+}
+
+[sub_resource type="Animation" id=91]
+resource_name = "RightLeft"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 30, 0 ), Vector2( 30, 0 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=92]
+resource_name = "PingPong"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Path2D/PathFollow2D:unit_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0, 1.0, 1.0 ]
+}
+
+[sub_resource type="Animation" id=93]
+resource_name = "RightLeft"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 30, 0 ), Vector2( 30, 0 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=94]
+resource_name = "PingPong"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Path2D/PathFollow2D:unit_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0, 1.0, 1.0 ]
+}
+
+[sub_resource type="Animation" id=95]
+resource_name = "RightLeft"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 30, 0 ), Vector2( 30, 0 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=96]
+resource_name = "PingPong"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Path2D/PathFollow2D:unit_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0, 1.0, 1.0 ]
+}
+
+[sub_resource type="Animation" id=97]
+resource_name = "RightLeft"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 30, 0 ), Vector2( 30, 0 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=98]
+resource_name = "PingPong"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Path2D/PathFollow2D:unit_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0, 1.0, 1.0 ]
+}
+
+[sub_resource type="Animation" id=99]
+resource_name = "RightLeft"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 30, 0 ), Vector2( 30, 0 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=100]
+resource_name = "PingPong"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Path2D/PathFollow2D:unit_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0, 1.0, 1.0 ]
+}
+
+[sub_resource type="Animation" id=101]
+resource_name = "RightLeft"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 30, 0 ), Vector2( 30, 0 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=102]
+resource_name = "PingPong"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Path2D/PathFollow2D:unit_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0, 1.0, 1.0 ]
+}
+
+[sub_resource type="Animation" id=103]
+resource_name = "RightLeft"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 30, 0 ), Vector2( 30, 0 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=104]
+resource_name = "PingPong"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Path2D/PathFollow2D:unit_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0, 1.0, 1.0 ]
+}
+
+[sub_resource type="Animation" id=105]
+resource_name = "RightLeft"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 30, 0 ), Vector2( 30, 0 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=106]
+resource_name = "PingPong"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Path2D/PathFollow2D:unit_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0, 1.0, 1.0 ]
+}
+
+[sub_resource type="Animation" id=107]
+resource_name = "RightLeft"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 30, 0 ), Vector2( 30, 0 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=108]
+resource_name = "PingPong"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Path2D/PathFollow2D:unit_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0, 1.0, 1.0 ]
+}
+
+[sub_resource type="Animation" id=109]
+resource_name = "RightLeft"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 30, 0 ), Vector2( 30, 0 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=110]
+resource_name = "PingPong"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Path2D/PathFollow2D:unit_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0, 1.0, 1.0 ]
+}
+
+[sub_resource type="Animation" id=111]
+resource_name = "RightLeft"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 30, 0 ), Vector2( 30, 0 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "PingPong"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Path2D/PathFollow2D:unit_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0, 1.0, 1.0 ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "RightLeft"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 30, 0 ), Vector2( 30, 0 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Curve2D" id=10]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, -0.150024, -0.0941391, 0, 0, 0, 0, 0, -96 )
+}
+
+[sub_resource type="Animation" id=15]
+resource_name = "PingPong"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Path2D/PathFollow2D:unit_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0, 1.0, 1.0 ]
+}
+
+[sub_resource type="Animation" id=16]
+resource_name = "RightLeft"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 30, 0 ), Vector2( 30, 0 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=17]
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Path2D/PathFollow2D:unit_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0, 1.0, 1.0 ]
+}
+
+[sub_resource type="Animation" id=18]
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 30, 0 ), Vector2( 30, 0 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=112]
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Path2D/PathFollow2D:unit_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0, 1.0, 1.0 ]
+}
+
+[sub_resource type="Animation" id=113]
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 30, 0 ), Vector2( 30, 0 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "PingPong"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Path2D/PathFollow2D:unit_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0, 1.0, 1.0 ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "RightLeft"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 30, 0 ), Vector2( 30, 0 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Curve2D" id=7]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, -0.150024, -0.0941391, 0, 0, 0, 0, 64, 0 )
+}
+
+[node name="Level2" type="Node2D"]
 
 [node name="Stage" type="Node2D" parent="."]
+
+[node name="Signs" type="Node2D" parent="Stage"]
+
+[node name="Sign" parent="Stage/Signs" instance=ExtResource( 8 )]
+position = Vector2( 4197.28, -234.278 )
+rotation = 0.338316
+frame = 6
 
 [node name="Player" parent="Stage" instance=ExtResource( 2 )]
 
 [node name="AnimatedSprite" parent="Stage/Player" index="0"]
-material = SubResource( 5 )
-frame = 15
+material = SubResource( 2 )
+frame = 21
 
 [node name="TileMap" type="TileMap" parent="Stage"]
 tile_set = ExtResource( 1 )
 cell_size = Vector2( 32, 32 )
+cell_y_sort = true
 format = 1
-tile_data = PoolIntArray( -131036, 0, 1, -131035, 0, 1, -65500, 0, 1, -65499, 0, 1, 0, 0, 0, 36, 0, 1, 37, 0, 1, 65536, 0, 1, 65537, 0, 1, 65538, 0, 1, 65539, 0, 1, 65540, 0, 1, 65541, 0, 1, 65542, 0, 1, 65543, 0, 1, 65544, 0, 1, 65545, 0, 1, 65546, 0, 1, 65547, 0, 1, 65548, 0, 1, 65549, 0, 1, 65550, 0, 1, 65551, 0, 1, 65552, 0, 1, 65553, 0, 1, 65554, 0, 1, 65555, 0, 1, 65556, 0, 1, 65557, 0, 1, 65558, 0, 1, 65559, 0, 1, 65560, 0, 1, 65561, 0, 1, 65562, 0, 1, 65563, 0, 1, 65564, 0, 1, 65565, 0, 1, 65566, 0, 1, 65567, 0, 1, 65568, 0, 1, 65569, 0, 1, 65570, 0, 1, 65571, 0, 1, 65572, 0, 1, 65573, 0, 1, 131072, 0, 1, 131073, 0, 1, 131074, 0, 1, 131075, 0, 1, 131076, 0, 1, 131077, 0, 1, 131078, 0, 1, 131079, 0, 1, 131080, 0, 1, 131081, 0, 1, 131082, 0, 1, 131083, 0, 1, 131084, 0, 1, 131085, 0, 1, 131086, 0, 1, 131087, 0, 1, 131088, 0, 1, 131089, 0, 1, 131090, 0, 1, 131091, 0, 1, 131092, 0, 1, 131093, 0, 1, 131094, 0, 1, 131095, 0, 1, 131096, 0, 1, 131097, 0, 1, 131098, 0, 1, 131099, 0, 1, 131100, 0, 1, 131101, 0, 1, 131102, 0, 1, 131103, 0, 1, 131104, 0, 1, 131105, 0, 1, 131106, 0, 1, 131107, 0, 1, 131108, 0, 1, 131109, 0, 1, 131110, 0, 1, 131111, 0, 1, 131112, 0, 1, 131113, 0, 1, 131114, 0, 1, 131115, 0, 1, 196608, 0, 1, 196609, 0, 1, 196610, 0, 1, 196611, 0, 1, 196612, 0, 1, 196613, 0, 1, 196614, 0, 1, 196615, 0, 1, 196616, 0, 1, 196617, 0, 1, 196618, 0, 1, 196619, 0, 1, 196620, 0, 1, 196621, 0, 1, 196622, 0, 1, 196623, 0, 1, 196624, 0, 1, 196625, 0, 1, 196626, 0, 1, 196627, 0, 1, 196628, 0, 1, 196629, 0, 1, 196630, 0, 1, 196631, 0, 1, 196632, 0, 1, 196633, 0, 1, 196634, 0, 1, 196635, 0, 1, 196636, 0, 1, 196637, 0, 1, 196638, 0, 1, 196639, 0, 1, 196640, 0, 1, 196641, 0, 1, 196642, 0, 1, 196643, 0, 1, 196644, 0, 1, 196645, 0, 1, 196646, 0, 1, 196647, 0, 1, 262144, 0, 1, 262145, 0, 1, 262146, 0, 1, 262147, 0, 1, 262148, 0, 1, 262149, 0, 1, 262150, 0, 1, 262151, 0, 1, 262152, 0, 1, 262153, 0, 1, 262154, 0, 1, 262155, 0, 1, 262156, 0, 1, 262157, 0, 1, 262158, 0, 1, 262159, 0, 1, 262160, 0, 1, 262161, 0, 1, 262162, 0, 1, 262163, 0, 1, 262164, 0, 1, 262165, 0, 1, 262166, 0, 1, 262167, 0, 1, 262168, 0, 1, 262169, 0, 1, 262170, 0, 1, 262171, 0, 1, 262172, 0, 1, 262173, 0, 1, 262174, 0, 1, 262175, 0, 1, 262176, 0, 1, 262177, 0, 1, 262178, 0, 1, 262179, 0, 1, 262180, 0, 1, 262181, 0, 1, 262182, 0, 1, 262183, 0, 1 )
+tile_data = PoolIntArray( -1179514, 0, 1, -1179513, 0, 1, -1113978, 0, 1, -1113977, 0, 1, -1048442, 0, 1, -1048441, 0, 1, -982906, 0, 1, -982905, 0, 1, -917477, 0, 0, -917370, 0, 1, -917369, 0, 1, -851941, 0, 0, -851834, 0, 1, -851833, 0, 1, -786405, 0, 0, -786298, 0, 1, -786297, 0, 1, -720869, 0, 0, -720762, 0, 1, -720761, 0, 1, -655333, 0, 0, -655226, 0, 1, -655225, 0, 1, -589797, 0, 0, -589690, 0, 1, -589689, 0, 1, -524261, 0, 0, -524154, 0, 1, -524153, 0, 1, -458726, 0, 0, -458725, 0, 0, -458680, 0, 0, -458679, 0, 0, -458678, 0, 0, -458677, 0, 0, -458676, 0, 0, -458675, 0, 0, -458674, 0, 0, -458673, 0, 0, -458672, 0, 0, -458671, 0, 0, -458670, 0, 0, -458648, 0, 1, -458647, 0, 1, -458646, 0, 1, -458645, 0, 1, -458644, 0, 1, -458640, 0, 1, -458639, 0, 1, -458635, 0, 1, -458634, 0, 1, -458630, 0, 1, -458629, 0, 1, -458625, 0, 1, -458624, 0, 1, -458623, 0, 1, -458622, 0, 1, -458621, 0, 1, -458618, 0, 1, -458617, 0, 1, -393190, 0, 0, -393144, 0, 1, -393143, 0, 1, -393142, 0, 1, -393141, 0, 1, -393140, 0, 1, -393139, 0, 1, -393138, 0, 1, -393137, 0, 1, -393136, 0, 1, -393135, 0, 1, -393134, 0, 1, -393133, 0, 1, -393132, 0, 1, -393131, 0, 1, -393130, 0, 1, -393129, 0, 1, -393128, 0, 65537, -393112, 0, 1, -393111, 0, 1, -393110, 0, 1, -393109, 0, 1, -393108, 0, 1, -393104, 0, 1, -393103, 0, 1, -393099, 0, 1, -393098, 0, 1, -393094, 0, 1, -393093, 0, 1, -393089, 0, 1, -393088, 0, 1, -393087, 0, 1, -393086, 0, 1, -393085, 0, 1, -393082, 0, 1, -393081, 0, 1, -327654, 0, 0, -327619, 0, 3, -327618, 0, 3, -327617, 0, 3, -327616, 0, 327680, -327608, 0, 1, -327607, 0, 1, -327606, 0, 1, -327605, 0, 1, -327604, 0, 1, -327603, 0, 1, -327602, 0, 1, -327601, 0, 1, -327600, 0, 1, -327599, 0, 1, -327598, 0, 1, -327597, 0, 1, -327596, 0, 1, -327595, 0, 1, -327594, 0, 1, -327593, 0, 1, -327592, 0, 1, -327591, 0, 65537, -327576, 0, 1, -327575, 0, 1, -327574, 0, 1, -327573, 0, 1, -327572, 0, 1, -327553, 0, 1, -327552, 0, 1, -327551, 0, 1, -327550, 0, 1, -327549, 0, 1, -327546, 0, 1, -327545, 0, 1, -262118, 0, 0, -262099, 0, 0, -262098, 0, 3, -262097, 0, 3, -262096, 0, 3, -262095, 0, 3, -262094, 0, 3, -262093, 0, 3, -262092, 0, 3, -262091, 0, 3, -262090, 0, 3, -262089, 0, 3, -262088, 0, 3, -262087, 0, 3, -262086, 0, 3, -262085, 0, 3, -262084, 0, 3, -262083, 0, 3, -262082, 0, 3, -262081, 0, 3, -262080, 0, 3, -262079, 0, 3, -262078, 0, 3, -262077, 0, 3, -262076, 0, 3, -262075, 0, 3, -262074, 0, 3, -262073, 0, 3, -262072, 0, 1, -262071, 0, 1, -262070, 0, 1, -262069, 0, 1, -262068, 0, 1, -262067, 0, 1, -262066, 0, 1, -262065, 0, 1, -262064, 0, 1, -262063, 0, 1, -262062, 0, 1, -262061, 0, 1, -262060, 0, 1, -262059, 0, 1, -262058, 0, 1, -262057, 0, 1, -262056, 0, 1, -262055, 0, 1, -262054, 0, 65537, -262040, 0, 1, -262039, 0, 1, -262038, 0, 1, -262037, 0, 1, -262036, 0, 1, -262017, 0, 1, -262016, 0, 1, -262015, 0, 1, -262014, 0, 1, -262013, 0, 1, -262010, 0, 1, -262009, 0, 1, -196582, 0, 0, -196572, 0, 0, -196567, 0, 3, -196566, 0, 3, -196565, 0, 3, -196563, 0, 0, -196562, 0, 1, -196561, 0, 1, -196560, 0, 1, -196559, 0, 1, -196558, 0, 1, -196557, 0, 1, -196556, 0, 1, -196555, 0, 1, -196554, 0, 1, -196553, 0, 1, -196552, 0, 1, -196551, 0, 1, -196550, 0, 1, -196549, 0, 1, -196548, 0, 1, -196547, 0, 1, -196546, 0, 1, -196545, 0, 1, -196544, 0, 1, -196543, 0, 1, -196542, 0, 1, -196541, 0, 1, -196540, 0, 1, -196539, 0, 1, -196538, 0, 1, -196537, 0, 1, -196536, 0, 1, -196535, 0, 1, -196534, 0, 1, -196533, 0, 1, -196532, 0, 1, -196531, 0, 1, -196530, 0, 1, -196529, 0, 1, -196528, 0, 1, -196527, 0, 1, -196526, 0, 1, -196525, 0, 1, -196524, 0, 1, -196523, 0, 1, -196522, 0, 1, -196521, 0, 1, -196520, 0, 1, -196519, 0, 1, -196518, 0, 1, -196517, 0, 1, -196516, 0, 1, -196515, 0, 1, -196514, 0, 1, -196513, 0, 1, -196512, 0, 1, -196511, 0, 1, -196510, 0, 1, -196509, 0, 1, -196508, 0, 1, -196507, 0, 1, -196506, 0, 1, -196505, 0, 1, -196504, 0, 1, -196503, 0, 1, -196502, 0, 1, -196501, 0, 1, -196500, 0, 1, -196499, 0, 1, -196498, 0, 1, -196497, 0, 1, -196496, 0, 1, -196495, 0, 1, -196494, 0, 1, -196493, 0, 1, -196492, 0, 1, -196491, 0, 1, -196490, 0, 1, -196489, 0, 1, -196488, 0, 1, -196487, 0, 1, -196486, 0, 1, -196485, 0, 1, -196484, 0, 1, -196483, 0, 1, -196482, 0, 1, -196481, 0, 1, -196480, 0, 1, -196479, 0, 1, -196478, 0, 1, -196477, 0, 1, -196474, 0, 1, -196473, 0, 1, -131046, 0, 0, -131036, 0, 0, -131035, 0, 3, -131034, 0, 3, -131033, 0, 3, -131027, 0, 0, -131026, 0, 1, -131025, 0, 1, -131024, 0, 1, -131023, 0, 1, -131022, 0, 1, -131021, 0, 1, -131020, 0, 1, -131019, 0, 1, -131018, 0, 1, -131017, 0, 1, -131016, 0, 1, -131015, 0, 1, -131014, 0, 1, -131013, 0, 1, -131012, 0, 1, -131011, 0, 1, -131010, 0, 1, -131009, 0, 1, -131008, 0, 1, -131007, 0, 1, -131006, 0, 1, -131005, 0, 1, -131004, 0, 1, -131003, 0, 1, -131002, 0, 1, -131001, 0, 1, -131000, 0, 1, -130999, 0, 1, -130998, 0, 1, -130997, 0, 1, -130996, 0, 1, -130995, 0, 1, -130994, 0, 1, -130993, 0, 1, -130992, 0, 1, -130991, 0, 1, -130990, 0, 1, -130989, 0, 1, -130988, 0, 1, -130987, 0, 1, -130986, 0, 1, -130985, 0, 1, -130984, 0, 1, -130983, 0, 1, -130982, 0, 1, -130981, 0, 1, -130980, 0, 1, -130979, 0, 1, -130978, 0, 1, -130977, 0, 1, -130976, 0, 1, -130975, 0, 1, -130974, 0, 1, -130973, 0, 1, -130972, 0, 1, -130971, 0, 1, -130970, 0, 1, -130969, 0, 1, -130968, 0, 1, -130967, 0, 1, -130966, 0, 1, -130965, 0, 1, -130964, 0, 1, -130963, 0, 1, -130962, 0, 1, -130961, 0, 1, -130960, 0, 1, -130959, 0, 1, -130958, 0, 1, -130957, 0, 1, -130956, 0, 1, -130955, 0, 1, -130954, 0, 1, -130953, 0, 1, -130952, 0, 1, -130951, 0, 1, -130950, 0, 1, -130949, 0, 1, -130948, 0, 1, -130947, 0, 1, -130946, 0, 1, -130945, 0, 1, -130944, 0, 1, -130943, 0, 1, -130942, 0, 1, -130941, 0, 1, -130938, 0, 1, -130937, 0, 1, -65510, 0, 0, -65509, 0, 0, -65504, 0, 3, -65503, 0, 3, -65502, 0, 3, -65501, 0, 3, -65500, 0, 0, -65499, 0, 0, -65498, 0, 0, -65497, 0, 0, -65496, 0, 0, -65495, 0, 0, -65491, 0, 0, -65490, 0, 1, -65489, 0, 1, -65488, 0, 1, -65487, 0, 1, -65486, 0, 1, -65485, 0, 1, -65484, 0, 1, -65483, 0, 1, -65482, 0, 1, -65481, 0, 1, -65480, 0, 1, -65479, 0, 1, -65478, 0, 1, -65477, 0, 1, -65476, 0, 1, -65475, 0, 1, -65474, 0, 1, -65473, 0, 1, -65472, 0, 1, -65471, 0, 1, -65470, 0, 1, -65469, 0, 1, -65468, 0, 1, -65467, 0, 1, -65466, 0, 1, -65465, 0, 1, -65464, 0, 1, -65463, 0, 1, -65462, 0, 1, -65461, 0, 1, -65460, 0, 1, -65459, 0, 1, -65458, 0, 1, -65457, 0, 1, -65456, 0, 1, -65455, 0, 1, -65454, 0, 1, -65453, 0, 1, -65452, 0, 1, -65451, 0, 1, -65450, 0, 1, -65449, 0, 1, -65448, 0, 1, -65447, 0, 1, -65446, 0, 1, -65445, 0, 1, -65444, 0, 1, -65443, 0, 1, -65442, 0, 1, -65441, 0, 1, -65440, 0, 1, -65439, 0, 1, -65438, 0, 1, -65437, 0, 1, -65436, 0, 1, -65435, 0, 1, -65434, 0, 1, -65433, 0, 1, -65432, 0, 1, -65431, 0, 1, -65430, 0, 1, -65429, 0, 1, -65428, 0, 1, -65427, 0, 1, -65426, 0, 1, -65425, 0, 1, -65424, 0, 1, -65423, 0, 1, -65422, 0, 1, -65421, 0, 1, -65420, 0, 1, -65419, 0, 1, -65418, 0, 1, -65417, 0, 1, -65416, 0, 1, -65415, 0, 1, -65414, 0, 1, -65413, 0, 1, -65412, 0, 1, -65411, 0, 1, -65410, 0, 1, -65409, 0, 1, -65408, 0, 1, -65407, 0, 1, -65406, 0, 1, -65405, 0, 1, -65402, 0, 1, -65401, 0, 1, 0, 0, 0, 19, 0, 6, 20, 0, 3, 21, 0, 3, 22, 0, 3, 23, 0, 3, 24, 0, 3, 25, 0, 3, 26, 0, 3, 27, 0, 3, 28, 0, 3, 29, 0, 3, 30, 0, 3, 31, 0, 7, 36, 0, 0, 37, 0, 0, 38, 0, 0, 39, 0, 0, 42, 0, 0, 45, 0, 0, 46, 0, 1, 47, 0, 1, 48, 0, 1, 49, 0, 1, 50, 0, 1, 51, 0, 1, 52, 0, 1, 53, 0, 1, 54, 0, 1, 55, 0, 1, 56, 0, 1, 57, 0, 1, 58, 0, 1, 59, 0, 1, 60, 0, 1, 61, 0, 1, 62, 0, 1, 63, 0, 1, 64, 0, 1, 65, 0, 1, 66, 0, 1, 67, 0, 1, 68, 0, 1, 69, 0, 1, 70, 0, 1, 71, 0, 1, 72, 0, 1, 73, 0, 1, 74, 0, 1, 75, 0, 1, 76, 0, 1, 77, 0, 1, 78, 0, 1, 79, 0, 1, 80, 0, 1, 81, 0, 1, 82, 0, 1, 83, 0, 1, 84, 0, 1, 85, 0, 1, 86, 0, 1, 87, 0, 1, 88, 0, 1, 89, 0, 1, 90, 0, 1, 91, 0, 1, 92, 0, 1, 93, 0, 1, 94, 0, 1, 95, 0, 1, 96, 0, 1, 97, 0, 1, 98, 0, 1, 99, 0, 1, 100, 0, 1, 101, 0, 1, 102, 0, 1, 103, 0, 1, 104, 0, 1, 105, 0, 1, 106, 0, 1, 107, 0, 1, 108, 0, 1, 109, 0, 1, 110, 0, 1, 111, 0, 1, 112, 0, 1, 113, 0, 1, 114, 0, 1, 115, 0, 1, 116, 0, 1, 117, 0, 1, 118, 0, 1, 119, 0, 1, 120, 0, 1, 121, 0, 1, 122, 0, 1, 123, 0, 1, 124, 0, 1, 125, 0, 1, 126, 0, 1, 127, 0, 1, 128, 0, 1, 129, 0, 1, 130, 0, 1, 131, 0, 1, 134, 0, 1, 135, 0, 1, 65536, 0, 1, 65537, 0, 1, 65538, 0, 1, 65539, 0, 1, 65540, 0, 1, 65541, 0, 1, 65542, 0, 1, 65543, 0, 1, 65544, 0, 1, 65545, 0, 1, 65546, 0, 1, 65547, 0, 1, 65548, 0, 1, 65549, 0, 1, 65550, 0, 1, 65551, 0, 1, 65552, 0, 1, 65553, 0, 1, 65554, 0, 1, 65555, 0, 1, 65556, 0, 1, 65557, 0, 1, 65558, 0, 1, 65559, 0, 1, 65560, 0, 1, 65561, 0, 1, 65562, 0, 1, 65563, 0, 1, 65564, 0, 1, 65565, 0, 1, 65566, 0, 1, 65567, 0, 1, 65568, 0, 1, 65569, 0, 1, 65570, 0, 1, 65571, 0, 1, 65572, 0, 1, 65573, 0, 1, 65574, 0, 1, 65575, 0, 1, 65576, 0, 1, 65577, 0, 1, 65578, 0, 1, 65579, 0, 1, 65580, 0, 1, 65581, 0, 1, 65582, 0, 1, 65583, 0, 1, 65584, 0, 1, 65585, 0, 1, 65586, 0, 1, 65587, 0, 1, 65588, 0, 1, 65589, 0, 1, 65590, 0, 1, 65591, 0, 1, 65592, 0, 1, 65593, 0, 1, 65594, 0, 1, 65595, 0, 1, 65596, 0, 1, 65597, 0, 1, 65598, 0, 1, 65599, 0, 1, 65600, 0, 1, 65601, 0, 1, 65602, 0, 1, 65603, 0, 1, 65604, 0, 1, 65605, 0, 1, 65606, 0, 1, 65607, 0, 1, 65608, 0, 1, 65609, 0, 1, 65610, 0, 1, 65611, 0, 1, 65612, 0, 1, 65613, 0, 1, 65614, 0, 1, 65615, 0, 1, 65616, 0, 1, 65617, 0, 1, 65618, 0, 1, 65619, 0, 1, 65620, 0, 1, 65621, 0, 1, 65622, 0, 1, 65623, 0, 1, 65624, 0, 1, 65625, 0, 1, 65626, 0, 1, 65627, 0, 1, 65628, 0, 1, 65629, 0, 1, 65630, 0, 1, 65631, 0, 1, 65632, 0, 1, 65633, 0, 1, 65634, 0, 1, 65635, 0, 1, 65636, 0, 1, 65637, 0, 1, 65638, 0, 1, 65639, 0, 1, 65640, 0, 1, 65641, 0, 1, 65642, 0, 1, 65643, 0, 1, 65644, 0, 1, 65645, 0, 1, 65646, 0, 1, 65647, 0, 1, 65648, 0, 1, 65649, 0, 1, 65650, 0, 1, 65651, 0, 1, 65652, 0, 1, 65653, 0, 1, 65654, 0, 1, 65655, 0, 1, 65656, 0, 1, 65657, 0, 1, 65658, 0, 1, 65659, 0, 1, 65660, 0, 1, 65661, 0, 1, 65662, 0, 1, 65663, 0, 1, 65664, 0, 1, 65665, 0, 1, 65666, 0, 1, 65667, 0, 1, 65670, 0, 1, 65671, 0, 1, 131072, 0, 1, 131073, 0, 1, 131074, 0, 1, 131075, 0, 1, 131076, 0, 1, 131077, 0, 1, 131078, 0, 1, 131079, 0, 1, 131080, 0, 1, 131081, 0, 1, 131082, 0, 1, 131083, 0, 1, 131084, 0, 1, 131085, 0, 1, 131086, 0, 1, 131087, 0, 1, 131088, 0, 1, 131089, 0, 1, 131090, 0, 1, 131091, 0, 1, 131092, 0, 1, 131093, 0, 1, 131094, 0, 1, 131095, 0, 1, 131096, 0, 1, 131097, 0, 1, 131098, 0, 1, 131099, 0, 1, 131100, 0, 1, 131101, 0, 1, 131102, 0, 1, 131103, 0, 1, 131104, 0, 1, 131105, 0, 1, 131106, 0, 1, 131107, 0, 1, 131108, 0, 1, 131109, 0, 1, 131110, 0, 1, 131111, 0, 1, 131112, 0, 1, 131113, 0, 1, 131114, 0, 1, 131115, 0, 1, 131116, 0, 1, 131117, 0, 1, 131118, 0, 1, 131119, 0, 1, 131120, 0, 1, 131121, 0, 1, 131122, 0, 1, 131123, 0, 1, 131124, 0, 1, 131125, 0, 1, 131126, 0, 1, 131127, 0, 1, 131128, 0, 1, 131129, 0, 1, 131130, 0, 1, 131131, 0, 1, 131132, 0, 1, 131133, 0, 1, 131134, 0, 1, 131135, 0, 1, 131136, 0, 1, 131137, 0, 1, 131138, 0, 1, 131139, 0, 1, 131140, 0, 1, 131141, 0, 1, 131142, 0, 1, 131143, 0, 1, 131144, 0, 1, 131145, 0, 1, 131146, 0, 1, 131147, 0, 1, 131148, 0, 1, 131149, 0, 1, 131150, 0, 1, 131151, 0, 1, 131152, 0, 1, 131153, 0, 1, 131154, 0, 1, 131155, 0, 1, 131156, 0, 1, 131157, 0, 1, 131158, 0, 1, 131159, 0, 1, 131160, 0, 1, 131161, 0, 1, 131162, 0, 1, 131163, 0, 1, 131164, 0, 1, 131165, 0, 1, 131166, 0, 1, 131167, 0, 1, 131168, 0, 1, 131169, 0, 1, 131170, 0, 1, 131171, 0, 1, 131172, 0, 1, 131173, 0, 1, 131174, 0, 1, 131175, 0, 1, 131176, 0, 1, 131177, 0, 1, 131178, 0, 1, 131179, 0, 1, 131180, 0, 1, 131181, 0, 1, 131182, 0, 1, 131183, 0, 1, 131184, 0, 1, 131185, 0, 1, 131186, 0, 1, 131187, 0, 1, 131188, 0, 1, 131189, 0, 1, 131190, 0, 1, 131191, 0, 1, 131192, 0, 1, 131193, 0, 1, 131194, 0, 1, 131195, 0, 1, 131196, 0, 1, 131197, 0, 1, 131198, 0, 1, 131199, 0, 1, 131200, 0, 1, 131201, 0, 1, 131202, 0, 1, 131203, 0, 1, 131206, 0, 1, 131207, 0, 1, 196608, 0, 1, 196609, 0, 1, 196610, 0, 1, 196611, 0, 1, 196612, 0, 1, 196613, 0, 1, 196614, 0, 1, 196615, 0, 1, 196616, 0, 1, 196617, 0, 1, 196618, 0, 1, 196619, 0, 1, 196620, 0, 1, 196621, 0, 1, 196622, 0, 1, 196623, 0, 1, 196624, 0, 1, 196625, 0, 1, 196626, 0, 1, 196627, 0, 1, 196628, 0, 1, 196629, 0, 1, 196630, 0, 1, 196631, 0, 1, 196632, 0, 1, 196633, 0, 1, 196634, 0, 1, 196635, 0, 1, 196636, 0, 1, 196637, 0, 1, 196638, 0, 1, 196639, 0, 1, 196640, 0, 1, 196641, 0, 1, 196642, 0, 1, 196643, 0, 1, 196644, 0, 1, 196645, 0, 1, 196646, 0, 1, 196647, 0, 1, 196648, 0, 1, 196649, 0, 1, 196650, 0, 1, 196651, 0, 1, 196652, 0, 1, 196653, 0, 1, 196654, 0, 1, 196655, 0, 1, 196656, 0, 1, 196657, 0, 1, 196658, 0, 1, 196659, 0, 1, 196673, 0, 1, 196674, 0, 1, 196675, 0, 1, 196676, 0, 1, 196677, 0, 1, 196678, 0, 1, 196679, 0, 1, 196680, 0, 1, 196681, 0, 1, 196689, 0, 1, 196690, 0, 1, 196691, 0, 1, 196692, 0, 1, 196693, 0, 1, 196694, 0, 1, 196695, 0, 1, 196696, 0, 1, 196697, 0, 1, 196698, 0, 1, 196699, 0, 1, 196700, 0, 1, 196701, 0, 1, 196702, 0, 1, 196703, 0, 1, 196704, 0, 1, 196705, 0, 1, 196706, 0, 1, 196707, 0, 1, 196708, 0, 1, 196709, 0, 1, 196710, 0, 1, 196711, 0, 1, 196712, 0, 1, 196713, 0, 1, 196714, 0, 1, 196715, 0, 1, 196716, 0, 1, 196717, 0, 1, 196718, 0, 1, 196719, 0, 1, 196720, 0, 1, 196721, 0, 1, 196722, 0, 1, 196723, 0, 1, 196724, 0, 1, 196725, 0, 1, 196726, 0, 1, 196727, 0, 1, 196728, 0, 1, 196729, 0, 1, 196730, 0, 1, 196731, 0, 1, 196732, 0, 1, 196733, 0, 1, 196734, 0, 1, 196735, 0, 1, 196736, 0, 1, 196737, 0, 1, 196738, 0, 1, 196739, 0, 1, 196742, 0, 1, 196743, 0, 1, 262144, 0, 1, 262145, 0, 1, 262146, 0, 1, 262147, 0, 1, 262148, 0, 1, 262149, 0, 1, 262150, 0, 1, 262151, 0, 1, 262152, 0, 1, 262153, 0, 1, 262154, 0, 1, 262155, 0, 1, 262156, 0, 1, 262157, 0, 1, 262158, 0, 1, 262159, 0, 1, 262160, 0, 1, 262161, 0, 1, 262162, 0, 1, 262163, 0, 1, 262164, 0, 1, 262165, 0, 1, 262166, 0, 1, 262167, 0, 1, 262168, 0, 1, 262169, 0, 1, 262170, 0, 1, 262171, 0, 1, 262172, 0, 1, 262173, 0, 1, 262174, 0, 1, 262175, 0, 1, 262176, 0, 1, 262177, 0, 1, 262178, 0, 1, 262179, 0, 1, 262180, 0, 1, 262181, 0, 1, 262182, 0, 1, 262183, 0, 1, 262184, 0, 1, 262185, 0, 1, 262186, 0, 1, 262187, 0, 1, 262188, 0, 1, 262189, 0, 1, 262190, 0, 1, 262191, 0, 1, 262192, 0, 1, 262193, 0, 1, 262194, 0, 1, 262195, 0, 1, 262209, 0, 1, 262210, 0, 1, 262211, 0, 1, 262212, 0, 1, 262213, 0, 1, 262214, 0, 1, 262215, 0, 1, 262216, 0, 1, 262217, 0, 1, 262225, 0, 1, 262226, 0, 1, 262227, 0, 1, 262228, 0, 1, 262229, 0, 1, 262230, 0, 1, 262231, 0, 1, 262232, 0, 1, 262233, 0, 1, 262234, 0, 1, 262235, 0, 1, 262236, 0, 1, 262237, 0, 1, 262238, 0, 1, 262239, 0, 1, 262240, 0, 1, 262241, 0, 1, 262242, 0, 1, 262243, 0, 1, 262244, 0, 1, 262245, 0, 1, 262246, 0, 1, 262247, 0, 1, 262248, 0, 1, 262249, 0, 1, 262250, 0, 1, 262251, 0, 1, 262252, 0, 1, 262253, 0, 1, 262254, 0, 1, 262255, 0, 1, 262256, 0, 1, 262257, 0, 1, 262258, 0, 1, 262259, 0, 1, 262260, 0, 1, 262261, 0, 1, 262262, 0, 1, 262263, 0, 1, 262264, 0, 1, 262265, 0, 1, 262266, 0, 1, 262267, 0, 1, 262268, 0, 1, 262269, 0, 1, 262270, 0, 1, 262271, 0, 1, 262272, 0, 1, 262273, 0, 1, 262274, 0, 1, 262275, 0, 1, 262278, 0, 1, 262279, 0, 1, 327706, 0, 0, 327745, 0, 1, 327746, 0, 1, 327747, 0, 1, 327748, 0, 1, 327749, 0, 1, 327750, 0, 1, 327751, 0, 1, 327752, 0, 1, 327753, 0, 1, 327761, 0, 1, 327762, 0, 1, 327763, 0, 1, 327764, 0, 1, 327765, 0, 1, 327766, 0, 1, 327767, 0, 1, 327768, 0, 1, 327769, 0, 1, 327770, 0, 1, 327771, 0, 1, 327772, 0, 1, 327773, 0, 1, 327774, 0, 1, 327775, 0, 1, 327776, 0, 1, 327777, 0, 1, 327778, 0, 1, 327779, 0, 1, 327780, 0, 1, 327781, 0, 1, 327782, 0, 1, 327783, 0, 1, 327784, 0, 1, 327785, 0, 1, 327786, 0, 1, 327787, 0, 1, 327788, 0, 1, 327789, 0, 1, 327790, 0, 1, 327791, 0, 1, 327792, 0, 1, 327793, 0, 1, 327794, 0, 1, 327795, 0, 1, 327796, 0, 1, 327797, 0, 1, 327798, 0, 1, 327799, 0, 1, 327800, 0, 1, 327801, 0, 1, 327802, 0, 1, 327803, 0, 1, 327804, 0, 1, 327805, 0, 1, 327806, 0, 1, 327807, 0, 1, 327808, 0, 1, 327809, 0, 1, 327810, 0, 1, 327811, 0, 1, 327814, 0, 1, 327815, 0, 1, 393241, 0, 0, 393281, 0, 1, 393282, 0, 1, 393283, 0, 1, 393284, 0, 1, 393285, 0, 1, 393286, 0, 1, 393287, 0, 1, 393288, 0, 1, 393289, 0, 1, 393297, 0, 1, 393298, 0, 1, 393299, 0, 1, 393300, 0, 1, 393301, 0, 1, 393302, 0, 1, 393303, 0, 1, 393304, 0, 1, 393305, 0, 1, 393306, 0, 1, 393307, 0, 1, 393308, 0, 1, 393309, 0, 1, 393310, 0, 1, 393311, 0, 1, 393312, 0, 1, 393313, 0, 1, 393314, 0, 1, 393315, 0, 1, 393316, 0, 1, 393317, 0, 1, 393318, 0, 1, 393319, 0, 1, 393320, 0, 1, 393321, 0, 1, 393322, 0, 1, 393323, 0, 1, 393324, 0, 1, 393325, 0, 1, 393326, 0, 1, 393327, 0, 1, 393328, 0, 1, 393329, 0, 1, 393330, 0, 1, 393331, 0, 1, 393332, 0, 1, 393333, 0, 1, 393334, 0, 1, 393335, 0, 1, 393336, 0, 1, 393337, 0, 1, 393338, 0, 1, 393339, 0, 1, 393340, 0, 1, 393341, 0, 1, 393342, 0, 1, 393343, 0, 1, 393344, 0, 1, 393345, 0, 1, 393346, 0, 1, 393347, 0, 1, 393350, 0, 1, 393351, 0, 1, 458777, 0, 0, 458817, 0, 1, 458818, 0, 1, 458819, 0, 1, 458820, 0, 1, 458821, 0, 1, 458822, 0, 1, 458823, 0, 1, 458824, 0, 1, 458825, 0, 1, 458833, 0, 1, 458834, 0, 1, 458835, 0, 1, 458836, 0, 1, 458837, 0, 1, 458838, 0, 1, 458839, 0, 1, 458840, 0, 1, 458841, 0, 1, 458842, 0, 1, 458843, 0, 1, 458844, 0, 1, 458845, 0, 1, 458846, 0, 1, 458847, 0, 1, 458848, 0, 1, 458849, 0, 1, 458850, 0, 1, 458851, 0, 1, 458852, 0, 1, 458853, 0, 1, 458854, 0, 1, 458855, 0, 1, 458856, 0, 1, 458857, 0, 1, 458858, 0, 1, 458859, 0, 1, 458860, 0, 1, 458861, 0, 1, 458862, 0, 1, 458863, 0, 1, 458864, 0, 1, 458865, 0, 1, 458866, 0, 1, 458867, 0, 1, 458868, 0, 1, 458869, 0, 1, 458870, 0, 1, 458871, 0, 1, 458872, 0, 1, 458873, 0, 1, 458874, 0, 1, 458875, 0, 1, 458876, 0, 1, 458877, 0, 1, 458878, 0, 1, 458879, 0, 1, 458880, 0, 1, 458881, 0, 1, 458882, 0, 1, 458883, 0, 1, 458886, 0, 1, 458887, 0, 1, 524313, 0, 0, 524353, 0, 1, 524354, 0, 1, 524355, 0, 1, 524356, 0, 1, 524357, 0, 1, 524358, 0, 1, 524359, 0, 1, 524360, 0, 1, 524361, 0, 1, 524422, 0, 1, 524423, 0, 1, 589848, 0, 0, 589849, 0, 0, 589889, 0, 1, 589890, 0, 1, 589891, 0, 1, 589892, 0, 1, 589893, 0, 1, 589894, 0, 1, 589895, 0, 1, 589896, 0, 1, 589897, 0, 1, 589958, 0, 1, 589959, 0, 1, 655384, 0, 0, 655385, 0, 0, 655425, 0, 1, 655426, 0, 1, 655427, 0, 1, 655428, 0, 1, 655429, 0, 1, 655430, 0, 1, 655431, 0, 1, 655432, 0, 1, 655433, 0, 1, 655436, 0, 1, 655437, 0, 1, 655438, 0, 1, 655439, 0, 1, 655440, 0, 1, 655441, 0, 1, 655442, 0, 1, 655443, 0, 1, 655444, 0, 1, 655445, 0, 1, 655446, 0, 1, 655447, 0, 1, 655448, 0, 1, 655449, 0, 1, 655450, 0, 1, 655451, 0, 1, 655452, 0, 1, 655453, 0, 1, 655454, 0, 1, 655455, 0, 1, 655456, 0, 1, 655457, 0, 1, 655458, 0, 1, 655459, 0, 1, 655460, 0, 1, 655461, 0, 1, 655462, 0, 1, 655463, 0, 1, 655464, 0, 1, 655465, 0, 1, 655466, 0, 1, 655467, 0, 1, 655468, 0, 1, 655469, 0, 1, 655470, 0, 1, 655471, 0, 1, 655472, 0, 1, 655473, 0, 1, 655474, 0, 1, 655475, 0, 1, 655476, 0, 1, 655477, 0, 1, 655478, 0, 1, 655479, 0, 1, 655480, 0, 1, 655481, 0, 1, 655482, 0, 1, 655483, 0, 1, 655484, 0, 1, 655485, 0, 1, 655486, 0, 1, 655487, 0, 1, 655488, 0, 1, 655489, 0, 1, 655490, 0, 1, 655491, 0, 1, 655492, 0, 1, 655493, 0, 1, 655494, 0, 1, 655495, 0, 1, 720920, 0, 0, 720921, 0, 0, 720961, 0, 1, 720962, 0, 1, 720963, 0, 1, 720964, 0, 1, 720965, 0, 1, 720966, 0, 1, 720967, 0, 1, 720968, 0, 1, 720969, 0, 1, 720972, 0, 1, 720973, 0, 1, 720974, 0, 1, 720975, 0, 1, 720976, 0, 1, 720977, 0, 1, 720978, 0, 1, 720979, 0, 1, 720980, 0, 1, 720981, 0, 1, 720982, 0, 1, 720983, 0, 1, 720984, 0, 1, 720985, 0, 1, 720986, 0, 1, 720987, 0, 1, 720988, 0, 1, 720989, 0, 1, 720990, 0, 1, 720991, 0, 1, 720992, 0, 1, 720993, 0, 1, 720994, 0, 1, 720995, 0, 1, 720996, 0, 1, 720997, 0, 1, 720998, 0, 1, 720999, 0, 1, 721000, 0, 1, 721001, 0, 1, 721002, 0, 1, 721003, 0, 1, 721004, 0, 1, 721005, 0, 1, 721006, 0, 1, 721007, 0, 1, 721008, 0, 1, 721009, 0, 1, 721010, 0, 1, 721011, 0, 1, 721012, 0, 1, 721013, 0, 1, 721014, 0, 1, 721015, 0, 1, 721016, 0, 1, 721017, 0, 1, 721018, 0, 1, 721019, 0, 1, 721020, 0, 1, 721021, 0, 1, 721022, 0, 1, 721023, 0, 1, 721024, 0, 1, 721025, 0, 1, 721026, 0, 1, 721027, 0, 1, 721028, 0, 1, 721029, 0, 1, 721030, 0, 1, 721031, 0, 1, 786457, 0, 0, 786458, 0, 0, 786497, 0, 1, 786498, 0, 1, 786499, 0, 1, 786500, 0, 1, 786501, 0, 1, 786502, 0, 1, 786503, 0, 1, 786504, 0, 1, 786505, 0, 1, 786508, 0, 1, 786509, 0, 1, 786510, 0, 1, 786511, 0, 1, 786512, 0, 1, 786513, 0, 1, 786514, 0, 1, 786515, 0, 1, 786516, 0, 1, 786517, 0, 1, 786518, 0, 1, 786519, 0, 1, 786520, 0, 1, 786521, 0, 1, 786522, 0, 1, 786523, 0, 1, 786524, 0, 1, 786525, 0, 1, 786526, 0, 1, 786527, 0, 1, 786528, 0, 1, 786529, 0, 1, 786530, 0, 1, 786531, 0, 1, 786532, 0, 1, 786533, 0, 1, 786534, 0, 1, 786535, 0, 1, 786536, 0, 1, 786537, 0, 1, 786538, 0, 1, 786539, 0, 1, 786540, 0, 1, 786541, 0, 1, 786542, 0, 1, 786543, 0, 1, 786544, 0, 1, 786545, 0, 1, 786546, 0, 1, 786547, 0, 1, 786548, 0, 1, 786549, 0, 1, 786550, 0, 1, 786551, 0, 1, 786552, 0, 1, 786553, 0, 1, 786554, 0, 1, 786555, 0, 1, 786556, 0, 1, 786557, 0, 1, 786558, 0, 1, 786559, 0, 1, 786560, 0, 1, 786561, 0, 1, 786562, 0, 1, 786563, 0, 1, 786564, 0, 1, 786565, 0, 1, 786566, 0, 1, 786567, 0, 1, 852033, 0, 1, 852034, 0, 1, 852035, 0, 1, 852036, 0, 1, 852037, 0, 1, 852038, 0, 1, 852039, 0, 1, 852040, 0, 1, 852041, 0, 1, 852044, 0, 1, 852045, 0, 1, 852046, 0, 1, 852047, 0, 1, 852048, 0, 1, 852049, 0, 1, 852050, 0, 1, 852051, 0, 1, 852052, 0, 1, 852053, 0, 1, 852054, 0, 1, 852055, 0, 1, 852056, 0, 1, 852057, 0, 1, 852058, 0, 1, 852059, 0, 1, 852060, 0, 1, 852061, 0, 1, 852062, 0, 1, 852063, 0, 1, 852064, 0, 1, 852065, 0, 1, 852066, 0, 1, 852067, 0, 1, 852068, 0, 1, 852069, 0, 1, 852070, 0, 1, 852071, 0, 1, 852072, 0, 1, 852073, 0, 1, 852074, 0, 1, 852075, 0, 1, 852076, 0, 1, 852077, 0, 1, 852078, 0, 1, 852079, 0, 1, 852080, 0, 1, 852081, 0, 1, 852082, 0, 1, 852083, 0, 1, 852084, 0, 1, 852085, 0, 1, 852086, 0, 1, 852087, 0, 1, 852088, 0, 1, 852089, 0, 1, 852090, 0, 1, 852091, 0, 1, 852092, 0, 1, 852093, 0, 1, 852094, 0, 1, 852095, 0, 1, 852096, 0, 1, 852097, 0, 1, 852098, 0, 1, 852099, 0, 1, 852100, 0, 1, 852101, 0, 1, 852102, 0, 1, 852103, 0, 1, 917569, 0, 1, 917570, 0, 1, 917571, 0, 1, 917572, 0, 1, 917573, 0, 1, 917574, 0, 1, 917575, 0, 1, 917576, 0, 1, 917577, 0, 1, 983105, 0, 1, 983106, 0, 1, 983107, 0, 1, 983108, 0, 1, 983109, 0, 1, 983110, 0, 1, 983111, 0, 1, 983112, 0, 1, 983113, 0, 1, 1048641, 0, 1, 1048642, 0, 1, 1048643, 0, 1, 1048644, 0, 1, 1048645, 0, 1, 1048646, 0, 1, 1048647, 0, 1, 1048648, 0, 1, 1048649, 0, 1, 1114177, 0, 1, 1114178, 0, 1, 1114179, 0, 1, 1114180, 0, 1, 1114181, 0, 1, 1114182, 0, 1, 1114183, 0, 1, 1114184, 0, 1, 1114185, 0, 1, 1114186, 0, 1, 1114187, 0, 1, 1114188, 0, 1, 1114189, 0, 1, 1114190, 0, 1, 1114191, 0, 1, 1114192, 0, 1, 1114193, 0, 1, 1114194, 0, 1, 1114195, 0, 1, 1114196, 0, 1, 1114197, 0, 1, 1114198, 0, 1, 1114199, 0, 1, 1114200, 0, 1, 1114201, 0, 1, 1114202, 0, 1, 1114203, 0, 1, 1114204, 0, 1, 1114205, 0, 1, 1114206, 0, 1, 1114207, 0, 1, 1114208, 0, 1, 1114209, 0, 1, 1114210, 0, 1, 1114211, 0, 1, 1114212, 0, 1, 1114213, 0, 1, 1114214, 0, 1, 1114215, 0, 1, 1114216, 0, 1, 1114217, 0, 1, 1114218, 0, 1, 1114219, 0, 1, 1114220, 0, 1, 1114221, 0, 1, 1114222, 0, 1, 1114223, 0, 1, 1114224, 0, 1, 1114225, 0, 1, 1114226, 0, 1, 1114227, 0, 1, 1114228, 0, 1, 1114229, 0, 1, 1114230, 0, 1, 1114231, 0, 1, 1114232, 0, 1, 1114233, 0, 1, 1114234, 0, 1, 1114235, 0, 1, 1114236, 0, 1, 1114237, 0, 1, 1114238, 0, 1, 1114239, 0, 1, 1114240, 0, 1, 1114241, 0, 1, 1114242, 0, 1, 1114243, 0, 1, 1114244, 0, 1, 1114245, 0, 1, 1114246, 0, 1, 1114247, 0, 1, 1114248, 0, 1, 1114249, 0, 1, 1114250, 0, 1, 1114251, 0, 1, 1114252, 0, 1, 1114253, 0, 1, 1114254, 0, 1, 1114255, 0, 1, 1114256, 0, 1, 1114257, 0, 1, 1114258, 0, 1, 1114259, 0, 1, 1114260, 0, 1, 1114261, 0, 1, 1114262, 0, 1, 1114263, 0, 1, 1114264, 0, 1, 1114265, 0, 1, 1114266, 0, 1, 1114267, 0, 1, 1114268, 0, 1, 1114269, 0, 1, 1114270, 0, 1, 1114271, 0, 1, 1114272, 0, 1, 1114273, 0, 1, 1114274, 0, 1, 1114275, 0, 1, 1114276, 0, 1, 1114277, 0, 1, 1179713, 0, 1, 1179714, 0, 1, 1179715, 0, 1, 1179716, 0, 1, 1179717, 0, 1, 1179718, 0, 1, 1179719, 0, 1, 1179720, 0, 1, 1179721, 0, 1, 1179722, 0, 1, 1179723, 0, 1, 1179724, 0, 1, 1179725, 0, 1, 1179726, 0, 1, 1179727, 0, 1, 1179728, 0, 1, 1179729, 0, 1, 1179730, 0, 1, 1179731, 0, 1, 1179732, 0, 1, 1179733, 0, 1, 1179734, 0, 1, 1179735, 0, 1, 1179736, 0, 1, 1179737, 0, 1, 1179738, 0, 1, 1179739, 0, 1, 1179740, 0, 1, 1179741, 0, 1, 1179742, 0, 1, 1179743, 0, 1, 1179744, 0, 1, 1179745, 0, 1, 1179746, 0, 1, 1179747, 0, 1, 1179748, 0, 1, 1179749, 0, 1, 1179750, 0, 1, 1179751, 0, 1, 1179752, 0, 1, 1179753, 0, 1, 1179754, 0, 1, 1179755, 0, 1, 1179756, 0, 1, 1179757, 0, 1, 1179758, 0, 1, 1179759, 0, 1, 1179760, 0, 1, 1179761, 0, 1, 1179762, 0, 1, 1179763, 0, 1, 1179764, 0, 1, 1179765, 0, 1, 1179766, 0, 1, 1179767, 0, 1, 1179768, 0, 1, 1179769, 0, 1, 1179770, 0, 1, 1179771, 0, 1, 1179772, 0, 1, 1179773, 0, 1, 1179774, 0, 1, 1179775, 0, 1, 1179776, 0, 1, 1179777, 0, 1, 1179778, 0, 1, 1179779, 0, 1, 1179780, 0, 1, 1179781, 0, 1, 1179782, 0, 1, 1179783, 0, 1, 1179784, 0, 1, 1179785, 0, 1, 1179786, 0, 1, 1179787, 0, 1, 1179788, 0, 1, 1179789, 0, 1, 1179790, 0, 1, 1179791, 0, 1, 1179792, 0, 1, 1179793, 0, 1, 1179794, 0, 1, 1179795, 0, 1, 1179796, 0, 1, 1179797, 0, 1, 1179798, 0, 1, 1179799, 0, 1, 1179800, 0, 1, 1179801, 0, 1, 1179802, 0, 1, 1179803, 0, 2, 1179804, 0, 1, 1179805, 0, 2, 1179806, 0, 1, 1179807, 0, 2, 1179808, 0, 1, 1179809, 0, 2, 1179810, 0, 1, 1179811, 0, 2, 1179812, 0, 1, 1179813, 0, 2, 1245249, 0, 1, 1245250, 0, 1, 1245251, 0, 1, 1245252, 0, 1, 1245253, 0, 1, 1245254, 0, 1, 1245255, 0, 1, 1245256, 0, 1, 1245257, 0, 1, 1245258, 0, 1, 1245259, 0, 1, 1245260, 0, 1, 1245261, 0, 1, 1245262, 0, 1, 1245263, 0, 1, 1245264, 0, 1, 1245265, 0, 1, 1245266, 0, 1, 1245267, 0, 1, 1245268, 0, 1, 1245269, 0, 1, 1245270, 0, 1, 1245271, 0, 1, 1245272, 0, 1, 1245273, 0, 1, 1245274, 0, 1, 1245275, 0, 1, 1245276, 0, 1, 1245277, 0, 1, 1245278, 0, 1, 1245279, 0, 1, 1245280, 0, 1, 1245281, 0, 1, 1245282, 0, 1, 1245283, 0, 1, 1245284, 0, 1, 1245285, 0, 1, 1245286, 0, 1, 1245287, 0, 1, 1245288, 0, 1, 1245289, 0, 1, 1245290, 0, 1, 1245291, 0, 1, 1245292, 0, 1, 1245293, 0, 1, 1245294, 0, 1, 1245295, 0, 1, 1245296, 0, 1, 1245297, 0, 1, 1245298, 0, 1, 1245299, 0, 1, 1245300, 0, 1, 1245301, 0, 1, 1245302, 0, 1, 1245303, 0, 1, 1245304, 0, 1, 1245305, 0, 1, 1245306, 0, 1, 1245307, 0, 1, 1245308, 0, 1, 1245309, 0, 1, 1245310, 0, 1, 1245311, 0, 1, 1245312, 0, 1, 1245313, 0, 1, 1245314, 0, 1, 1245315, 0, 1, 1245316, 0, 1, 1245317, 0, 1, 1245318, 0, 1, 1245319, 0, 1, 1245320, 0, 1, 1245321, 0, 1, 1245322, 0, 1, 1245323, 0, 1, 1245324, 0, 1, 1245325, 0, 1, 1245326, 0, 1, 1245327, 0, 1, 1245328, 0, 1, 1245329, 0, 1, 1245330, 0, 1, 1245331, 0, 1, 1245332, 0, 1, 1245333, 0, 1, 1245334, 0, 1, 1245335, 0, 1, 1245336, 0, 1, 1245337, 0, 1, 1245338, 0, 1, 1245339, 0, 1, 1245340, 0, 1, 1245341, 0, 1, 1245342, 0, 1, 1245343, 0, 1, 1245344, 0, 1, 1245345, 0, 1, 1245346, 0, 1, 1245347, 0, 1, 1245348, 0, 1, 1245349, 0, 1, 1310785, 0, 1, 1310786, 0, 1, 1310787, 0, 1, 1310788, 0, 1, 1310789, 0, 1, 1310790, 0, 1, 1310791, 0, 1, 1310792, 0, 1, 1310793, 0, 1, 1310794, 0, 1, 1310795, 0, 1, 1310796, 0, 1, 1310797, 0, 1, 1310798, 0, 1, 1310799, 0, 1, 1310800, 0, 1, 1310801, 0, 1, 1310802, 0, 1, 1310803, 0, 1, 1310804, 0, 1, 1310805, 0, 1, 1310806, 0, 1, 1310807, 0, 1, 1310808, 0, 1, 1310809, 0, 1, 1310810, 0, 1, 1310811, 0, 1, 1310812, 0, 1, 1310813, 0, 1, 1310814, 0, 1, 1310815, 0, 1, 1310816, 0, 1, 1310817, 0, 1, 1310818, 0, 1, 1310819, 0, 1, 1310820, 0, 1, 1310821, 0, 1, 1310822, 0, 1, 1310823, 0, 1, 1310824, 0, 1, 1310825, 0, 1, 1310826, 0, 1, 1310827, 0, 1, 1310828, 0, 1, 1310829, 0, 1, 1310830, 0, 1, 1310831, 0, 1, 1310832, 0, 1, 1310833, 0, 1, 1310834, 0, 1, 1310835, 0, 1, 1310836, 0, 1, 1310837, 0, 1, 1310838, 0, 1, 1310839, 0, 1, 1310840, 0, 1, 1310841, 0, 1, 1310842, 0, 1, 1310843, 0, 1, 1310844, 0, 1, 1310845, 0, 1, 1310846, 0, 1, 1310847, 0, 1, 1310848, 0, 1, 1310849, 0, 1, 1310850, 0, 1, 1310851, 0, 1, 1310852, 0, 1, 1310853, 0, 1, 1310854, 0, 1, 1310855, 0, 1, 1310856, 0, 1, 1310857, 0, 1, 1310858, 0, 1, 1310859, 0, 1, 1310860, 0, 1, 1310861, 0, 1, 1310862, 0, 1, 1310863, 0, 1, 1310864, 0, 1, 1310865, 0, 1, 1310866, 0, 1, 1310867, 0, 1, 1310868, 0, 1, 1310869, 0, 1, 1310870, 0, 1, 1310871, 0, 1, 1310872, 0, 1, 1310873, 0, 1, 1310874, 0, 1, 1310875, 0, 1, 1310876, 0, 1, 1310877, 0, 1, 1310878, 0, 1, 1310879, 0, 1, 1310880, 0, 1, 1310881, 0, 1, 1310882, 0, 1, 1310883, 0, 1, 1310884, 0, 1, 1310885, 0, 1 )
+
+[node name="MovingPlatforms" type="Node2D" parent="Stage"]
+
+[node name="MovingPlatform2" parent="Stage/MovingPlatforms" instance=ExtResource( 4 )]
+position = Vector2( 2184, -160 )
+
+[node name="KinematicBody2D" parent="Stage/MovingPlatforms/MovingPlatform2" index="0"]
+position = Vector2( -0.149902, -0.0941467 )
+
+[node name="Path2D" parent="Stage/MovingPlatforms/MovingPlatform2" index="1"]
+curve = ExtResource( 6 )
+
+[node name="MovingPlatform7" parent="Stage/MovingPlatforms" instance=ExtResource( 4 )]
+position = Vector2( 4064, 336 )
+
+[node name="KinematicBody2D" parent="Stage/MovingPlatforms/MovingPlatform7" index="0"]
+position = Vector2( -0.149902, -0.0941467 )
+
+[node name="AnimationPlayer" parent="Stage/MovingPlatforms/MovingPlatform7/KinematicBody2D" index="0"]
+anims/PingPong = SubResource( 3 )
+anims/RightLeft = SubResource( 4 )
+
+[node name="Path2D" parent="Stage/MovingPlatforms/MovingPlatform7" index="1"]
+curve = SubResource( 21 )
+
+[node name="MovingPlatform8" parent="Stage/MovingPlatforms" instance=ExtResource( 4 )]
+position = Vector2( 3680, 336 )
+
+[node name="KinematicBody2D" parent="Stage/MovingPlatforms/MovingPlatform8" index="0"]
+position = Vector2( -0.149902, -0.0941467 )
+
+[node name="AnimationPlayer" parent="Stage/MovingPlatforms/MovingPlatform8/KinematicBody2D" index="0"]
+anims/PingPong = SubResource( 11 )
+anims/RightLeft = SubResource( 12 )
+
+[node name="Path2D" parent="Stage/MovingPlatforms/MovingPlatform8" index="1"]
+curve = SubResource( 19 )
+
+[node name="MovingPlatform11" parent="Stage/MovingPlatforms" instance=ExtResource( 4 )]
+position = Vector2( 2848, 336 )
+
+[node name="KinematicBody2D" parent="Stage/MovingPlatforms/MovingPlatform11" index="0"]
+position = Vector2( -0.149902, -0.0941467 )
+
+[node name="AnimationPlayer" parent="Stage/MovingPlatforms/MovingPlatform11/KinematicBody2D" index="0"]
+anims/PingPong = SubResource( 22 )
+anims/RightLeft = SubResource( 23 )
+
+[node name="Path2D" parent="Stage/MovingPlatforms/MovingPlatform11" index="1"]
+curve = SubResource( 19 )
+
+[node name="MovingPlatform12" parent="Stage/MovingPlatforms" instance=ExtResource( 4 )]
+position = Vector2( 2784, 272 )
+
+[node name="KinematicBody2D" parent="Stage/MovingPlatforms/MovingPlatform12" index="0"]
+position = Vector2( -0.149902, -0.0941467 )
+
+[node name="AnimationPlayer" parent="Stage/MovingPlatforms/MovingPlatform12/KinematicBody2D" index="0"]
+anims/PingPong = SubResource( 24 )
+anims/RightLeft = SubResource( 25 )
+
+[node name="Path2D" parent="Stage/MovingPlatforms/MovingPlatform12" index="1"]
+curve = SubResource( 19 )
+
+[node name="MovingPlatform14" parent="Stage/MovingPlatforms" instance=ExtResource( 4 )]
+position = Vector2( 2592, 560 )
+
+[node name="KinematicBody2D" parent="Stage/MovingPlatforms/MovingPlatform14" index="0"]
+position = Vector2( -0.149902, -0.0941162 )
+
+[node name="AnimationPlayer" parent="Stage/MovingPlatforms/MovingPlatform14/KinematicBody2D" index="0"]
+anims/PingPong = SubResource( 26 )
+anims/RightLeft = SubResource( 27 )
+
+[node name="Path2D" parent="Stage/MovingPlatforms/MovingPlatform14" index="1"]
+curve = SubResource( 19 )
+
+[node name="MovingPlatform15" parent="Stage/MovingPlatforms" instance=ExtResource( 4 )]
+position = Vector2( 2656, 560 )
+
+[node name="KinematicBody2D" parent="Stage/MovingPlatforms/MovingPlatform15" index="0"]
+position = Vector2( -0.149902, -0.0941162 )
+
+[node name="AnimationPlayer" parent="Stage/MovingPlatforms/MovingPlatform15/KinematicBody2D" index="0"]
+anims/PingPong = SubResource( 28 )
+anims/RightLeft = SubResource( 29 )
+
+[node name="Path2D" parent="Stage/MovingPlatforms/MovingPlatform15" index="1"]
+curve = SubResource( 19 )
+
+[node name="MovingPlatform16" parent="Stage/MovingPlatforms" instance=ExtResource( 4 )]
+position = Vector2( 2720, 560 )
+
+[node name="KinematicBody2D" parent="Stage/MovingPlatforms/MovingPlatform16" index="0"]
+position = Vector2( -0.149902, -0.0941162 )
+
+[node name="AnimationPlayer" parent="Stage/MovingPlatforms/MovingPlatform16/KinematicBody2D" index="0"]
+anims/PingPong = SubResource( 30 )
+anims/RightLeft = SubResource( 31 )
+
+[node name="Path2D" parent="Stage/MovingPlatforms/MovingPlatform16" index="1"]
+curve = SubResource( 19 )
+
+[node name="MovingPlatform17" parent="Stage/MovingPlatforms" instance=ExtResource( 4 )]
+position = Vector2( 2784, 560 )
+
+[node name="KinematicBody2D" parent="Stage/MovingPlatforms/MovingPlatform17" index="0"]
+position = Vector2( -0.149902, -0.0941162 )
+
+[node name="AnimationPlayer" parent="Stage/MovingPlatforms/MovingPlatform17/KinematicBody2D" index="0"]
+anims/PingPong = SubResource( 32 )
+anims/RightLeft = SubResource( 33 )
+
+[node name="Path2D" parent="Stage/MovingPlatforms/MovingPlatform17" index="1"]
+curve = SubResource( 19 )
+
+[node name="MovingPlatform18" parent="Stage/MovingPlatforms" instance=ExtResource( 4 )]
+position = Vector2( 2848, 560 )
+
+[node name="KinematicBody2D" parent="Stage/MovingPlatforms/MovingPlatform18" index="0"]
+position = Vector2( -0.149902, -0.0941162 )
+
+[node name="AnimationPlayer" parent="Stage/MovingPlatforms/MovingPlatform18/KinematicBody2D" index="0"]
+anims/PingPong = SubResource( 34 )
+anims/RightLeft = SubResource( 35 )
+
+[node name="Path2D" parent="Stage/MovingPlatforms/MovingPlatform18" index="1"]
+curve = SubResource( 19 )
+
+[node name="MovingPlatform19" parent="Stage/MovingPlatforms" instance=ExtResource( 4 )]
+position = Vector2( 2912, 560 )
+
+[node name="KinematicBody2D" parent="Stage/MovingPlatforms/MovingPlatform19" index="0"]
+position = Vector2( -0.149902, -0.0941162 )
+
+[node name="AnimationPlayer" parent="Stage/MovingPlatforms/MovingPlatform19/KinematicBody2D" index="0"]
+anims/PingPong = SubResource( 36 )
+anims/RightLeft = SubResource( 37 )
+
+[node name="Path2D" parent="Stage/MovingPlatforms/MovingPlatform19" index="1"]
+curve = SubResource( 19 )
+
+[node name="MovingPlatform26" parent="Stage/MovingPlatforms" instance=ExtResource( 4 )]
+position = Vector2( 3360, 560 )
+
+[node name="KinematicBody2D" parent="Stage/MovingPlatforms/MovingPlatform26" index="0"]
+position = Vector2( -0.149902, -0.0941162 )
+
+[node name="AnimationPlayer" parent="Stage/MovingPlatforms/MovingPlatform26/KinematicBody2D" index="0"]
+anims/PingPong = SubResource( 38 )
+anims/RightLeft = SubResource( 39 )
+
+[node name="Path2D" parent="Stage/MovingPlatforms/MovingPlatform26" index="1"]
+curve = SubResource( 19 )
+
+[node name="MovingPlatform27" parent="Stage/MovingPlatforms" instance=ExtResource( 4 )]
+position = Vector2( 3424, 560 )
+
+[node name="KinematicBody2D" parent="Stage/MovingPlatforms/MovingPlatform27" index="0"]
+position = Vector2( -0.149902, -0.0941162 )
+
+[node name="AnimationPlayer" parent="Stage/MovingPlatforms/MovingPlatform27/KinematicBody2D" index="0"]
+anims/PingPong = SubResource( 40 )
+anims/RightLeft = SubResource( 41 )
+
+[node name="Path2D" parent="Stage/MovingPlatforms/MovingPlatform27" index="1"]
+curve = SubResource( 19 )
+
+[node name="MovingPlatform28" parent="Stage/MovingPlatforms" instance=ExtResource( 4 )]
+position = Vector2( 3488, 560 )
+
+[node name="KinematicBody2D" parent="Stage/MovingPlatforms/MovingPlatform28" index="0"]
+position = Vector2( -0.149902, -0.0941162 )
+
+[node name="AnimationPlayer" parent="Stage/MovingPlatforms/MovingPlatform28/KinematicBody2D" index="0"]
+anims/PingPong = SubResource( 42 )
+anims/RightLeft = SubResource( 43 )
+
+[node name="Path2D" parent="Stage/MovingPlatforms/MovingPlatform28" index="1"]
+curve = SubResource( 19 )
+
+[node name="MovingPlatform29" parent="Stage/MovingPlatforms" instance=ExtResource( 4 )]
+position = Vector2( 3552, 560 )
+
+[node name="KinematicBody2D" parent="Stage/MovingPlatforms/MovingPlatform29" index="0"]
+position = Vector2( -0.149902, -0.0941162 )
+
+[node name="AnimationPlayer" parent="Stage/MovingPlatforms/MovingPlatform29/KinematicBody2D" index="0"]
+anims/PingPong = SubResource( 44 )
+anims/RightLeft = SubResource( 45 )
+
+[node name="Path2D" parent="Stage/MovingPlatforms/MovingPlatform29" index="1"]
+curve = SubResource( 19 )
+
+[node name="MovingPlatform30" parent="Stage/MovingPlatforms" instance=ExtResource( 4 )]
+position = Vector2( 3616, 560 )
+
+[node name="KinematicBody2D" parent="Stage/MovingPlatforms/MovingPlatform30" index="0"]
+position = Vector2( -0.149902, -0.0941162 )
+
+[node name="AnimationPlayer" parent="Stage/MovingPlatforms/MovingPlatform30/KinematicBody2D" index="0"]
+anims/PingPong = SubResource( 46 )
+anims/RightLeft = SubResource( 47 )
+
+[node name="Path2D" parent="Stage/MovingPlatforms/MovingPlatform30" index="1"]
+curve = SubResource( 19 )
+
+[node name="MovingPlatform31" parent="Stage/MovingPlatforms" instance=ExtResource( 4 )]
+position = Vector2( 3680, 560 )
+
+[node name="KinematicBody2D" parent="Stage/MovingPlatforms/MovingPlatform31" index="0"]
+position = Vector2( -0.149902, -0.0941162 )
+
+[node name="AnimationPlayer" parent="Stage/MovingPlatforms/MovingPlatform31/KinematicBody2D" index="0"]
+anims/PingPong = SubResource( 48 )
+anims/RightLeft = SubResource( 49 )
+
+[node name="Path2D" parent="Stage/MovingPlatforms/MovingPlatform31" index="1"]
+curve = SubResource( 19 )
+
+[node name="MovingPlatform32" parent="Stage/MovingPlatforms" instance=ExtResource( 4 )]
+position = Vector2( 3744, 560 )
+
+[node name="KinematicBody2D" parent="Stage/MovingPlatforms/MovingPlatform32" index="0"]
+position = Vector2( -0.149902, -0.0941162 )
+
+[node name="AnimationPlayer" parent="Stage/MovingPlatforms/MovingPlatform32/KinematicBody2D" index="0"]
+anims/PingPong = SubResource( 50 )
+anims/RightLeft = SubResource( 51 )
+
+[node name="Path2D" parent="Stage/MovingPlatforms/MovingPlatform32" index="1"]
+curve = SubResource( 19 )
+
+[node name="MovingPlatform33" parent="Stage/MovingPlatforms" instance=ExtResource( 4 )]
+position = Vector2( 3808, 560 )
+
+[node name="KinematicBody2D" parent="Stage/MovingPlatforms/MovingPlatform33" index="0"]
+position = Vector2( -0.149902, -0.0941162 )
+
+[node name="AnimationPlayer" parent="Stage/MovingPlatforms/MovingPlatform33/KinematicBody2D" index="0"]
+anims/PingPong = SubResource( 52 )
+anims/RightLeft = SubResource( 53 )
+
+[node name="Path2D" parent="Stage/MovingPlatforms/MovingPlatform33" index="1"]
+curve = SubResource( 19 )
+
+[node name="MovingPlatform34" parent="Stage/MovingPlatforms" instance=ExtResource( 4 )]
+position = Vector2( 3872, 560 )
+
+[node name="KinematicBody2D" parent="Stage/MovingPlatforms/MovingPlatform34" index="0"]
+position = Vector2( -0.149902, -0.0941162 )
+
+[node name="AnimationPlayer" parent="Stage/MovingPlatforms/MovingPlatform34/KinematicBody2D" index="0"]
+anims/PingPong = SubResource( 54 )
+anims/RightLeft = SubResource( 55 )
+
+[node name="Path2D" parent="Stage/MovingPlatforms/MovingPlatform34" index="1"]
+curve = SubResource( 19 )
+
+[node name="MovingPlatform35" parent="Stage/MovingPlatforms" instance=ExtResource( 4 )]
+position = Vector2( 3936, 560 )
+
+[node name="KinematicBody2D" parent="Stage/MovingPlatforms/MovingPlatform35" index="0"]
+position = Vector2( -0.149902, -0.0941162 )
+
+[node name="AnimationPlayer" parent="Stage/MovingPlatforms/MovingPlatform35/KinematicBody2D" index="0"]
+anims/PingPong = SubResource( 56 )
+anims/RightLeft = SubResource( 57 )
+
+[node name="Path2D" parent="Stage/MovingPlatforms/MovingPlatform35" index="1"]
+curve = SubResource( 19 )
+
+[node name="MovingPlatform36" parent="Stage/MovingPlatforms" instance=ExtResource( 4 )]
+position = Vector2( 4000, 464 )
+
+[node name="KinematicBody2D" parent="Stage/MovingPlatforms/MovingPlatform36" index="0"]
+position = Vector2( -0.149902, -0.0941467 )
+
+[node name="AnimationPlayer" parent="Stage/MovingPlatforms/MovingPlatform36/KinematicBody2D" index="0"]
+anims/PingPong = SubResource( 58 )
+anims/RightLeft = SubResource( 59 )
+
+[node name="Path2D" parent="Stage/MovingPlatforms/MovingPlatform36" index="1"]
+curve = SubResource( 19 )
+
+[node name="MovingPlatform37" parent="Stage/MovingPlatforms" instance=ExtResource( 4 )]
+position = Vector2( 4064, 560 )
+
+[node name="KinematicBody2D" parent="Stage/MovingPlatforms/MovingPlatform37" index="0"]
+position = Vector2( -0.149902, -0.0941162 )
+
+[node name="AnimationPlayer" parent="Stage/MovingPlatforms/MovingPlatform37/KinematicBody2D" index="0"]
+anims/PingPong = SubResource( 60 )
+anims/RightLeft = SubResource( 61 )
+
+[node name="Path2D" parent="Stage/MovingPlatforms/MovingPlatform37" index="1"]
+curve = SubResource( 19 )
+
+[node name="MovingPlatform54" parent="Stage/MovingPlatforms" instance=ExtResource( 4 )]
+position = Vector2( 4128, 464 )
+
+[node name="KinematicBody2D" parent="Stage/MovingPlatforms/MovingPlatform54" index="0"]
+position = Vector2( -0.149902, -0.0941467 )
+
+[node name="AnimationPlayer" parent="Stage/MovingPlatforms/MovingPlatform54/KinematicBody2D" index="0"]
+anims/PingPong = SubResource( 62 )
+anims/RightLeft = SubResource( 63 )
+
+[node name="Path2D" parent="Stage/MovingPlatforms/MovingPlatform54" index="1"]
+curve = SubResource( 19 )
+
+[node name="MovingPlatform55" parent="Stage/MovingPlatforms" instance=ExtResource( 4 )]
+position = Vector2( 4256, 464 )
+
+[node name="KinematicBody2D" parent="Stage/MovingPlatforms/MovingPlatform55" index="0"]
+position = Vector2( -0.149902, -0.0941467 )
+
+[node name="AnimationPlayer" parent="Stage/MovingPlatforms/MovingPlatform55/KinematicBody2D" index="0"]
+anims/PingPong = SubResource( 64 )
+anims/RightLeft = SubResource( 65 )
+
+[node name="Path2D" parent="Stage/MovingPlatforms/MovingPlatform55" index="1"]
+curve = SubResource( 19 )
+
+[node name="MovingPlatform38" parent="Stage/MovingPlatforms" instance=ExtResource( 4 )]
+position = Vector2( 4064, 432 )
+
+[node name="KinematicBody2D" parent="Stage/MovingPlatforms/MovingPlatform38" index="0"]
+position = Vector2( -0.149902, -0.0941467 )
+
+[node name="AnimationPlayer" parent="Stage/MovingPlatforms/MovingPlatform38/KinematicBody2D" index="0"]
+anims/PingPong = SubResource( 66 )
+anims/RightLeft = SubResource( 67 )
+
+[node name="Path2D" parent="Stage/MovingPlatforms/MovingPlatform38" index="1"]
+curve = SubResource( 19 )
+
+[node name="MovingPlatform39" parent="Stage/MovingPlatforms" instance=ExtResource( 4 )]
+position = Vector2( 4192, 560 )
+
+[node name="KinematicBody2D" parent="Stage/MovingPlatforms/MovingPlatform39" index="0"]
+position = Vector2( -0.149902, -0.0941162 )
+
+[node name="AnimationPlayer" parent="Stage/MovingPlatforms/MovingPlatform39/KinematicBody2D" index="0"]
+anims/PingPong = SubResource( 68 )
+anims/RightLeft = SubResource( 69 )
+
+[node name="Path2D" parent="Stage/MovingPlatforms/MovingPlatform39" index="1"]
+curve = SubResource( 19 )
+
+[node name="MovingPlatform40" parent="Stage/MovingPlatforms" instance=ExtResource( 4 )]
+position = Vector2( 4192, 432 )
+
+[node name="KinematicBody2D" parent="Stage/MovingPlatforms/MovingPlatform40" index="0"]
+position = Vector2( -0.149902, -0.0941467 )
+
+[node name="AnimationPlayer" parent="Stage/MovingPlatforms/MovingPlatform40/KinematicBody2D" index="0"]
+anims/PingPong = SubResource( 70 )
+anims/RightLeft = SubResource( 71 )
+
+[node name="Path2D" parent="Stage/MovingPlatforms/MovingPlatform40" index="1"]
+curve = SubResource( 19 )
+
+[node name="MovingPlatform9" parent="Stage/MovingPlatforms" instance=ExtResource( 4 )]
+position = Vector2( 3616, 240 )
+
+[node name="KinematicBody2D" parent="Stage/MovingPlatforms/MovingPlatform9" index="0"]
+position = Vector2( -0.149902, -0.0941467 )
+
+[node name="AnimationPlayer" parent="Stage/MovingPlatforms/MovingPlatform9/KinematicBody2D" index="0"]
+anims/PingPong = SubResource( 13 )
+anims/RightLeft = SubResource( 14 )
+
+[node name="Path2D" parent="Stage/MovingPlatforms/MovingPlatform9" index="1"]
+curve = SubResource( 20 )
+
+[node name="MovingPlatform10" parent="Stage/MovingPlatforms" instance=ExtResource( 4 )]
+position = Vector2( 2912, 240 )
+
+[node name="KinematicBody2D" parent="Stage/MovingPlatforms/MovingPlatform10" index="0"]
+position = Vector2( -0.149902, -0.0941467 )
+
+[node name="AnimationPlayer" parent="Stage/MovingPlatforms/MovingPlatform10/KinematicBody2D" index="0"]
+anims/PingPong = SubResource( 72 )
+anims/RightLeft = SubResource( 73 )
+
+[node name="Path2D" parent="Stage/MovingPlatforms/MovingPlatform10" index="1"]
+curve = SubResource( 20 )
+
+[node name="MovingPlatform20" parent="Stage/MovingPlatforms" instance=ExtResource( 4 )]
+position = Vector2( 2976, 432 )
+
+[node name="KinematicBody2D" parent="Stage/MovingPlatforms/MovingPlatform20" index="0"]
+position = Vector2( -0.149902, -0.0941467 )
+
+[node name="AnimationPlayer" parent="Stage/MovingPlatforms/MovingPlatform20/KinematicBody2D" index="0"]
+anims/PingPong = SubResource( 74 )
+anims/RightLeft = SubResource( 75 )
+
+[node name="Path2D" parent="Stage/MovingPlatforms/MovingPlatform20" index="1"]
+curve = SubResource( 20 )
+
+[node name="MovingPlatform21" parent="Stage/MovingPlatforms" instance=ExtResource( 4 )]
+position = Vector2( 3040, 432 )
+
+[node name="KinematicBody2D" parent="Stage/MovingPlatforms/MovingPlatform21" index="0"]
+position = Vector2( -0.149902, -0.0941467 )
+
+[node name="AnimationPlayer" parent="Stage/MovingPlatforms/MovingPlatform21/KinematicBody2D" index="0"]
+anims/PingPong = SubResource( 76 )
+anims/RightLeft = SubResource( 77 )
+
+[node name="Path2D" parent="Stage/MovingPlatforms/MovingPlatform21" index="1"]
+curve = SubResource( 20 )
+
+[node name="MovingPlatform22" parent="Stage/MovingPlatforms" instance=ExtResource( 4 )]
+position = Vector2( 3104, 432 )
+
+[node name="KinematicBody2D" parent="Stage/MovingPlatforms/MovingPlatform22" index="0"]
+position = Vector2( -0.149902, -0.0941467 )
+
+[node name="AnimationPlayer" parent="Stage/MovingPlatforms/MovingPlatform22/KinematicBody2D" index="0"]
+anims/PingPong = SubResource( 78 )
+anims/RightLeft = SubResource( 79 )
+
+[node name="Path2D" parent="Stage/MovingPlatforms/MovingPlatform22" index="1"]
+curve = SubResource( 20 )
+
+[node name="MovingPlatform23" parent="Stage/MovingPlatforms" instance=ExtResource( 4 )]
+position = Vector2( 3168, 432 )
+
+[node name="KinematicBody2D" parent="Stage/MovingPlatforms/MovingPlatform23" index="0"]
+position = Vector2( -0.149902, -0.0941467 )
+
+[node name="AnimationPlayer" parent="Stage/MovingPlatforms/MovingPlatform23/KinematicBody2D" index="0"]
+anims/PingPong = SubResource( 80 )
+anims/RightLeft = SubResource( 81 )
+
+[node name="Path2D" parent="Stage/MovingPlatforms/MovingPlatform23" index="1"]
+curve = SubResource( 20 )
+
+[node name="MovingPlatform24" parent="Stage/MovingPlatforms" instance=ExtResource( 4 )]
+position = Vector2( 3232, 432 )
+
+[node name="KinematicBody2D" parent="Stage/MovingPlatforms/MovingPlatform24" index="0"]
+position = Vector2( -0.149902, -0.0941467 )
+
+[node name="AnimationPlayer" parent="Stage/MovingPlatforms/MovingPlatform24/KinematicBody2D" index="0"]
+anims/PingPong = SubResource( 82 )
+anims/RightLeft = SubResource( 83 )
+
+[node name="Path2D" parent="Stage/MovingPlatforms/MovingPlatform24" index="1"]
+curve = SubResource( 20 )
+
+[node name="MovingPlatform25" parent="Stage/MovingPlatforms" instance=ExtResource( 4 )]
+position = Vector2( 3296, 432 )
+
+[node name="KinematicBody2D" parent="Stage/MovingPlatforms/MovingPlatform25" index="0"]
+position = Vector2( -0.149902, -0.0941467 )
+
+[node name="AnimationPlayer" parent="Stage/MovingPlatforms/MovingPlatform25/KinematicBody2D" index="0"]
+anims/PingPong = SubResource( 84 )
+anims/RightLeft = SubResource( 85 )
+
+[node name="Path2D" parent="Stage/MovingPlatforms/MovingPlatform25" index="1"]
+curve = SubResource( 20 )
+
+[node name="MovingPlatform41" parent="Stage/MovingPlatforms" instance=ExtResource( 4 )]
+position = Vector2( 3360, 432 )
+
+[node name="KinematicBody2D" parent="Stage/MovingPlatforms/MovingPlatform41" index="0"]
+position = Vector2( -0.149902, -0.0941467 )
+
+[node name="AnimationPlayer" parent="Stage/MovingPlatforms/MovingPlatform41/KinematicBody2D" index="0"]
+anims/PingPong = SubResource( 86 )
+anims/RightLeft = SubResource( 87 )
+
+[node name="Path2D" parent="Stage/MovingPlatforms/MovingPlatform41" index="1"]
+curve = SubResource( 20 )
+
+[node name="MovingPlatform42" parent="Stage/MovingPlatforms" instance=ExtResource( 4 )]
+position = Vector2( 3424, 432 )
+
+[node name="KinematicBody2D" parent="Stage/MovingPlatforms/MovingPlatform42" index="0"]
+position = Vector2( -0.149902, -0.0941467 )
+
+[node name="AnimationPlayer" parent="Stage/MovingPlatforms/MovingPlatform42/KinematicBody2D" index="0"]
+anims/PingPong = SubResource( 88 )
+anims/RightLeft = SubResource( 89 )
+
+[node name="Path2D" parent="Stage/MovingPlatforms/MovingPlatform42" index="1"]
+curve = SubResource( 20 )
+
+[node name="MovingPlatform43" parent="Stage/MovingPlatforms" instance=ExtResource( 4 )]
+position = Vector2( 3488, 432 )
+
+[node name="KinematicBody2D" parent="Stage/MovingPlatforms/MovingPlatform43" index="0"]
+position = Vector2( -0.149902, -0.0941467 )
+
+[node name="AnimationPlayer" parent="Stage/MovingPlatforms/MovingPlatform43/KinematicBody2D" index="0"]
+anims/PingPong = SubResource( 90 )
+anims/RightLeft = SubResource( 91 )
+
+[node name="Path2D" parent="Stage/MovingPlatforms/MovingPlatform43" index="1"]
+curve = SubResource( 20 )
+
+[node name="MovingPlatform44" parent="Stage/MovingPlatforms" instance=ExtResource( 4 )]
+position = Vector2( 3552, 432 )
+
+[node name="KinematicBody2D" parent="Stage/MovingPlatforms/MovingPlatform44" index="0"]
+position = Vector2( -0.149902, -0.0941467 )
+
+[node name="AnimationPlayer" parent="Stage/MovingPlatforms/MovingPlatform44/KinematicBody2D" index="0"]
+anims/PingPong = SubResource( 92 )
+anims/RightLeft = SubResource( 93 )
+
+[node name="Path2D" parent="Stage/MovingPlatforms/MovingPlatform44" index="1"]
+curve = SubResource( 20 )
+
+[node name="MovingPlatform45" parent="Stage/MovingPlatforms" instance=ExtResource( 4 )]
+position = Vector2( 3608, 432 )
+
+[node name="KinematicBody2D" parent="Stage/MovingPlatforms/MovingPlatform45" index="0"]
+position = Vector2( -0.149902, -0.0941467 )
+
+[node name="AnimationPlayer" parent="Stage/MovingPlatforms/MovingPlatform45/KinematicBody2D" index="0"]
+anims/PingPong = SubResource( 94 )
+anims/RightLeft = SubResource( 95 )
+
+[node name="Path2D" parent="Stage/MovingPlatforms/MovingPlatform45" index="1"]
+curve = SubResource( 20 )
+
+[node name="MovingPlatform46" parent="Stage/MovingPlatforms" instance=ExtResource( 4 )]
+position = Vector2( 3672, 432 )
+
+[node name="KinematicBody2D" parent="Stage/MovingPlatforms/MovingPlatform46" index="0"]
+position = Vector2( -0.149902, -0.0941467 )
+
+[node name="AnimationPlayer" parent="Stage/MovingPlatforms/MovingPlatform46/KinematicBody2D" index="0"]
+anims/PingPong = SubResource( 96 )
+anims/RightLeft = SubResource( 97 )
+
+[node name="Path2D" parent="Stage/MovingPlatforms/MovingPlatform46" index="1"]
+curve = SubResource( 20 )
+
+[node name="MovingPlatform47" parent="Stage/MovingPlatforms" instance=ExtResource( 4 )]
+position = Vector2( 3736, 432 )
+
+[node name="KinematicBody2D" parent="Stage/MovingPlatforms/MovingPlatform47" index="0"]
+position = Vector2( -0.149902, -0.0941467 )
+
+[node name="AnimationPlayer" parent="Stage/MovingPlatforms/MovingPlatform47/KinematicBody2D" index="0"]
+anims/PingPong = SubResource( 98 )
+anims/RightLeft = SubResource( 99 )
+
+[node name="Path2D" parent="Stage/MovingPlatforms/MovingPlatform47" index="1"]
+curve = SubResource( 20 )
+
+[node name="MovingPlatform48" parent="Stage/MovingPlatforms" instance=ExtResource( 4 )]
+position = Vector2( 3800, 432 )
+
+[node name="KinematicBody2D" parent="Stage/MovingPlatforms/MovingPlatform48" index="0"]
+position = Vector2( -0.149902, -0.0941467 )
+
+[node name="AnimationPlayer" parent="Stage/MovingPlatforms/MovingPlatform48/KinematicBody2D" index="0"]
+anims/PingPong = SubResource( 100 )
+anims/RightLeft = SubResource( 101 )
+
+[node name="Path2D" parent="Stage/MovingPlatforms/MovingPlatform48" index="1"]
+curve = SubResource( 20 )
+
+[node name="MovingPlatform49" parent="Stage/MovingPlatforms" instance=ExtResource( 4 )]
+position = Vector2( 3864, 432 )
+
+[node name="KinematicBody2D" parent="Stage/MovingPlatforms/MovingPlatform49" index="0"]
+position = Vector2( -0.149902, -0.0941467 )
+
+[node name="AnimationPlayer" parent="Stage/MovingPlatforms/MovingPlatform49/KinematicBody2D" index="0"]
+anims/PingPong = SubResource( 102 )
+anims/RightLeft = SubResource( 103 )
+
+[node name="Path2D" parent="Stage/MovingPlatforms/MovingPlatform49" index="1"]
+curve = SubResource( 20 )
+
+[node name="MovingPlatform50" parent="Stage/MovingPlatforms" instance=ExtResource( 4 )]
+position = Vector2( 3928, 432 )
+
+[node name="KinematicBody2D" parent="Stage/MovingPlatforms/MovingPlatform50" index="0"]
+position = Vector2( -0.149902, -0.0941467 )
+
+[node name="AnimationPlayer" parent="Stage/MovingPlatforms/MovingPlatform50/KinematicBody2D" index="0"]
+anims/PingPong = SubResource( 104 )
+anims/RightLeft = SubResource( 105 )
+
+[node name="Path2D" parent="Stage/MovingPlatforms/MovingPlatform50" index="1"]
+curve = SubResource( 20 )
+
+[node name="MovingPlatform53" parent="Stage/MovingPlatforms" instance=ExtResource( 4 )]
+position = Vector2( 4256, 528 )
+
+[node name="KinematicBody2D" parent="Stage/MovingPlatforms/MovingPlatform53" index="0"]
+position = Vector2( -0.149902, -0.0941162 )
+
+[node name="AnimationPlayer" parent="Stage/MovingPlatforms/MovingPlatform53/KinematicBody2D" index="0"]
+anims/PingPong = SubResource( 106 )
+anims/RightLeft = SubResource( 107 )
+
+[node name="Path2D" parent="Stage/MovingPlatforms/MovingPlatform53" index="1"]
+curve = SubResource( 20 )
+
+[node name="MovingPlatform52" parent="Stage/MovingPlatforms" instance=ExtResource( 4 )]
+position = Vector2( 4128, 528 )
+
+[node name="KinematicBody2D" parent="Stage/MovingPlatforms/MovingPlatform52" index="0"]
+position = Vector2( -0.149902, -0.0941162 )
+
+[node name="AnimationPlayer" parent="Stage/MovingPlatforms/MovingPlatform52/KinematicBody2D" index="0"]
+anims/PingPong = SubResource( 108 )
+anims/RightLeft = SubResource( 109 )
+
+[node name="Path2D" parent="Stage/MovingPlatforms/MovingPlatform52" index="1"]
+curve = SubResource( 20 )
+
+[node name="MovingPlatform51" parent="Stage/MovingPlatforms" instance=ExtResource( 4 )]
+position = Vector2( 4000, 528 )
+
+[node name="KinematicBody2D" parent="Stage/MovingPlatforms/MovingPlatform51" index="0"]
+position = Vector2( -0.149902, -0.0941162 )
+
+[node name="AnimationPlayer" parent="Stage/MovingPlatforms/MovingPlatform51/KinematicBody2D" index="0"]
+anims/PingPong = SubResource( 110 )
+anims/RightLeft = SubResource( 111 )
+
+[node name="Path2D" parent="Stage/MovingPlatforms/MovingPlatform51" index="1"]
+curve = SubResource( 20 )
+
+[node name="MovingPlatform5" parent="Stage/MovingPlatforms" instance=ExtResource( 4 )]
+position = Vector2( 4032, -112 )
+
+[node name="KinematicBody2D" parent="Stage/MovingPlatforms/MovingPlatform5" index="0"]
+position = Vector2( -0.149902, -0.0941391 )
+
+[node name="AnimationPlayer" parent="Stage/MovingPlatforms/MovingPlatform5/KinematicBody2D" index="0"]
+anims/PingPong = SubResource( 8 )
+anims/RightLeft = SubResource( 9 )
+
+[node name="Path2D" parent="Stage/MovingPlatforms/MovingPlatform5" index="1"]
+curve = SubResource( 10 )
+
+[node name="MovingPlatform6" parent="Stage/MovingPlatforms" instance=ExtResource( 4 )]
+position = Vector2( 4256, -208 )
+
+[node name="KinematicBody2D" parent="Stage/MovingPlatforms/MovingPlatform6" index="0"]
+position = Vector2( -0.149902, -0.0941467 )
+
+[node name="AnimationPlayer" parent="Stage/MovingPlatforms/MovingPlatform6/KinematicBody2D" index="0"]
+anims/PingPong = SubResource( 15 )
+anims/RightLeft = SubResource( 16 )
+
+[node name="Path2D" parent="Stage/MovingPlatforms/MovingPlatform6" index="1"]
+curve = SubResource( 10 )
+
+[node name="MovingPlatform3" parent="Stage/MovingPlatforms" instance=ExtResource( 4 )]
+position = Vector2( 2968, -208 )
+
+[node name="KinematicBody2D" parent="Stage/MovingPlatforms/MovingPlatform3" index="0"]
+position = Vector2( -0.149902, -0.0941467 )
+
+[node name="AnimationPlayer" parent="Stage/MovingPlatforms/MovingPlatform3/KinematicBody2D" index="0"]
+anims/PingPong = SubResource( 17 )
+anims/RightLeft = SubResource( 18 )
+
+[node name="Path2D" parent="Stage/MovingPlatforms/MovingPlatform3" index="1"]
+curve = ExtResource( 5 )
+
+[node name="MovingPlatform13" parent="Stage/MovingPlatforms" instance=ExtResource( 4 )]
+position = Vector2( 2400, 304 )
+
+[node name="KinematicBody2D" parent="Stage/MovingPlatforms/MovingPlatform13" index="0"]
+position = Vector2( -0.149902, -0.0941467 )
+
+[node name="AnimationPlayer" parent="Stage/MovingPlatforms/MovingPlatform13/KinematicBody2D" index="0"]
+anims/PingPong = SubResource( 112 )
+anims/RightLeft = SubResource( 113 )
+
+[node name="Path2D" parent="Stage/MovingPlatforms/MovingPlatform13" index="1"]
+curve = ExtResource( 5 )
+
+[node name="MovingPlatform4" parent="Stage/MovingPlatforms" instance=ExtResource( 4 )]
+position = Vector2( 3144, -208 )
+
+[node name="KinematicBody2D" parent="Stage/MovingPlatforms/MovingPlatform4" index="0"]
+position = Vector2( -0.149902, -0.0941467 )
+
+[node name="AnimationPlayer" parent="Stage/MovingPlatforms/MovingPlatform4/KinematicBody2D" index="0"]
+anims/PingPong = SubResource( 5 )
+anims/RightLeft = SubResource( 6 )
+
+[node name="Path2D" parent="Stage/MovingPlatforms/MovingPlatform4" index="1"]
+curve = SubResource( 7 )
+
+[node name="Camlock" parent="Stage" instance=ExtResource( 7 )]
+position = Vector2( 4784, 520 )
 
 [editable path="Stage/Player"]
+
+[editable path="Stage/MovingPlatforms/MovingPlatform2"]
+
+[editable path="Stage/MovingPlatforms/MovingPlatform7"]
+
+[editable path="Stage/MovingPlatforms/MovingPlatform8"]
+
+[editable path="Stage/MovingPlatforms/MovingPlatform11"]
+
+[editable path="Stage/MovingPlatforms/MovingPlatform12"]
+
+[editable path="Stage/MovingPlatforms/MovingPlatform14"]
+
+[editable path="Stage/MovingPlatforms/MovingPlatform15"]
+
+[editable path="Stage/MovingPlatforms/MovingPlatform16"]
+
+[editable path="Stage/MovingPlatforms/MovingPlatform17"]
+
+[editable path="Stage/MovingPlatforms/MovingPlatform18"]
+
+[editable path="Stage/MovingPlatforms/MovingPlatform19"]
+
+[editable path="Stage/MovingPlatforms/MovingPlatform26"]
+
+[editable path="Stage/MovingPlatforms/MovingPlatform27"]
+
+[editable path="Stage/MovingPlatforms/MovingPlatform28"]
+
+[editable path="Stage/MovingPlatforms/MovingPlatform29"]
+
+[editable path="Stage/MovingPlatforms/MovingPlatform30"]
+
+[editable path="Stage/MovingPlatforms/MovingPlatform31"]
+
+[editable path="Stage/MovingPlatforms/MovingPlatform32"]
+
+[editable path="Stage/MovingPlatforms/MovingPlatform33"]
+
+[editable path="Stage/MovingPlatforms/MovingPlatform34"]
+
+[editable path="Stage/MovingPlatforms/MovingPlatform35"]
+
+[editable path="Stage/MovingPlatforms/MovingPlatform36"]
+
+[editable path="Stage/MovingPlatforms/MovingPlatform37"]
+
+[editable path="Stage/MovingPlatforms/MovingPlatform54"]
+
+[editable path="Stage/MovingPlatforms/MovingPlatform55"]
+
+[editable path="Stage/MovingPlatforms/MovingPlatform38"]
+
+[editable path="Stage/MovingPlatforms/MovingPlatform39"]
+
+[editable path="Stage/MovingPlatforms/MovingPlatform40"]
+
+[editable path="Stage/MovingPlatforms/MovingPlatform9"]
+
+[editable path="Stage/MovingPlatforms/MovingPlatform10"]
+
+[editable path="Stage/MovingPlatforms/MovingPlatform20"]
+
+[editable path="Stage/MovingPlatforms/MovingPlatform21"]
+
+[editable path="Stage/MovingPlatforms/MovingPlatform22"]
+
+[editable path="Stage/MovingPlatforms/MovingPlatform23"]
+
+[editable path="Stage/MovingPlatforms/MovingPlatform24"]
+
+[editable path="Stage/MovingPlatforms/MovingPlatform25"]
+
+[editable path="Stage/MovingPlatforms/MovingPlatform41"]
+
+[editable path="Stage/MovingPlatforms/MovingPlatform42"]
+
+[editable path="Stage/MovingPlatforms/MovingPlatform43"]
+
+[editable path="Stage/MovingPlatforms/MovingPlatform44"]
+
+[editable path="Stage/MovingPlatforms/MovingPlatform45"]
+
+[editable path="Stage/MovingPlatforms/MovingPlatform46"]
+
+[editable path="Stage/MovingPlatforms/MovingPlatform47"]
+
+[editable path="Stage/MovingPlatforms/MovingPlatform48"]
+
+[editable path="Stage/MovingPlatforms/MovingPlatform49"]
+
+[editable path="Stage/MovingPlatforms/MovingPlatform50"]
+
+[editable path="Stage/MovingPlatforms/MovingPlatform53"]
+
+[editable path="Stage/MovingPlatforms/MovingPlatform52"]
+
+[editable path="Stage/MovingPlatforms/MovingPlatform51"]
+
+[editable path="Stage/MovingPlatforms/MovingPlatform5"]
+
+[editable path="Stage/MovingPlatforms/MovingPlatform6"]
+
+[editable path="Stage/MovingPlatforms/MovingPlatform3"]
+
+[editable path="Stage/MovingPlatforms/MovingPlatform13"]
+
+[editable path="Stage/MovingPlatforms/MovingPlatform4"]

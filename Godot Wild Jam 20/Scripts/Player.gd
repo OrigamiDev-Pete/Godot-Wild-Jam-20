@@ -140,7 +140,7 @@ func stick_to_surface() -> void:
 
 func set_active(value):
 	active = value
-	if has_node("Camera2D") and value == true:
+	if has_node("Camera2D") and value == true and Cam !=null:
 		Cam.current = true
 
 

@@ -1,0 +1,152 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Scripts/Background.shader" type="Shader" id=1]
+[ext_resource path="res://Fonts/Acme-Regular.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Scenes/PauseReport.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scripts/PauseMenu.gd" type="Script" id=4]
+
+[sub_resource type="DynamicFont" id=5]
+size = 30
+font_data = ExtResource( 2 )
+
+[sub_resource type="Theme" id=6]
+default_font = SubResource( 5 )
+
+[sub_resource type="ShaderMaterial" id=3]
+shader = ExtResource( 1 )
+shader_param/colour = Color( 0.152941, 0.301961, 0.486275, 1 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 32
+font_data = ExtResource( 2 )
+
+[node name="PauseMenu" type="Control"]
+pause_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = SubResource( 6 )
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+modulate = Color( 1, 1, 1, 0.67451 )
+material = SubResource( 3 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Restart" type="Button" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -176.0
+margin_top = -86.6482
+margin_right = -70.0
+margin_bottom = -39.6482
+custom_fonts/font = SubResource( 4 )
+text = "Restart"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Continue" type="Button" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = 65.0
+margin_top = -86.6482
+margin_right = 193.0
+margin_bottom = -39.6482
+custom_fonts/font = SubResource( 4 )
+text = "Continue"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+margin_left = 420.0
+margin_top = 225.0
+margin_right = 604.0
+margin_bottom = 350.0
+
+[node name="Level1" parent="CenterContainer/VBoxContainer" instance=ExtResource( 3 )]
+margin_right = 184.0
+
+[node name="Level" parent="CenterContainer/VBoxContainer/Level1" index="0"]
+margin_right = 73.0
+text = "Level1"
+
+[node name="Control" parent="CenterContainer/VBoxContainer/Level1" index="1"]
+margin_left = 97.0
+margin_right = 97.0
+
+[node name="Medal" parent="CenterContainer/VBoxContainer/Level1/Control" index="0"]
+frame = 39
+
+[node name="Time" parent="CenterContainer/VBoxContainer/Level1" index="2"]
+margin_left = 121.0
+margin_top = 0.0
+margin_right = 181.0
+margin_bottom = 39.0
+
+[node name="Level2" parent="CenterContainer/VBoxContainer" instance=ExtResource( 3 )]
+margin_top = 43.0
+margin_right = 184.0
+margin_bottom = 82.0
+
+[node name="Level" parent="CenterContainer/VBoxContainer/Level2" index="0"]
+margin_right = 76.0
+text = "Level2"
+
+[node name="Control" parent="CenterContainer/VBoxContainer/Level2" index="1"]
+margin_left = 100.0
+margin_right = 100.0
+
+[node name="Medal" parent="CenterContainer/VBoxContainer/Level2/Control" index="0"]
+frame = 39
+
+[node name="Time" parent="CenterContainer/VBoxContainer/Level2" index="2"]
+margin_left = 124.0
+margin_top = 0.0
+margin_right = 184.0
+margin_bottom = 39.0
+
+[node name="Level3" parent="CenterContainer/VBoxContainer" instance=ExtResource( 3 )]
+margin_top = 86.0
+margin_right = 184.0
+margin_bottom = 125.0
+
+[node name="Level" parent="CenterContainer/VBoxContainer/Level3" index="0"]
+margin_right = 76.0
+text = "Level3"
+
+[node name="Control" parent="CenterContainer/VBoxContainer/Level3" index="1"]
+margin_left = 100.0
+margin_right = 100.0
+
+[node name="Medal" parent="CenterContainer/VBoxContainer/Level3/Control" index="0"]
+frame = 39
+
+[node name="Time" parent="CenterContainer/VBoxContainer/Level3" index="2"]
+margin_left = 124.0
+margin_top = 0.0
+margin_right = 184.0
+margin_bottom = 39.0
+
+[editable path="CenterContainer/VBoxContainer/Level1"]
+
+[editable path="CenterContainer/VBoxContainer/Level2"]
+
+[editable path="CenterContainer/VBoxContainer/Level3"]
