@@ -19,7 +19,7 @@ default_font = SubResource( 1 )
 shader = ExtResource( 1 )
 shader_param/colour = Color( 0.152941, 0.301961, 0.486275, 1 )
 
-[sub_resource type="GDScript" id=6]
+[sub_resource type="GDScript" id=4]
 script/source = "extends TextureRect
 
 export(float, 0 , 1) var speed : float
@@ -28,16 +28,16 @@ func _process(_delta: float) -> void:
 	rect_rotation += speed
 "
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="DynamicFont" id=5]
 size = 100
 font_data = ExtResource( 2 )
 
-[sub_resource type="DynamicFont" id=7]
+[sub_resource type="DynamicFont" id=6]
 use_mipmaps = true
 use_filter = true
 font_data = ExtResource( 2 )
 
-[sub_resource type="DynamicFont" id=5]
+[sub_resource type="DynamicFont" id=7]
 size = 18
 font_data = ExtResource( 2 )
 
@@ -76,7 +76,7 @@ rect_rotation = -9.83133
 rect_pivot_offset = Vector2( 135.458, 141.374 )
 texture = ExtResource( 5 )
 expand = true
-script = SubResource( 6 )
+script = SubResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -92,7 +92,7 @@ rect_rotation = -9.83133
 rect_pivot_offset = Vector2( 135.458, 141.374 )
 texture = ExtResource( 5 )
 expand = true
-script = SubResource( 6 )
+script = SubResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -107,7 +107,7 @@ rect_rotation = 173.179
 rect_pivot_offset = Vector2( 82.8331, 92.4056 )
 texture = ExtResource( 5 )
 expand = true
-script = SubResource( 6 )
+script = SubResource( 4 )
 speed = 0.3
 
 [node name="TextureRect12" type="TextureRect" parent="Background"]
@@ -120,7 +120,7 @@ rect_rotation = 218.114
 rect_pivot_offset = Vector2( 82.8331, 92.4056 )
 texture = ExtResource( 5 )
 expand = true
-script = SubResource( 6 )
+script = SubResource( 4 )
 speed = 0.2
 
 [node name="TextureRect3" type="TextureRect" parent="Background"]
@@ -133,7 +133,7 @@ rect_rotation = 144.156
 rect_pivot_offset = Vector2( 142.526, 149.845 )
 texture = ExtResource( 5 )
 expand = true
-script = SubResource( 6 )
+script = SubResource( 4 )
 speed = 0.2
 
 [node name="TextureRect13" type="TextureRect" parent="Background"]
@@ -146,7 +146,7 @@ rect_rotation = 199.757
 rect_pivot_offset = Vector2( 142.526, 149.845 )
 texture = ExtResource( 5 )
 expand = true
-script = SubResource( 6 )
+script = SubResource( 4 )
 speed = 0.2
 
 [node name="TextureRect4" type="TextureRect" parent="Background"]
@@ -159,7 +159,7 @@ rect_rotation = 150.0
 rect_pivot_offset = Vector2( 52.0139, 48.5834 )
 texture = ExtResource( 5 )
 expand = true
-script = SubResource( 6 )
+script = SubResource( 4 )
 speed = 0.6
 
 [node name="TextureRect11" type="TextureRect" parent="Background"]
@@ -172,7 +172,7 @@ rect_rotation = 150.0
 rect_pivot_offset = Vector2( 52.0139, 48.5834 )
 texture = ExtResource( 5 )
 expand = true
-script = SubResource( 6 )
+script = SubResource( 4 )
 speed = 0.6
 
 [node name="TextureRect6" type="TextureRect" parent="Background"]
@@ -185,7 +185,7 @@ rect_rotation = 231.102
 rect_pivot_offset = Vector2( 33.5483, 31.2914 )
 texture = ExtResource( 5 )
 expand = true
-script = SubResource( 6 )
+script = SubResource( 4 )
 speed = 0.6
 
 [node name="TextureRect7" type="TextureRect" parent="Background"]
@@ -198,7 +198,7 @@ rect_rotation = 148.598
 rect_pivot_offset = Vector2( 33.5483, 31.2914 )
 texture = ExtResource( 5 )
 expand = true
-script = SubResource( 6 )
+script = SubResource( 4 )
 speed = 0.3
 
 [node name="TextureRect8" type="TextureRect" parent="Background"]
@@ -211,7 +211,7 @@ rect_rotation = 231.102
 rect_pivot_offset = Vector2( 33.5483, 31.2914 )
 texture = ExtResource( 5 )
 expand = true
-script = SubResource( 6 )
+script = SubResource( 4 )
 speed = 0.6
 
 [node name="TextureRect9" type="TextureRect" parent="Background"]
@@ -224,7 +224,7 @@ rect_rotation = 298.904
 rect_pivot_offset = Vector2( 39.3523, 35.2337 )
 texture = ExtResource( 5 )
 expand = true
-script = SubResource( 6 )
+script = SubResource( 4 )
 speed = 0.4
 
 [node name="TextureRect10" type="TextureRect" parent="Background"]
@@ -237,7 +237,7 @@ rect_rotation = 318.461
 rect_pivot_offset = Vector2( 33.5483, 31.2914 )
 texture = ExtResource( 5 )
 expand = true
-script = SubResource( 6 )
+script = SubResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -269,7 +269,7 @@ custom_constants/separation = 10
 [node name="Title" type="Label" parent="Menu/CenterContainer/VBoxContainer"]
 margin_right = 326.0
 margin_bottom = 127.0
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 5 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_offset_x = 4
 custom_constants/shadow_offset_y = 3
@@ -299,7 +299,7 @@ flat = true
 margin_left = 80.0
 margin_right = 160.0
 margin_bottom = 47.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = SubResource( 6 )
 pressed = true
 text = "Tutorial"
 flat = true
@@ -333,7 +333,7 @@ margin_top = -36.0
 margin_right = 123.0
 margin_bottom = -12.0
 size_flags_horizontal = 4
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 7 )
 text = "Copyright (c)  2020 Peter de Vroom"
 align = 1
 __meta__ = {

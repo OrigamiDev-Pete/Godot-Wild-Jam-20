@@ -10,6 +10,7 @@ const GRAVITY := 9.7
 
 export(int, -100, 0) var jump_height := -1
 export var active := false setget set_active, get_active
+export var last: bool
 
 var motion := Vector2(0,0)
 var can_jump := true
@@ -86,6 +87,7 @@ func jump():
 		is_jumping = true
 		jump_ready = false
 		JumpTimer.start()
+		position.y -= 1
 		motion.y = -50
 	if is_jumping:
 		motion.y += jump_height
@@ -188,7 +190,7 @@ func _on_JumpTimer_timeout() -> void:
 
 
 func _on_Area2D_area_entered(area: Area2D) -> void:
-	if !active and can_transfer:
+	if !active and can_transfer and !last:
 		can_transfer = false
 		var last_player: KinematicBody2D = area.get_parent()
 		Cam.position = last_player.global_position - global_position
@@ -196,6 +198,8 @@ func _on_Area2D_area_entered(area: Area2D) -> void:
 		Cam.move_to_new_player()
 		motion.x = last_player.motion.x
 		sprite.play("Roll")
+	elif last:
+		get_parent().get_parent().get_parent().get_node("UI").ending()
 	else:
 		active = false
 		Cam.current = false

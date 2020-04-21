@@ -7,8 +7,8 @@ const Silver: StreamTexture = preload("res://Sprites/Pallets/PalletSilver.png")
 const Bronze: StreamTexture = preload("res://Sprites/Pallets/PalletBronze.png")
 
 const LEVEL1_TIMES := [25, 27]
-const LEVEL2_TIMES := [38, 43]
-const LEVEL3_TIMES := [20, 30]
+const LEVEL2_TIMES := [38, 45]
+const LEVEL3_TIMES := [40, 45]
 const LEVELS := [LEVEL1_TIMES, LEVEL2_TIMES, LEVEL3_TIMES]
 
 
@@ -16,12 +16,14 @@ var time_start := OS.get_ticks_msec()
 var time_now : int
 var time : String
 
+var paused_time : int
 var current_level: int = 1
 var last_palette: StreamTexture
 
 onready var TimeDisplay := $CanvasLayer/Control/Timer as Label
 onready var Medal := $CanvasLayer/Control/Medal as AnimatedSprite
 onready var PauseMenu := $CanvasLayer/PauseMenu as Control
+onready var EndingMenu :=$CanvasLayer/EndingMenu as Control
 onready var Anim := $CanvasLayer/Control/ScoreDisplay/AnimationPlayer as AnimationPlayer
 
 func _ready() -> void:
@@ -35,11 +37,18 @@ func _process(_delta: float) -> void:
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
 		PauseMenu.show()
+		PauseMenu.paused = true
+		PauseMenu.paused_time_start = OS.get_ticks_msec()
 		get_tree().paused = true
 
+func ending() -> void:
+	send_time_to_pause()
+	EndingMenu.show()
+	get_tree().paused = true
+
 func timer() -> String:
-	time_now = OS.get_ticks_msec()
-	var elapsedmsecs := time_now - time_start
+	time_now = OS.get_ticks_msec() 
+	var elapsedmsecs := time_now - time_start - paused_time
 # warning-ignore:integer_division
 	var elapsedsecs := elapsedmsecs/1000
 # warning-ignore:integer_division
@@ -48,7 +57,7 @@ func timer() -> String:
 # warning-ignore:integer_division
 	var milliseconds = elapsedmsecs % 1000 / 10
 	time = "%02d:%02d:%02d" % [minutes, seconds, milliseconds]
-	check_time(seconds)
+	check_time(elapsedsecs)
 	return time
 
 
@@ -70,6 +79,7 @@ func change_medal(palette: StreamTexture) -> void:
 
 
 func _on_stage_ended(_area: Area2D):
+	paused_time = 0
 	emit_signal("stage_ended", time, current_level)
 	send_time_to_pause()
 	$CanvasLayer/Control/ScoreDisplay/Timer2.text = time
@@ -85,11 +95,25 @@ func send_time_to_pause():
 			PauseMenu.level1_time = time
 			PauseMenu.Level1Medal.material.set_shader_param("palette", Medal.material.get_shader_param("palette"))
 			PauseMenu.Level1Medal.show()
+			EndingMenu.level1_time = time
+			EndingMenu.Level1Medal.material.set_shader_param("palette", Medal.material.get_shader_param("palette"))
+			EndingMenu.Level1Medal.show()
 		2:
 			PauseMenu.level2_time = time
 			PauseMenu.Level2Medal.material.set_shader_param("palette", Medal.material.get_shader_param("palette"))
 			PauseMenu.Level2Medal.show()
+			EndingMenu.level2_time = time
+			EndingMenu.Level2Medal.material.set_shader_param("palette", Medal.material.get_shader_param("palette"))
+			EndingMenu.Level2Medal.show()
 		3:
 			PauseMenu.level3_time = time
 			PauseMenu.Level3Medal.material.set_shader_param("palette", Medal.material.get_shader_param("palette"))
 			PauseMenu.Level3Medal.show()
+			EndingMenu.level3_time = time
+			EndingMenu.Level3Medal.material.set_shader_param("palette", Medal.material.get_shader_param("palette"))
+			EndingMenu.Level3Medal.show()
+
+
+func _on_Continue_pressed() -> void:
+	paused_time += PauseMenu.paused_time
+	print(paused_time)

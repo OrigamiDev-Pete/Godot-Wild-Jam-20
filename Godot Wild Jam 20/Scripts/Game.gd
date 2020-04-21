@@ -39,9 +39,10 @@ func _on_Starter1_body_entered(_body: Node):
 #	get_node("UI/CanvasLayer/Control").visible = true
 	ui = HUD.instance()
 	add_child(ui)
-	var level2 := $Level2
+	level2 = $Level2
 	var StageEnd := level2.get_node("Stage/Player/Area2D") as Area2D
 	StageEnd.connect("area_entered", ui, "_on_stage_ended")
+	$MusicPlayer.start_music()
 
 
 func _on_stage_ended(time: String, level: int):
@@ -52,11 +53,6 @@ func _on_stage_ended(time: String, level: int):
 			level2_time = time
 		3:
 			pass
-
-
-
-func start_clock():
-	pass
 
 
 func _on_Tutorial_toggled(button_pressed: bool) -> void:

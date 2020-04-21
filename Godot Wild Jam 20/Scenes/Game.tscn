@@ -1,18 +1,32 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Scenes/Level2.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/Background.shader" type="Shader" id=2]
 [ext_resource path="res://Scripts/Game.gd" type="Script" id=3]
 [ext_resource path="res://Scenes/MainMenu.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/Level3.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/MusicPlayer.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/Splash.tscn" type="PackedScene" id=7]
 
-[sub_resource type="ShaderMaterial" id=2]
+[sub_resource type="ShaderMaterial" id=3]
 shader = ExtResource( 2 )
-shader_param/colour = Color( 0.87451, 0.878431, 0.337255, 1 )
+shader_param/colour = Color( 0.392157, 0.196078, 0.462745, 1 )
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 2 )
+shader_param/colour = Color( 0.87451, 0.878431, 0.337255, 1 )
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = ExtResource( 2 )
 shader_param/colour = Color( 0.207843, 0.368627, 0.85098, 1 )
+
+[sub_resource type="GDScript" id=4]
+script/source = "extends Control
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed(\"ui_accept\"):
+		hide()
+"
 
 [node name="Game" type="Node"]
 script = ExtResource( 3 )
@@ -24,21 +38,34 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="EndingBackground" type="ColorRect" parent="Background"]
+material = SubResource( 3 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 18464.0
+margin_top = -176.0
+margin_right = 19608.0
+margin_bottom = 1584.0
+color = Color( 0.207843, 0.368627, 0.85098, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Level3 Background" type="ColorRect" parent="Background"]
-material = SubResource( 2 )
+material = SubResource( 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 15600.0
 margin_top = -176.0
-margin_right = 19208.0
-margin_bottom = 1104.0
+margin_right = 16744.0
+margin_bottom = 1584.0
 color = Color( 0.207843, 0.368627, 0.85098, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Level2 Background" type="ColorRect" parent="Background"]
-material = SubResource( 1 )
+material = SubResource( 2 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 10288.0
@@ -56,13 +83,19 @@ __meta__ = {
 position = Vector2( 10304, 1280 )
 
 [node name="Sign" parent="Level2/Stage/Signs" index="0"]
-frame = 22
+frame = 6
 
 [node name="AnimatedSprite" parent="Level2/Stage/Player" index="0"]
-frame = 21
+frame = 6
 
 [node name="Level3" parent="." instance=ExtResource( 5 )]
 position = Vector2( 15616, 1792 )
+
+[node name="MusicPlayer" parent="." instance=ExtResource( 6 )]
+
+[node name="Splash" parent="." instance=ExtResource( 7 )]
+script = SubResource( 4 )
+[connection signal="pressed" from="MainMenu/Menu/CenterContainer/VBoxContainer/HBoxContainer/Start" to="MusicPlayer" method="_on_Start_pressed"]
 [connection signal="pressed" from="MainMenu/Menu/CenterContainer/VBoxContainer/HBoxContainer/Start" to="." method="_on_Start_pressed"]
 [connection signal="toggled" from="MainMenu/Menu/CenterContainer/VBoxContainer/HBoxContainer/Tutorial" to="." method="_on_Tutorial_toggled"]
 

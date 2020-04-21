@@ -20,7 +20,7 @@ jump_height = -30
 material = ExtResource( 1 )
 frames = ExtResource( 3 )
 animation = "Roll"
-frame = 11
+frame = 17
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
