@@ -1,22 +1,53 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Scripts/Background.shader" type="Shader" id=1]
 [ext_resource path="res://Fonts/Acme-Regular.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://Scenes/PauseReport.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scripts/PauseMenu.gd" type="Script" id=4]
+[ext_resource path="res://Sprites/Pallets/PalletGold.png" type="Texture" id=5]
 
-[sub_resource type="DynamicFont" id=5]
+[sub_resource type="DynamicFont" id=6]
 size = 30
 font_data = ExtResource( 2 )
 
-[sub_resource type="Theme" id=6]
-default_font = SubResource( 5 )
+[sub_resource type="Theme" id=7]
+default_font = SubResource( 6 )
 
-[sub_resource type="ShaderMaterial" id=3]
+[sub_resource type="ShaderMaterial" id=8]
 shader = ExtResource( 1 )
 shader_param/colour = Color( 0.152941, 0.301961, 0.486275, 1 )
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="Shader" id=5]
+code = "shader_type canvas_item;
+
+uniform sampler2D palette;
+
+
+void fragment() {
+	// get colour values from the sprite
+	vec4 mask_colour = texture(TEXTURE, UV);
+	vec4 output;
+	
+	highp float color_r = mask_colour.r;
+	output = texture(palette, vec2(color_r, 0.0));
+	
+	COLOR.rbg = output.rbg;
+	COLOR.a = texture(TEXTURE, UV).a;
+}"
+
+[sub_resource type="ShaderMaterial" id=9]
+shader = SubResource( 5 )
+shader_param/palette = ExtResource( 5 )
+
+[sub_resource type="ShaderMaterial" id=10]
+shader = SubResource( 5 )
+shader_param/palette = ExtResource( 5 )
+
+[sub_resource type="ShaderMaterial" id=11]
+shader = SubResource( 5 )
+shader_param/palette = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=12]
 size = 32
 font_data = ExtResource( 2 )
 
@@ -24,7 +55,7 @@ font_data = ExtResource( 2 )
 pause_mode = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
-theme = SubResource( 6 )
+theme = SubResource( 7 )
 script = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -33,7 +64,7 @@ __meta__ = {
 [node name="ColorRect" type="ColorRect" parent="."]
 pause_mode = 2
 modulate = Color( 1, 1, 1, 0.67451 )
-material = SubResource( 3 )
+material = SubResource( 8 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 
@@ -62,7 +93,8 @@ margin_left = 97.0
 margin_right = 97.0
 
 [node name="Medal" parent="CenterContainer/VBoxContainer/Level1/Control" index="0"]
-frame = 70
+material = SubResource( 9 )
+frame = 58
 
 [node name="Time" parent="CenterContainer/VBoxContainer/Level1" index="2"]
 margin_left = 121.0
@@ -84,7 +116,8 @@ margin_left = 100.0
 margin_right = 100.0
 
 [node name="Medal" parent="CenterContainer/VBoxContainer/Level2/Control" index="0"]
-frame = 70
+material = SubResource( 10 )
+frame = 58
 
 [node name="Time" parent="CenterContainer/VBoxContainer/Level2" index="2"]
 margin_left = 124.0
@@ -106,7 +139,8 @@ margin_left = 100.0
 margin_right = 100.0
 
 [node name="Medal" parent="CenterContainer/VBoxContainer/Level3/Control" index="0"]
-frame = 70
+material = SubResource( 11 )
+frame = 58
 
 [node name="Time" parent="CenterContainer/VBoxContainer/Level3" index="2"]
 margin_left = 124.0
@@ -124,7 +158,7 @@ margin_left = -176.0
 margin_top = -86.6482
 margin_right = -70.0
 margin_bottom = -39.6482
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 12 )
 text = "Restart"
 flat = true
 __meta__ = {
@@ -141,7 +175,7 @@ margin_left = 65.0
 margin_top = -86.6482
 margin_right = 193.0
 margin_bottom = -39.6482
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 12 )
 text = "Continue"
 flat = true
 __meta__ = {

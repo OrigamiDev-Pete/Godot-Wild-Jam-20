@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/TutorialStage_Layer1.ogg-7f1750128967154266d2501e4a29e4f3.oggstr"
+
+[deps]
+
+source_file="res://Sound/Music/TutorialStage_Layer1.ogg"
+dest_files=[ "res://.import/TutorialStage_Layer1.ogg-7f1750128967154266d2501e4a29e4f3.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

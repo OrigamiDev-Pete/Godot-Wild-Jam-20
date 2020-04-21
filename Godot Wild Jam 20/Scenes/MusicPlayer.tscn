@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Sound/Music/TutorialStage_Layer2.ogg" type="AudioStream" id=1]
+[ext_resource path="res://Sound/Music/TutorialStage_Layer1.ogg" type="AudioStream" id=2]
+[ext_resource path="res://Scripts/MusicPlayer.gd" type="Script" id=3]
+[ext_resource path="res://Sound/Music/MainTheme Looped.ogg" type="AudioStream" id=4]
+[ext_resource path="res://Sound/Music/MainTheme2.ogg" type="AudioStream" id=5]
+
+[node name="MusicPlayer" type="Node"]
+pause_mode = 2
+script = ExtResource( 3 )
+
+[node name="Layer1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )
+autoplay = true
+
+[node name="Layer2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 1 )
+volume_db = -80.0
+autoplay = true
+
+[node name="Intro" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+volume_db = -80.0
+
+[node name="MainTheme" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.15
+one_shot = true
+[connection signal="finished" from="Intro" to="." method="_on_Intro_finished"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
